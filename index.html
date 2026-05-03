@@ -1129,45 +1129,60 @@ section {
 /* Custom Leaflet popup styling to match the site */
 .leaflet-popup-content-wrapper {
   background: var(--cream-card) !important;
-  border-radius: 6px !important;
-  box-shadow: 0 4px 16px rgba(28, 42, 31, 0.15) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 30px rgba(28, 42, 31, 0.18), 0 2px 8px rgba(28, 42, 31, 0.08) !important;
   border: 1px solid var(--rule) !important;
+  overflow: hidden !important;
+  padding: 0 !important;
 }
 .leaflet-popup-content {
   font-family: var(--sans) !important;
   font-size: 0.85rem !important;
   color: var(--ink-soft) !important;
-  margin: 12px 14px !important;
+  margin: 0 !important;
   line-height: 1.5 !important;
+  width: 260px !important;
+}
+.leaflet-popup-content .popup-text {
+  padding: 14px 18px 16px;
 }
 .leaflet-popup-content strong {
   font-family: var(--serif);
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.05rem;
+  font-weight: 600;
   color: var(--ink);
   display: block;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.15rem;
+  letter-spacing: -0.01em;
 }
 .leaflet-popup-content em {
   font-style: italic;
   color: var(--forest);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   display: block;
-  margin-top: 0.3rem;
+  margin-top: 0.25rem;
+  line-height: 1.45;
 }
 .leaflet-popup-content .popup-photo {
-  width: calc(100% + 28px);
-  margin: -12px -14px 10px -14px;
+  width: 100%;
   display: block;
-  max-height: 200px;
-  object-fit: contain;
+  height: 180px;
+  object-fit: cover;
   object-position: center;
   background: var(--cream-card);
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
 }
 .leaflet-popup-tip { background: var(--cream-card) !important; }
-.leaflet-container a.leaflet-popup-close-button { color: var(--ink-muted) !important; }
+.leaflet-container a.leaflet-popup-close-button {
+  color: var(--cream) !important;
+  font-size: 1.3rem !important;
+  top: 8px !important;
+  right: 10px !important;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5) !important;
+  z-index: 10 !important;
+}
+.leaflet-container a.leaflet-popup-close-button:hover {
+  color: #fff !important;
+}
 
 /* Custom map marker */
 .hike-marker {
@@ -2223,12 +2238,13 @@ if (document.getElementById('hikes-map') && typeof L !== 'undefined') {
     if (h.photo) {
       popupHTML += `<img class="popup-photo" src="${h.photo}" alt="${h.name}" onerror="this.style.display='none';" />`;
     }
-    popupHTML += `<strong>${h.name}</strong>`;
+    popupHTML += `<div class="popup-text"><strong>${h.name}</strong>`;
     if (h.notes) popupHTML += `<em>${h.notes}</em>`;
+    popupHTML += `</div>`;
 
     L.marker([h.lat, h.lng], { icon: customIcon })
       .addTo(map)
-      .bindPopup(popupHTML, { maxWidth: 400, minWidth: 200 });
+      .bindPopup(popupHTML, { maxWidth: 300, minWidth: 260 });
     bounds.push([h.lat, h.lng]);
   });
 
