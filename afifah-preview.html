@@ -1,0 +1,2253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Afifah Kashif</title>
+<meta name="description" content="Afifah Kashif — researcher in human-inspired AI, AI governance, and human-robot interaction. MPhil candidate, University of Cambridge." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<style>
+/* ==========================================================================
+   AFIFAH KASHIF — PERSONAL SITE
+   --------------------------------------------------------------------------
+   Quick guide to editing this file:
+     1. COLORS & FONTS  → see :root variables right below — change once, applies everywhere
+     2. NAV
+     3. HERO
+     4. SECTION SCAFFOLD (shared section heading style)
+     5. ABOUT
+     6. NEWS
+     7. RESEARCH (publications)
+     8. PROJECTS
+     9. TALKS & TEACHING
+     10. BEYOND (leadership + awards)
+     11. CONTACT
+     12. ANIMATIONS & UTILITIES
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. COLORS, FONTS, GLOBAL TOKENS
+   --------------------------------------------------------------------------
+   ⚠️ EDIT HERE FIRST — almost every visual change starts in this block.
+   Palette: Forest & Cream
+   ========================================================================== */
+:root {
+  /* Backgrounds */
+  --cream:        #f4eedd;   /* main page background */
+  --cream-deep:   #e8dfc4;   /* alternating section background */
+  --cream-card:   #fbf6e7;   /* cards, hover states */
+
+  /* Text / ink */
+  --ink:          #1c2a1f;   /* primary text — deep forest near-black */
+  --ink-soft:     #3a4a3a;   /* secondary text */
+  --ink-muted:    #6e7864;   /* tertiary / dates / muted */
+
+  /* Accents */
+  --forest:       #2d5238;   /* primary accent — deep forest green */
+  --forest-deep:  #1a3a23;   /* darker forest, hover */
+  --gold:         #c08a2e;   /* gold accent — section nums, highlights */
+  --gold-soft:    #d9b070;   /* lighter gold, marker highlight */
+  --moss:         #6b8049;   /* mid-green tint */
+
+  /* Lines */
+  --rule:         #cdc4a8;   /* horizontal rules, dividers */
+
+  /* Type */
+  --serif:  'Fraunces', Georgia, serif;
+  --sans:   'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono:   'JetBrains Mono', ui-monospace, monospace;
+}
+
+
+/* ==========================================================================
+   GLOBAL RESET & BODY
+   ========================================================================== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(45, 82, 56, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(192, 138, 46, 0.04) 0%, transparent 40%);
+}
+
+/* Subtle paper grain overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.10 0 0 0 0 0.12 0 0 0 0 0.08 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.alt-bg { background: var(--cream-deep); }
+
+
+/* ==========================================================================
+   2. NAV
+   ========================================================================== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: rgba(244, 238, 221, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+  z-index: 100;
+  padding: 1rem 0;
+}
+
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-mark {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+  font-style: italic;
+  text-decoration: none;
+  color: var(--ink);
+}
+.nav-mark span { color: var(--forest); }
+
+.nav-links {
+  display: flex;
+  gap: 1.8rem;
+  list-style: none;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+}
+.nav-links a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--forest);
+  transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--forest-deep); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: var(--cream);
+    flex-direction: column;
+    padding: 1.5rem 2.5rem;
+    gap: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-links.open { display: flex; }
+  .nav-toggle { display: block; }
+  .container { padding: 0 1.5rem; }
+}
+
+
+/* ==========================================================================
+   3. HERO
+   --------------------------------------------------------------------------
+   Editorial layout: dominant left column with portrait inline next to name,
+   smaller right column with "Currently" snapshot + social icons.
+   No vertical border between columns.
+   Affiliation cards span full width below.
+   ========================================================================== */
+.hero {
+  padding: 7rem 0 5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.45fr;
+  gap: 4rem;
+  align-items: end;
+  width: 100%;
+  margin-bottom: 3.5rem;
+}
+
+/* --- LEFT: editorial content --- */
+.hero-main { padding-bottom: 0.5rem; }
+
+.hero-eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--forest);
+  margin-bottom: 2rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--forest);
+}
+
+/* Name row: portrait + h1 inline */
+.name-row {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  margin-bottom: 2rem;
+}
+
+.portrait-inline {
+  flex-shrink: 0;
+  width: 130px;
+  height: 155px;
+  border-radius: 14px;
+  background: var(--cream-card);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 18px rgba(28, 42, 31, 0.08);
+}
+.portrait-inline img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.portrait-fallback {
+  width: 100%; height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--forest);
+  background: linear-gradient(135deg, var(--cream-card), var(--cream-deep));
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2.8rem, 7.5vw, 6.4rem);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin: 0;
+}
+.hero h1 .accent {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--forest);
+}
+
+.hero-tagline {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  line-height: 1.5;
+  font-weight: 300;
+  color: var(--ink-soft);
+  max-width: 38rem;
+  font-style: italic;
+  margin-bottom: 1.2rem;
+}
+.hero-tagline .normal { font-style: normal; }
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* --- BUTTONS (square) --- */
+.btn {
+  display: inline-block;
+  padding: 0.85rem 1.8rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.btn-primary {
+  background: var(--forest);
+  color: var(--cream);
+}
+.btn-primary:hover { background: var(--forest-deep); }
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.btn-ghost:hover { background: var(--ink); color: var(--cream); }
+
+
+/* --- RIGHT RAIL: currently snapshot only (no border, no extra contact) --- */
+.hero-rail {
+  padding-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hero-side-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 0.9rem;
+  font-family: var(--mono);
+}
+.hero-snapshot {
+  list-style: none;
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.hero-snapshot li {
+  padding: 0.5rem 0;
+  border-bottom: 1px dotted var(--rule);
+}
+.hero-snapshot li:last-child { border-bottom: none; }
+.hero-snapshot strong {
+  color: var(--forest-deep);
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* Social icons under snapshot */
+.socials {
+  display: flex;
+  gap: 0.55rem;
+}
+.socials a {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.socials a:hover {
+  background: var(--forest);
+  color: var(--cream);
+  border-color: var(--forest);
+  transform: translateY(-2px);
+}
+
+
+/* --- AFFILIATION CARDS (image-only, no labels) --- */
+.affiliation-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.aff-card {
+  background: var(--cream-card);
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  padding: 1.8rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
+}
+.aff-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 24px rgba(28, 42, 31, 0.08);
+  border-color: var(--forest);
+}
+.aff-card img {
+  max-width: 100%;
+  max-height: 90px;
+  object-fit: contain;
+  display: block;
+}
+.aff-card-fallback {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  text-align: center;
+  color: var(--ink);
+  line-height: 1.3;
+  font-weight: 400;
+}
+.aff-card-fallback em {
+  font-style: italic;
+  color: var(--forest);
+  display: block;
+  margin-top: 0.2rem;
+}
+
+/* Labs card — listing multiple lab affiliations */
+.aff-card-labs {
+  background: var(--cream);
+  border-color: var(--forest);
+}
+.labs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
+  text-align: center;
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--ink);
+  font-style: italic;
+}
+.labs-list span {
+  padding: 0.2rem 0;
+  border-bottom: 1px dotted var(--rule);
+}
+.labs-list span:last-child { border-bottom: none; }
+
+
+/* --- HERO SCROLL --- */
+.hero-scroll {
+  position: absolute;
+  bottom: 1.2rem; left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 5;
+}
+.hero-scroll svg { animation: bounce 2.4s ease-in-out infinite; }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50%      { transform: translateY(4px); opacity: 1; }
+}
+
+
+/* --- HERO RESPONSIVE --- */
+@media (max-width: 920px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .hero-rail { padding-top: 1rem; }
+  .affiliation-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hero-scroll { display: none; }
+}
+
+@media (max-width: 540px) {
+  .name-row { gap: 1rem; }
+  .portrait-inline { width: 90px; height: 110px; }
+  .portrait-fallback { font-size: 1.8rem; }
+  .aff-card { padding: 1.2rem 0.7rem; min-height: 120px; }
+  .aff-card img { max-height: 70px; }
+}
+
+
+/* ==========================================================================
+   4. SECTION SCAFFOLD (shared)
+   ========================================================================== */
+section {
+  padding: 6rem 0;
+  position: relative;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+  align-items: baseline;
+}
+.section-num {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  border-top: 1px solid var(--gold);
+  padding-top: 1rem;
+}
+.section-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.section-title em {
+  font-style: italic;
+  color: var(--forest);
+  font-weight: 400;
+}
+
+.sub-head {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin: 3rem 0 1.5rem;
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.6rem;
+}
+.sub-head:first-of-type { margin-top: 0; }
+.sub-head em { font-style: italic; color: var(--forest); }
+
+@media (max-width: 720px) {
+  .section-head { grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2.5rem; }
+  section { padding: 4rem 0; }
+}
+
+
+/* ==========================================================================
+   5. ABOUT
+   ========================================================================== */
+.about-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  font-weight: 300;
+}
+.about-body p { margin-bottom: 1.4rem; }
+.about-body p:first-child::first-letter {
+  font-size: 4rem;
+  float: left;
+  line-height: 0.85;
+  margin: 0.4rem 0.7rem 0 0;
+  color: var(--forest);
+  font-weight: 400;
+}
+.about-body em { color: var(--ink); font-style: italic; }
+.about-body .pull {
+  font-size: 1.4rem;
+  line-height: 1.45;
+  color: var(--ink);
+  border-left: 2px solid var(--gold);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+}
+@media (max-width: 860px) {
+  .about-body { grid-template-columns: 1fr; gap: 1rem; font-size: 1.08rem; }
+}
+
+
+/* ==========================================================================
+   6. NEWS
+   ========================================================================== */
+.news-list {
+  list-style: none;
+  max-width: 840px;
+}
+.news-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 2rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px dashed var(--rule);
+  align-items: baseline;
+  transition: padding 0.3s;
+}
+.news-item:first-child { border-top: 1px dashed var(--rule); }
+.news-item:hover { padding-left: 0.6rem; }
+.news-date {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.news-text {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.news-text strong { color: var(--ink); font-weight: 500; }
+.news-text em { font-style: italic; color: var(--forest-deep); }
+
+@media (max-width: 720px) {
+  .news-item { grid-template-columns: 1fr; gap: 0.4rem; }
+}
+
+
+/* ==========================================================================
+   7. RESEARCH (publications)
+   ========================================================================== */
+.research-list { display: flex; flex-direction: column; }
+.pub {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.3s, padding 0.3s;
+  align-items: start;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+.pub:first-child { border-top: 1px solid var(--rule); }
+.pub:hover {
+  background: var(--cream-card);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.pub:hover .pub-arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+/* Disabled link styling — when href is "#" (no real link yet) */
+.pub[href="#"] {
+  cursor: default;
+}
+.pub[href="#"]:hover .pub-arrow {
+  opacity: 0;
+  transform: translateX(0);
+}
+.pub-arrow {
+  display: inline-block;
+  margin-left: 0.4rem;
+  font-size: 1rem;
+  color: var(--forest);
+  opacity: 0;
+  transition: opacity 0.25s, transform 0.25s;
+  vertical-align: middle;
+}
+.pub-num {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  padding-top: 0.4rem;
+}
+.pub-title {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.35;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.6rem;
+}
+.pub-venue {
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  margin-bottom: 0.5rem;
+  font-family: var(--serif);
+}
+.pub-authors {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}
+.pub-authors .me { color: var(--forest-deep); font-weight: 500; }
+.pub-year {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 300;
+  padding-top: 0.2rem;
+}
+@media (max-width: 720px) {
+  .pub { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.5rem 0; }
+  .pub-num, .pub-year { font-size: 0.78rem; }
+  .pub-year { color: var(--ink-muted); }
+  .pub:hover { padding-left: 0; padding-right: 0; }
+}
+
+
+/* ==========================================================================
+   8. EXPERIENCE (work cards)
+   ========================================================================== */
+.exp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.exp-card {
+  background: var(--cream-card);
+  border: 1px solid var(--rule);
+  padding: 1.8rem;
+  border-radius: 2px;
+  position: relative;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+.exp-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--forest);
+  box-shadow: 0 4px 20px rgba(28, 42, 31, 0.08);
+}
+.exp-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 30px; height: 1px;
+  background: var(--forest);
+}
+.exp-role {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--forest);
+  margin-bottom: 0.7rem;
+  margin-top: 0.6rem;
+}
+.exp-org {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  line-height: 1.25;
+  margin-bottom: 0.4rem;
+  color: var(--ink);
+  font-weight: 400;
+}
+.exp-org .sub {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-top: 0.3rem;
+  font-weight: 300;
+}
+.exp-date {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  margin-bottom: 1rem;
+  font-family: var(--mono);
+  letter-spacing: 0.04em;
+}
+.exp-desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+@media (max-width: 720px) {
+  .exp-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ==========================================================================
+   9. PROJECTS
+   ========================================================================== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.project {
+  background: var(--cream-card);
+  border: 1px solid var(--rule);
+  padding: 1.8rem;
+  border-radius: 2px;
+  position: relative;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+.project:hover {
+  transform: translateY(-3px);
+  border-color: var(--forest);
+  box-shadow: 0 4px 20px rgba(28, 42, 31, 0.08);
+}
+.project::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 30px; height: 1px;
+  background: var(--forest);
+}
+.project-tag {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--forest);
+  margin: 0.5rem 0 0.7rem;
+}
+.project-title {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  line-height: 1.25;
+  margin-bottom: 0.8rem;
+  color: var(--ink);
+  font-weight: 400;
+}
+.project-desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin-bottom: 1.2rem;
+  flex: 1;
+}
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  padding-top: 1rem;
+  border-top: 1px dotted var(--rule);
+}
+.project-stack {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.02em;
+}
+.project-link {
+  font-size: 0.82rem;
+  color: var(--forest);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.project-link:hover { color: var(--forest-deep); }
+
+@media (max-width: 720px) {
+  .projects-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ==========================================================================
+   9. TALKS & TEACHING
+   ========================================================================== */
+.teach-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+.teach-item {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 2rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px dashed var(--rule);
+  align-items: baseline;
+}
+.teach-item:last-child { border-bottom: none; }
+.teach-where {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--ink);
+  font-weight: 400;
+}
+.teach-where .role {
+  display: block;
+  font-size: 0.78rem;
+  font-family: var(--sans);
+  color: var(--forest);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+  font-weight: 500;
+}
+.teach-detail {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+.teach-when {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  text-align: right;
+  font-family: var(--mono);
+  letter-spacing: 0.02em;
+}
+@media (max-width: 860px) {
+  .teach-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  .teach-when { text-align: left; }
+}
+
+
+/* ==========================================================================
+   10. BEYOND (leadership + awards)
+   ========================================================================== */
+.two-col {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 5rem;
+}
+.col-head {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1rem;
+}
+.col-head em { font-style: italic; color: var(--forest); }
+
+.lead-list, .award-list { list-style: none; }
+
+.lead-item {
+  padding: 1rem 0;
+  border-bottom: 1px dashed var(--rule);
+}
+.lead-item:last-child { border-bottom: none; }
+.lead-org {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+  font-weight: 400;
+}
+.lead-role {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin-bottom: 0.3rem;
+}
+.lead-when {
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  font-family: var(--mono);
+  letter-spacing: 0.05em;
+}
+
+.award-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px dashed var(--rule);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+.award-item:last-child { border-bottom: none; }
+.award-name {
+  font-family: var(--serif);
+  font-size: 0.98rem;
+  color: var(--ink);
+}
+.award-name .src {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-top: 0.15rem;
+  font-family: var(--sans);
+}
+.award-year {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+@media (max-width: 860px) {
+  .two-col { grid-template-columns: 1fr; gap: 3rem; }
+}
+
+
+/* ==========================================================================
+   11. PERSONAL (map + gallery)
+   ========================================================================== */
+.personal-intro {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 50rem;
+  margin-bottom: 3rem;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.personal-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 2.5rem;
+}
+
+.personal-block { display: flex; flex-direction: column; }
+
+.personal-block-head {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.personal-block-head em { font-style: italic; color: var(--forest); }
+.block-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-style: normal;
+}
+
+/* --- Hikes map --- */
+.hikes-map {
+  width: 100%;
+  height: 460px;
+  border-radius: 18px;
+  border: 1px solid var(--rule);
+  background: var(--cream-card);
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(28, 42, 31, 0.06);
+}
+.map-caption {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--ink-muted);
+  margin-top: 0.7rem;
+  text-align: right;
+}
+
+/* Custom Leaflet popup styling to match the site */
+.leaflet-popup-content-wrapper {
+  background: var(--cream-card) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 16px rgba(28, 42, 31, 0.15) !important;
+  border: 1px solid var(--rule) !important;
+}
+.leaflet-popup-content {
+  font-family: var(--sans) !important;
+  font-size: 0.85rem !important;
+  color: var(--ink-soft) !important;
+  margin: 12px 14px !important;
+  line-height: 1.5 !important;
+}
+.leaflet-popup-content strong {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.leaflet-popup-content em {
+  font-style: italic;
+  color: var(--forest);
+  font-size: 0.78rem;
+  display: block;
+  margin-top: 0.3rem;
+}
+.leaflet-popup-content .popup-photo {
+  width: calc(100% + 28px);
+  margin: -12px -14px 10px -14px;
+  display: block;
+  height: 130px;
+  object-fit: cover;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.leaflet-popup-tip { background: var(--cream-card) !important; }
+.leaflet-container a.leaflet-popup-close-button { color: var(--ink-muted) !important; }
+
+/* Custom map marker */
+.hike-marker {
+  width: 22px;
+  height: 22px;
+  background: var(--forest);
+  border: 3px solid var(--cream);
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(28, 42, 31, 0.3);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.hike-marker:hover { transform: scale(1.2); }
+
+
+/* --- Photo gallery --- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  border-radius: 18px;
+  overflow: hidden;
+}
+.gallery-item {
+  aspect-ratio: 1 / 1;
+  background: var(--cream-card);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.gallery-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 16px rgba(28, 42, 31, 0.12);
+  z-index: 2;
+}
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.gallery-item.placeholder {
+  background: linear-gradient(135deg, var(--cream-card), var(--cream-deep));
+}
+.gallery-item.placeholder img { display: none; }
+.gallery-item.placeholder::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px; height: 28px;
+  border: 2px dashed var(--ink-muted);
+  border-radius: 50%;
+  opacity: 0.4;
+}
+.gallery-item.placeholder::after {
+  content: 'photo';
+  position: absolute;
+  bottom: 8px; left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-muted);
+  opacity: 0.6;
+  text-transform: uppercase;
+}
+
+/* --- Lightbox --- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 30, 22, 0.92);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: fadeIn 0.25s ease;
+}
+.lightbox.active { display: flex; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.lightbox-img {
+  max-width: 90%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+.lightbox-caption {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--cream);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+}
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--cream);
+  font-size: 2.5rem;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+.lightbox-close:hover { opacity: 1; }
+
+@media (max-width: 860px) {
+  .personal-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .hikes-map { height: 360px; }
+  .gallery { grid-template-columns: repeat(3, 1fr); }
+}
+
+
+/* ==========================================================================
+   12. CONTACT
+   ========================================================================== */
+.contact {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 6rem 0 4rem;
+  margin-top: 4rem;
+  position: relative;
+}
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.contact h2 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+}
+.contact h2 em { font-style: italic; color: var(--gold-soft); }
+.contact-text {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 60rem;
+  color: rgba(244, 238, 221, 0.75);
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+.contact-item {
+  border-top: 1px solid rgba(244, 238, 221, 0.2);
+  padding-top: 1rem;
+}
+.contact-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 0.5rem;
+}
+.contact-value {
+  color: var(--cream);
+  text-decoration: none;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  transition: color 0.2s;
+  word-break: break-word;
+}
+.contact-value:hover { color: var(--gold-soft); }
+.contact-foot {
+  border-top: 1px solid rgba(244, 238, 221, 0.15);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.78rem;
+  color: rgba(244, 238, 221, 0.5);
+  letter-spacing: 0.05em;
+}
+
+
+/* ==========================================================================
+   12. ANIMATIONS & UTILITIES
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- NAV -->
+<!-- ============================================================ -->
+<nav>
+  <div class="container">
+    <a href="#top" class="nav-mark">Afifah <span>Kashif</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#news">news</a></li>
+      <li><a href="#publications">publications</a></li>
+      <li><a href="#experience">experience</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#talks">talks</a></li>
+      <li><a href="#personal">personal</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+
+<!-- ============================================================ -->
+<!-- HERO -->
+<!-- ============================================================ -->
+<header class="hero" id="top">
+  <div class="container">
+    <div class="hero-grid">
+
+      <!-- LEFT: editorial content with portrait beside name -->
+      <div class="hero-main">
+        <div class="hero-eyebrow">Cambridge & Seattle</div>
+
+        <div class="name-row">
+          <div class="portrait-inline">
+            <img src="assets/portrait.jpg" alt="Afifah Kashif" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="portrait-fallback" style="display:none;">AK</div>
+          </div>
+          <h1>Afifah<br/><span class="accent">Kashif</span></h1>
+        </div>
+
+        <p class="hero-tagline">
+          I work at the intersection of <span class="normal">AI research, governance, and design</span> &mdash; thinking about how technology reshapes the people and communities it&rsquo;s built around, and what it would mean to build it the other way around.
+        </p>
+        <div class="hero-cta">
+          <a href="#about" class="btn btn-primary">View my work</a>
+          <a href="mailto:ak2687@cam.ac.uk" class="btn btn-ghost">Get in touch</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: currently snapshot only -->
+      <aside class="hero-rail">
+        <div class="hero-side-label">Currently</div>
+        <ul class="hero-snapshot">
+          <li><strong>MPhil</strong>, Human-Inspired AI · Cambridge</li>
+          <li><strong>Fellow</strong>, Odyssean Institute</li>
+          <li><strong>RA</strong>, PluralityAI</li>
+          <li><strong>Open to</strong> research, policy &amp; design roles</li>
+        </ul>
+
+        <div class="socials" aria-label="Social and contact links">
+          <a href="https://www.linkedin.com/in/afifah-k/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 12.27h-3v-5.6c0-3.37-4-3.11-4 0v5.6h-3v-11h3v1.76c1.4-2.59 7-2.78 7 2.48v6.76z"/></svg>
+          </a>
+          <a href="https://scholar.google.com/citations?user=VoVDY4AAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar" title="Google Scholar">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 2zm6.82 9L12 14.72 5.18 11 12 7.27 18.82 11zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+          </a>
+          <a href="mailto:ak2687@cam.ac.uk" aria-label="Email" title="Email">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener" aria-label="ORCID" title="ORCID">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM7.37 7.55a1.13 1.13 0 1 1 0 2.26 1.13 1.13 0 0 1 0-2.26zm.94 9.31H6.6v-6.36h1.72v6.36zm3.36 0h-2.5v-6.36h2.4c2.28 0 3.32 1.63 3.32 3.18 0 1.69-1.32 3.18-3.22 3.18zm.05-5.04h-.83v3.71h.78c1.32 0 1.82-.95 1.82-1.85 0-1.04-.66-1.86-1.77-1.86z"/></svg>
+          </a>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- AFFILIATION CARDS -->
+    <div class="affiliation-cards">
+      <div class="aff-card">
+        <img src="assets/cambridge.png" alt="University of Cambridge" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="aff-card-fallback" style="display:none;">University of <em>Cambridge</em></div>
+      </div>
+      <div class="aff-card">
+        <img src="assets/chia.png" alt="Centre for Human-Inspired AI" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="aff-card-fallback" style="display:none;">Centre for <em>Human-Inspired AI</em></div>
+      </div>
+      <div class="aff-card aff-card-labs">
+        <div class="labs-list">
+          <span>PluralAI Lab</span>
+          <span>HIVE Lab</span>
+          <span>AFAR Lab</span>
+        </div>
+      </div>
+      <div class="aff-card">
+        <img src="assets/uw.png" alt="University of Washington" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="aff-card-fallback" style="display:none;">UW · <em>Allen School</em></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="hero-scroll">
+    <span>scroll</span>
+    <svg width="12" height="20" viewBox="0 0 12 20"><path d="M6 0 V18 M1 13 L6 18 L11 13" stroke="currentColor" fill="none" stroke-width="1.2"/></svg>
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- ABOUT -->
+<!-- ============================================================ -->
+<section id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§ 01 / About</div>
+      <h2 class="section-title">A short<br/><em>introduction.</em></h2>
+    </div>
+    <div class="about-body">
+      <div>
+        <p>
+          I work at a particular intersection: the technical realities of modern AI systems, the regulatory and governance structures shaping them, and the everyday experiences of the people most affected by them. My work spans <em>research</em>, <em>policy</em>, and <em>human-centered design</em> &mdash; from MPhil dissertation work on bias in LLM-powered social robots, to industry internships in robotics UX and product engineering, to community-based teaching and policy fellowships.
+        </p>
+        <p>
+          Before Cambridge I was at the Paul G. Allen School at the University of Washington, where I graduated a year early with a CS degree and a minor in <em>Law, Societies &amp; Justice</em>. That dual training is the throughline of everything I do.
+        </p>
+      </div>
+      <div>
+        <p class="pull">
+          The questions I care about don&rsquo;t fit neatly into one discipline. <em>Fairness</em>, <em>care</em>, what it means to design technology that takes human dignity seriously &mdash; those are slow questions, and they don&rsquo;t belong to any one field.
+        </p>
+        <p>
+          Outside the lab, I teach digital literacy in refugee communities, taught language in Rome, and run AI research events for our society at Cambridge. I hike and motorcycle when there&rsquo;s time. I think a lot about who computing is for.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- NEWS -->
+<!-- ============================================================ -->
+<section id="news" class="alt-bg">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§ 02 / News</div>
+      <h2 class="section-title">Recent<br/><em>updates.</em></h2>
+    </div>
+    <ul class="news-list">
+
+      <li class="news-item">
+        <div class="news-date">Apr 2026</div>
+        <div class="news-text">Joined the <strong>Odyssean Institute</strong> as a Democracy Fellow, working on causal modelling for the 2026 UK citizens&rsquo; assembly on AI governance.</div>
+      </li>
+
+      <li class="news-item">
+        <div class="news-date">Mar 2026</div>
+        <div class="news-text">Started as a Research Assistant at <strong>PluralityAI</strong> with Dr. Zhenzhen Qi (UConn) and Dr. Avijit Ghosh (Hugging Face) on a study of multi-persona LLMs and political polarization.</div>
+      </li>
+
+      <li class="news-item">
+        <div class="news-date">Mar 2026</div>
+        <div class="news-text">Spoke at <strong>Clare College&rsquo;s 700th anniversary Clareity &times; Whiston</strong> series on <em>The Politics of Educational Technology</em> &mdash; on how AI in edtech isn&rsquo;t neutral, and what it means to automate inequity at scale.</div>
+      </li>
+
+      <li class="news-item">
+        <div class="news-date">Mar 2026</div>
+        <div class="news-text">New paper, <em>Governance as Methodology</em>, accepted at the <strong>HRI 2026</strong> Interactive AI for Human-Centered Robotics workshop.</div>
+      </li>
+
+      <li class="news-item">
+        <div class="news-date">Feb 2026</div>
+        <div class="news-text">Guest lecture in Matteo Zallio&rsquo;s undergraduate <em>Inclusive Design Futures</em> course: <em>An Ethical AI Lens for Neuroinclusive Design</em>.</div>
+      </li>
+
+      <li class="news-item">
+        <div class="news-date">Feb 2026</div>
+        <div class="news-text">Spoke at <strong>A Learning Lab</strong> as a guest speaker on questions of who benefits from technology and what powers shape its design.</div>
+      </li>
+
+      <li class="news-item">
+        <div class="news-date">Feb 2026</div>
+        <div class="news-text">Preprint up on arXiv: <em>Governance at the Edge of Architecture &mdash; Regulating NeuroAI and Neuromorphic Systems</em>.</div>
+      </li>
+
+      <li class="news-item">
+        <div class="news-date">Jan 2026</div>
+        <div class="news-text">Now leading research events for the <strong>Cambridge AI Research Society</strong>, partnering with DeepMind, Microsoft Research, and Mistral.</div>
+      </li>
+
+      <li class="news-item">
+        <div class="news-date">Oct 2025</div>
+        <div class="news-text">Began my MPhil at the University of Cambridge in <strong>Human-Inspired AI</strong>.</div>
+      </li>
+
+      <li class="news-item">
+        <div class="news-date">Sep 2025</div>
+        <div class="news-text">Completed the inaugural <strong>Nordic Scholars Leadership Institute</strong> in Stockholm &mdash; an immersive program on Nordic best practices in sustainability, governance, and trust-based leadership.</div>
+      </li>
+
+      <li class="news-item">
+        <div class="news-date">Aug 2025</div>
+        <div class="news-text">Wrapped up my Hello Robot internship &mdash; <a href="https://forum.hello-robot.com/t/my-summer-with-stretch/1441" target="_blank" rel="noopener">My summer with Stretch</a> on the Stretch forum.</div>
+      </li>
+
+      <li class="news-item">
+        <div class="news-date">Jun 2025</div>
+        <div class="news-text">Graduated from UW one year early with a BS in CS and a minor in Law, Societies &amp; Justice.</div>
+      </li>
+
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- RESEARCH / PUBLICATIONS -->
+<!-- ============================================================ -->
+<section id="publications">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§ 03 / Publications</div>
+      <h2 class="section-title">Publications<br/><em>&amp; preprints.</em></h2>
+    </div>
+    <div class="research-list">
+
+      <a class="pub" href="https://scholar.google.com/citations?user=VoVDY4AAAAAJ&hl=en" target="_blank" rel="noopener">
+        <div class="pub-num">P / 01</div>
+        <div>
+          <h3 class="pub-title">Governance as Methodology: Toward Anticipatory, Design-Embedded Governance for Human-Robot Interaction</h3>
+          <p class="pub-venue">2nd Interactive AI for Human-Centered Robotics Workshop @ ACM/IEEE HRI</p>
+          <p class="pub-authors"><span class="me">Afifah Kashif</span>, Malak Sadek</p>
+        </div>
+        <div class="pub-year">2026 <span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub" href="https://arxiv.org/abs/2602.01503" target="_blank" rel="noopener">
+        <div class="pub-num">P / 02</div>
+        <div>
+          <h3 class="pub-title">Governance at the Edge of Architecture: Regulating NeuroAI and Neuromorphic Systems</h3>
+          <p class="pub-venue">arXiv preprint arXiv:2602.01503</p>
+          <p class="pub-authors"><span class="me">Afifah Kashif</span>, Abdul Hameed, Asim Iqbal</p>
+        </div>
+        <div class="pub-year">2026 <span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub" href="https://scholar.google.com/citations?user=VoVDY4AAAAAJ&hl=en" target="_blank" rel="noopener">
+        <div class="pub-num">P / 03</div>
+        <div>
+          <h3 class="pub-title">Regulatory Considerations for Physically Assistive Robotics Researchers</h3>
+          <p class="pub-venue">Physical Caregiving Robots Workshop @ ACM/IEEE HRI</p>
+          <p class="pub-authors"><span class="me">Afifah Kashif</span>, Amal Nanavati, Maya Cakmak</p>
+        </div>
+        <div class="pub-year">2025 <span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub" href="https://scholar.google.com/citations?user=VoVDY4AAAAAJ&hl=en" target="_blank" rel="noopener">
+        <div class="pub-num">P / 04</div>
+        <div>
+          <h3 class="pub-title">Assessing GPT&rsquo;s Bias Towards Stigmatized Social Groups: An Intersectional Case Study on Nationality Prejudice and Psychophobia</h3>
+          <p class="pub-venue">Considering Cultural and Linguistic Diversity in AI Workshop @ ASIS&amp;T</p>
+          <p class="pub-authors"><span class="me">Afifah Kashif</span>*, Heer Patel*</p>
+        </div>
+        <div class="pub-year">2024 <span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub" href="https://scholar.google.com/citations?user=VoVDY4AAAAAJ&hl=en" target="_blank" rel="noopener">
+        <div class="pub-num">P / 05</div>
+        <div>
+          <h3 class="pub-title">Broadening Participation in Computing by Designing Hackathons that Engage Local Communities</h3>
+          <p class="pub-venue">CMD-IT/ACM Richard Tapia Conference (Workshop Host; first &amp; only undergraduate team)</p>
+          <p class="pub-authors"><span class="me">Afifah Kashif</span>, Andrew Tran, Salma Aly, Egi Rama, Chiku Okechukwu</p>
+        </div>
+        <div class="pub-year">2024 <span class="pub-arrow">→</span></div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- EXPERIENCE -->
+<!-- ============================================================ -->
+<section id="experience" class="alt-bg">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§ 04 / Experience</div>
+      <h2 class="section-title">Where I&rsquo;ve<br/><em>worked.</em></h2>
+    </div>
+    <div class="exp-grid">
+
+      <div class="exp-card">
+        <div class="exp-role">Democracy Fellow</div>
+        <h3 class="exp-org">Odyssean Institute<span class="sub">Civic, Open &amp; Resilient Democracy Action</span></h3>
+        <div class="exp-date">Apr 2026 &mdash; Present</div>
+        <p class="exp-desc">Coding expert responses, extracting causal variables, and building causal loop diagrams for an AI governance horizon scan. Applying Python and LLM APIs to power decision-support tools in the 2026 UK assembly.</p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-role">Research Assistant</div>
+        <h3 class="exp-org">PluralityAI<span class="sub">Dr. Zhenzhen Qi (UConn) · Dr. Avijit Ghosh (Hugging Face)</span></h3>
+        <div class="exp-date">Mar 2026 &mdash; Present</div>
+        <p class="exp-desc">Co-designing a controlled human-subjects study evaluating whether an open-source, multi-persona LLM platform can reduce political polarization. Developing IRB protocol, measurement instruments, and the qualitative analysis framework.</p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-role">Robotics Software Eng. Intern</div>
+        <h3 class="exp-org">Hello Robot<span class="sub">UX + Human-Robot Interaction</span></h3>
+        <div class="exp-date">May 2025 &mdash; Aug 2025</div>
+        <p class="exp-desc">Designed an interactive dashboard and workflow for managing autonomous robot power systems &mdash; combining real-time battery feedback, predictive alerts, and manual override controls. Iteratively prototyped and user-tested for trust, reliability, and operator agency.</p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-role">Research Assistant</div>
+        <h3 class="exp-org">Wordplay Project<span class="sub">UW Information School &middot; Dr. Amy Ko</span></h3>
+        <div class="exp-date">Sep 2024 &mdash; June 2025</div>
+        <p class="exp-desc">Led design and deployment of an accessible, multilingual programming language learning platform in local schools. Coordinated an open-source contributor community and developed a pre-built &ldquo;templates&rdquo; system to scaffold first-time coders.</p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-role">Backend SWE Intern</div>
+        <h3 class="exp-org">HowellCo<span class="sub">Beta-stage healthtech startup</span></h3>
+        <div class="exp-date">Jul 2024 &mdash; Sep 2024</div>
+        <p class="exp-desc">Contributed to backend service development at a beta-stage startup &mdash; designing products, devising a testing strategy, and using Azure services and Python scripting to enhance backend infrastructure on the mobile app.</p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-role">Software Engineering Intern</div>
+        <h3 class="exp-org">Code.org<span class="sub">Product-oriented engineering</span></h3>
+        <div class="exp-date">Jul 2023 &mdash; Sep 2023</div>
+        <p class="exp-desc">Developed and designed full-stack web-based, dynamic AI coding games on engineering and product teams. Programmed with React and Ruby on Rails, impacting 80 million students and 2 million teachers worldwide.</p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-role">Operations &amp; Product Intern</div>
+        <h3 class="exp-org">Fiveable<span class="sub">Early-stage edtech startup</span></h3>
+        <div class="exp-date">Apr 2021 &mdash; Nov 2021</div>
+        <p class="exp-desc">Scaled internal operations and product workflows during the company&rsquo;s transition into a consumer platform. Led development of a student-facing platform aimed at improving access for first-generation and low-income learners.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PROJECTS -->
+<!-- ============================================================ -->
+<section id="projects">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§ 05 / Projects</div>
+      <h2 class="section-title">Selected<br/><em>projects.</em></h2>
+    </div>
+    <div class="projects-grid">
+
+      <article class="project">
+        <div class="project-tag">Capstone · 2025</div>
+        <h3 class="project-title">Assistive Ointment Care Robot</h3>
+        <p class="project-desc">An assistive system on the Stretch RE2 mobile manipulator that lets people with limited mobility apply topical medication independently &mdash; with a custom brush attachment, programming-by-demonstration, and a web-based GUI for area selection and emergency control. Designed around a human-in-the-loop model that preserves user agency in intimate healthcare contexts. Co-designed with people who manage chronic eczema, professional caregivers, and an occupational therapist.</p>
+        <div class="project-meta">
+          <span class="project-stack">HRI · ROS · accessibility · UX research</span>
+          <a href="https://www.youtube.com/watch?v=cvXvkXMHmvc" target="_blank" rel="noopener" class="project-link">Watch the demo →</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-tag">Industry · 2025</div>
+        <h3 class="project-title">Hello Robot — Power System UI</h3>
+        <p class="project-desc">An interactive dashboard and workflow for managing autonomous robot power systems &mdash; combining real-time battery feedback, predictive alerts, and manual override controls. Designed for trust and reliability over full automation: instead of hiding battery state, the system surfaces it clearly so operators can make informed decisions. Iteratively prototyped through low- and high-fidelity mockups and scenario-based user studies.</p>
+        <div class="project-meta">
+          <span class="project-stack">Product UX · trust &amp; reliability · user research</span>
+          <a href="https://forum.hello-robot.com/t/my-summer-with-stretch/1441" target="_blank" rel="noopener" class="project-link">My summer with Stretch →</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-tag">Research · 2024–2025</div>
+        <h3 class="project-title">Wordplay — Coding for All</h3>
+        <p class="project-desc">A multilingual, accessible, scaffolded coding environment built with Dr. Amy Ko at the UW Information School. Led template design (pre-structured code blocks students could drag and remix), coordinated an open-source community of nearly 80 contributors, and conducted classroom deployments in partner schools. Anchored the design in literature on inclusive edtech and educational governance.</p>
+        <div class="project-meta">
+          <span class="project-stack">Service design · edtech · accessibility</span>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-tag">Research · 2025–2026</div>
+        <h3 class="project-title">Bias in LLM-Powered Social Robots</h3>
+        <p class="project-desc">My ongoing MPhil dissertation at Cambridge under Dr. Jin Huang, Dr. Malak Sadek, and Dr. Hatice Gunes &mdash; evaluating bias in LLM-powered social robots and designing human-in-the-loop interventions to mitigate it.</p>
+        <div class="project-meta">
+          <span class="project-stack">LLMs · HRI · evaluation</span>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-tag">Community · 2025–present</div>
+        <h3 class="project-title">IRC Digital Literacy Program</h3>
+        <p class="project-desc">A program I founded with the International Rescue Committee and a local hospital to teach digital literacy to refugee communities in Seattle. I designed the curriculum, taught weekly classes, and secured grants for translation and access.</p>
+        <div class="project-meta">
+          <span class="project-stack">Curriculum · accessibility · community partnership</span>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-tag">Industry · 2023</div>
+        <h3 class="project-title">AI Coding Games at Code.org</h3>
+        <p class="project-desc">Designed and built full-stack web-based AI coding games on the engineering and product teams &mdash; reaching 80 million students and 2 million teachers worldwide.</p>
+        <div class="project-meta">
+          <span class="project-stack">React · Ruby on Rails · product</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- TALKS & TEACHING -->
+<!-- ============================================================ -->
+<section id="talks" class="alt-bg">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§ 06 / Talks &amp; teaching</div>
+      <h2 class="section-title">Speaking &amp;<br/><em>teaching.</em></h2>
+    </div>
+
+    <h3 class="sub-head"><em>Talks</em> &amp; presentations</h3>
+    <div class="teach-list">
+
+      <div class="teach-item">
+        <div class="teach-where">Clare College, Cambridge<span class="role">Clareity &times; Whiston · 700th Anniversary</span></div>
+        <div class="teach-detail">&ldquo;The Politics of Educational Technology&rdquo; &mdash; on how AI in edtech systems isn&rsquo;t neutral, and the risk of automating inequity at scale if we don&rsquo;t question what norms our systems center.</div>
+        <div class="teach-when">Mar 2026</div>
+      </div>
+
+      <div class="teach-item">
+        <div class="teach-where">A Learning Lab<span class="role">Guest speaker session</span></div>
+        <div class="teach-detail">A guest session on questions of who benefits from technology and what powers shape its design &mdash; framing technology as inherently social, political, and human.</div>
+        <div class="teach-when">Feb 2026</div>
+      </div>
+
+      <div class="teach-item">
+        <div class="teach-where">Inclusive Design Futures · Matteo Zallio<span class="role">Guest lecture</span></div>
+        <div class="teach-detail">Invited to lecture his undergraduate course on Inclusive Design Futures: &ldquo;An Ethical AI Lens for Neuroinclusive Design&rdquo; &mdash; on treating neuroinclusion not as compliance but as a generative design philosophy.</div>
+        <div class="teach-when">Feb 2026</div>
+      </div>
+
+      <div class="teach-item">
+        <div class="teach-where">HRI 2026<span class="role">Workshop paper presentation</span></div>
+        <div class="teach-detail">&ldquo;Governance as Methodology&rdquo; &mdash; presenting work on anticipatory, design-embedded governance for human-robot interaction.</div>
+        <div class="teach-when">Mar 2026</div>
+      </div>
+
+      <div class="teach-item">
+        <div class="teach-where">HRI 2025<span class="role">Workshop paper presentation</span></div>
+        <div class="teach-detail">&ldquo;Regulatory Considerations for Physically Assistive Robotics Researchers&rdquo; at the Physical Caregiving Robots workshop.</div>
+        <div class="teach-when">Mar 2025</div>
+      </div>
+
+      <div class="teach-item">
+        <div class="teach-where">ASIS&amp;T 2024<span class="role">Workshop paper</span></div>
+        <div class="teach-detail">Co-presented work on intersectional bias in GPT toward stigmatized social groups.</div>
+        <div class="teach-when">Oct 2024</div>
+      </div>
+
+      <div class="teach-item">
+        <div class="teach-where">Tapia Conference 2024<span class="role">Workshop host</span></div>
+        <div class="teach-detail">First and only undergraduate team to host a workshop at CMD-IT/ACM Richard Tapia &mdash; on broadening participation in computing through community-engaged hackathons.</div>
+        <div class="teach-when">Sep 2024</div>
+      </div>
+
+    </div>
+
+    <h3 class="sub-head"><em>Teaching</em> roles</h3>
+    <div class="teach-list">
+
+      <div class="teach-item">
+        <div class="teach-where">University of Cambridge<span class="role">CS &amp; HCI Supervisor</span></div>
+        <div class="teach-detail">Weekly supervisions across Computer Science and Human-Computer Interaction &mdash; covering core CS theory and practice (polymorphism, encapsulation, design patterns) alongside HCI methods. Designed materials and adapted to individual learning needs.</div>
+        <div class="teach-when">Oct 2025 — Mar 2026</div>
+      </div>
+
+      <div class="teach-item">
+        <div class="teach-where">International Rescue Committee<span class="role">Founder &amp; Instructor</span></div>
+        <div class="teach-detail">Founded a digital literacy program in partnership with local refugee services and a hospital. Designed the curriculum, taught weekly, secured grants.</div>
+        <div class="teach-when">Jan 2025 — present</div>
+      </div>
+
+      <div class="teach-item">
+        <div class="teach-where">University of Washington<span class="role">Teaching Assistant — Intro Programming</span></div>
+        <div class="teach-detail">Guided 600+ students through OOP and data structures; held weekly office hours across three courses for a cohort of 1,500.</div>
+        <div class="teach-when">Jan 2023 — Mar 2025</div>
+      </div>
+
+      <div class="teach-item">
+        <div class="teach-where">Stanford Code in Place<span class="role">Section Leader</span></div>
+        <div class="teach-detail">Delivered Python curriculum to 1,600 global students; weekly virtual sessions of 15 with 80% attendance.</div>
+        <div class="teach-when">Apr — May 2024</div>
+      </div>
+
+      <div class="teach-item">
+        <div class="teach-where">CPIA1 Roma<span class="role">Language &amp; Literacy Teacher</span></div>
+        <div class="teach-detail">Co-taught language and integration courses for migrant mothers in Rome &mdash; direct engagement with the global refugee crisis through community.</div>
+        <div class="teach-when">Jan — Mar 2024</div>
+      </div>
+
+      <div class="teach-item">
+        <div class="teach-where">UW Hardware/Software Interface<span class="role">Teaching Assistant</span></div>
+        <div class="teach-detail">Hands-on integration of hardware and software systems; helped students debug C and assembly programs.</div>
+        <div class="teach-when">Sep — Dec 2023</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BEYOND -->
+<!-- ============================================================ -->
+<section id="beyond">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§ 07 / Beyond the lab</div>
+      <h2 class="section-title">Service &amp;<br/><em>recognition.</em></h2>
+    </div>
+    <div class="two-col">
+
+      <div>
+        <h3 class="col-head"><em>Leadership</em> &amp; community</h3>
+        <ul class="lead-list">
+          <li class="lead-item">
+            <div class="lead-org">Cambridge AI Research Society</div>
+            <div class="lead-role">AI Research Events Lead &mdash; coordinating with Google DeepMind, Microsoft Research, Mistral AI</div>
+            <div class="lead-when">Jan 2026 — present</div>
+          </li>
+          <li class="lead-item">
+            <div class="lead-org">Institute of Technology and Humanity, Cambridge</div>
+            <div class="lead-role">Academic Representative across CSER, CFI, and CHIA</div>
+            <div class="lead-when">Oct 2025 — present</div>
+          </li>
+          <li class="lead-item">
+            <div class="lead-org">EvalEval Coalition</div>
+            <div class="lead-role">Researcher in a global coalition on AI evaluations</div>
+            <div class="lead-when">Sep 2025 — present</div>
+          </li>
+          <li class="lead-item">
+            <div class="lead-org">Nordic Scholars Leadership Institute</div>
+            <div class="lead-role">Inaugural cohort &mdash; sustainability, governance, and trust-based leadership in Stockholm; connecting with academics, industry leaders, and government</div>
+            <div class="lead-when">Jun — Sep 2025</div>
+          </li>
+
+          <li class="lead-item">
+            <div class="lead-org">UW Honors Exchange · Rome, Italy</div>
+            <div class="lead-role">&ldquo;The Global Refugee Crisis: From Devastation to Diaspora&rdquo; &mdash; coursework alongside community teaching with migrant mothers at CPIA1 Roma</div>
+            <div class="lead-when">Jan — Mar 2024</div>
+          </li>
+
+          <li class="lead-item">
+            <div class="lead-org">UW Pakistani Student Association</div>
+            <div class="lead-role">President &mdash; cultural immersion and diaspora conversations</div>
+            <div class="lead-when">Sep 2023 — Jun 2025</div>
+          </li>
+          <li class="lead-item">
+            <div class="lead-org">UW Women in Law Society</div>
+            <div class="lead-role">Vice President &amp; Co-Founder &mdash; grew to 100+ members</div>
+            <div class="lead-when">May 2023 — May 2025</div>
+          </li>
+          <li class="lead-item">
+            <div class="lead-org">Council of American-Islamic Relations</div>
+            <div class="lead-role">Youth Advisory Board &mdash; collaboration with WA Governor Inslee, focus on Afghan refugees</div>
+            <div class="lead-when">Nov 2021 — Apr 2023</div>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="col-head"><em>Honors</em> &amp; awards</h3>
+        <ul class="award-list">
+          <li class="award-item">
+            <div class="award-name">First Tech Credit Union Scholarship<span class="src">$5,000</span></div>
+            <div class="award-year">2025</div>
+          </li>
+          <li class="award-item">
+            <div class="award-name">Women in Technology Scholarship<span class="src">Nutanix · $2,000</span></div>
+            <div class="award-year">2025</div>
+          </li>
+          <li class="award-item">
+            <div class="award-name">Bryant Peterson Scholarship<span class="src">UW Mortar Board / Tolo Foundation</span></div>
+            <div class="award-year">2025</div>
+          </li>
+          <li class="award-item">
+            <div class="award-name">Alumni Reunion Class Gift &amp; Spence Scholarship<span class="src">University of Washington</span></div>
+            <div class="award-year">2025</div>
+          </li>
+          <li class="award-item">
+            <div class="award-name">Marcy Midgal Fellowship<span class="src">UW Center for Global Study · $1,500</span></div>
+            <div class="award-year">2025</div>
+          </li>
+          <li class="award-item">
+            <div class="award-name">MSA × PICCS Scholarship<span class="src">$3,000</span></div>
+            <div class="award-year">2024</div>
+          </li>
+          <li class="award-item">
+            <div class="award-name">Distinguished Leader Award<span class="src">Harvard WECode</span></div>
+            <div class="award-year">2023</div>
+          </li>
+          <li class="award-item">
+            <div class="award-name">Bessie Coleman Aerospace Legacy Scholarship<span class="src">Aviation Youth Empowerment Fdn.</span></div>
+            <div class="award-year">2022</div>
+          </li>
+          <li class="award-item">
+            <div class="award-name">Citywide Outstanding Student<span class="src">Bellevue City</span></div>
+            <div class="award-year">2022</div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PERSONAL -->
+<!-- ============================================================ -->
+<section id="personal" class="alt-bg">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§ 08 / Personal</div>
+      <h2 class="section-title">Off the<br/><em>page.</em></h2>
+    </div>
+
+    <p class="personal-intro">
+      When I&rsquo;m not at a computer, I hike, ride motorcycles, and travel.
+      A small map of trails I&rsquo;ve loved &mdash; and a few favourite shots from along the way.
+    </p>
+
+    <div class="personal-grid">
+
+      <!-- Left: Hikes map -->
+      <div class="personal-block">
+        <h3 class="personal-block-head">
+          <span class="block-eyebrow">Map</span>
+          Trails &amp; <em>summits</em>
+        </h3>
+        <div id="hikes-map" class="hikes-map"></div>
+        <p class="map-caption">Click a pin for details. Map data &copy; OpenStreetMap.</p>
+      </div>
+
+      <!-- Right: Photo gallery -->
+      <div class="personal-block">
+        <h3 class="personal-block-head">
+          <span class="block-eyebrow">Gallery</span>
+          From <em>the road</em>
+        </h3>
+        <div class="gallery">
+          <!--
+            Replace src with assets/gallery/01.jpg etc.
+            Each <button> opens a lightbox. Add as many as you want.
+            data-caption is shown in the lightbox.
+          -->
+          <button class="gallery-item" data-src="assets/gallery/01.jpg" data-caption="Caption 1">
+            <img src="assets/gallery/01.jpg" alt="Travel photo" onerror="this.parentElement.classList.add('placeholder');">
+          </button>
+          <button class="gallery-item" data-src="assets/gallery/02.jpg" data-caption="Caption 2">
+            <img src="assets/gallery/02.jpg" alt="Travel photo" onerror="this.parentElement.classList.add('placeholder');">
+          </button>
+          <button class="gallery-item" data-src="assets/gallery/03.jpg" data-caption="Caption 3">
+            <img src="assets/gallery/03.jpg" alt="Travel photo" onerror="this.parentElement.classList.add('placeholder');">
+          </button>
+          <button class="gallery-item" data-src="assets/gallery/04.jpg" data-caption="Caption 4">
+            <img src="assets/gallery/04.jpg" alt="Travel photo" onerror="this.parentElement.classList.add('placeholder');">
+          </button>
+          <button class="gallery-item" data-src="assets/gallery/05.jpg" data-caption="Caption 5">
+            <img src="assets/gallery/05.jpg" alt="Travel photo" onerror="this.parentElement.classList.add('placeholder');">
+          </button>
+          <button class="gallery-item" data-src="assets/gallery/06.jpg" data-caption="Caption 6">
+            <img src="assets/gallery/06.jpg" alt="Travel photo" onerror="this.parentElement.classList.add('placeholder');">
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <img class="lightbox-img" src="" alt="" />
+    <div class="lightbox-caption"></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- CONTACT -->
+<!-- ============================================================ -->
+<section class="contact" id="contact">
+  <div class="container">
+    <h2>Let&rsquo;s be<br/><em>in touch.</em></h2>
+    <p class="contact-text">
+      I&rsquo;m always open to conversations &mdash; about research, AI policy, design, technical roles, collaboration, or anything that sits at the intersection of technical systems and the people who live with them.
+    </p>
+
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="contact-label">Email</div>
+        <a class="contact-value" href="mailto:ak2687@cam.ac.uk">ak2687@cam.ac.uk</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">LinkedIn</div>
+        <a class="contact-value" href="https://www.linkedin.com/in/afifah-k/" target="_blank" rel="noopener">in/afifah-k</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Scholar</div>
+        <a class="contact-value" href="https://scholar.google.com/citations?user=VoVDY4AAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Based</div>
+        <span class="contact-value">Cambridge &amp; Seattle</span>
+      </div>
+    </div>
+
+    <div class="contact-foot">
+      <div>© <span id="year">2026</span> Afifah Kashif</div>
+      <div>Cambridge · UK &nbsp;/&nbsp; Seattle · USA</div>
+    </div>
+  </div>
+</section>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+// ==========================================================================
+// AFIFAH KASHIF — site behaviour
+// ==========================================================================
+
+// --- Footer year ------------------------------------------------------------
+document.getElementById('year').textContent = new Date().getFullYear();
+
+
+// --- Mobile nav toggle ------------------------------------------------------
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks  = document.querySelector('.nav-links');
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+}
+
+
+// --- Smooth scroll with nav offset -----------------------------------------
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    // Placeholder publication links (href="#" with no target) — don't scroll
+    if (href === '#') {
+      e.preventDefault();
+      return;
+    }
+    if (href.length > 1) {
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.pageYOffset - 70;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    }
+  });
+});
+
+
+// --- Reveal-on-scroll animation --------------------------------------------
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('section, .pub, .project, .exp-card, .news-item').forEach(el => {
+  el.classList.add('reveal');
+  observer.observe(el);
+});
+
+
+// --- Copy to clipboard ------------------------------------------------------
+document.querySelectorAll('.copy-line').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const text = btn.dataset.copy;
+    try {
+      await navigator.clipboard.writeText(text);
+      btn.classList.add('copied');
+      setTimeout(() => btn.classList.remove('copied'), 1600);
+    } catch (err) {
+      // Fallback for older browsers
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); btn.classList.add('copied'); } catch {}
+      document.body.removeChild(ta);
+      setTimeout(() => btn.classList.remove('copied'), 1600);
+    }
+  });
+});
+
+
+// --- Hikes map (Leaflet) ----------------------------------------------------
+// EDIT THIS LIST to add/remove hikes. Each entry needs: lat, lng, name, optional notes.
+// Lat/lng for each can be looked up on Google Maps (right-click → "What's here?").
+//
+// To add a photo to a popup, set `photo` to a path like 'assets/hikes/vesper.jpg'
+// and drop the file in the assets/hikes/ folder. If the file is missing, the popup
+// just shows the name + notes without breaking.
+const hikes = [
+  { lat: 48.0250, lng: -121.4779, name: "Vesper Peak",                    notes: "Granite slabs and a 360° North Cascades summit", photo: "assets/hikes/vesper.jpg" },
+  { lat: 47.4367, lng: -120.9368, name: "Lake Ingalls",                   notes: "Larches and Mt Stuart in fall", photo: "assets/hikes/ingalls.jpg" },
+  { lat: 46.9541, lng: -121.8761, name: "Tolmie Peak",                    notes: "Eunice Lake + Rainier from a 1933 fire lookout", photo: "assets/hikes/tolmie.jpg" },
+  { lat: 48.4793, lng: -121.0543, name: "Sahale Arm",                     notes: "Glacier views above Cascade Pass", photo: "assets/hikes/sahale.jpg" },
+  { lat: 48.0258, lng: -121.4437, name: "Gothic Basin",                   notes: "Foggy Lake at the top of a brutal climb", photo: "assets/hikes/gothic.jpg" },
+  { lat: 48.0537, lng: -121.4124, name: "Goat Lake",                      notes: "Mountain Loop classic — waterfalls along the way", photo: "assets/hikes/goat.jpg" },
+  { lat: 46.9340, lng: -121.6756, name: "Mt Fremont Lookout",             notes: "Marmots, mountain goats, and Rainier", photo: "assets/hikes/fremont.jpg" },
+  { lat: 47.3928, lng: -121.4740, name: "Annette Lake",                   notes: "Snoqualmie Pass alpine lake", photo: "assets/hikes/annette.jpg" },
+  { lat: 47.4307, lng: -121.4531, name: "Keekwulee Falls",                notes: "Hidden waterfall on the Denny Creek trail", photo: "assets/hikes/keekwulee.jpg" },
+  { lat: 47.9154, lng: -121.3125, name: "Blanca Lake",                    notes: "Glacier-fed turquoise lake worth every switchback", photo: "assets/hikes/blanca.jpg" },
+  { lat: 47.4454, lng: -121.4234, name: "Snow Lake",                      notes: "Largest alpine lake near Snoqualmie Pass", photo: "assets/hikes/snow.jpg" },
+  { lat: 47.4312, lng: -121.6324, name: "Dirty Harry's Balcony",          notes: "Cliffside views of the I-90 valley", photo: "assets/hikes/dirty-harrys.jpg" },
+  { lat: 47.4012, lng: -121.5185, name: "Talapus Lake",                   notes: "Quiet lake in the Alpine Lakes Wilderness", photo: "assets/hikes/talapus.jpg" },
+  { lat: 48.0773, lng: -121.7458, name: "Lake 22",                        notes: "Mossy old-growth around a glacial cirque", photo: "assets/hikes/lake-22.jpg" },
+  { lat: 48.0828, lng: -121.7738, name: "Heather Lake",                   notes: "Waterfalls and a lake under Mt Pilchuck", photo: "assets/hikes/heather.jpg" },
+  { lat: 47.4247, lng: -121.5834, name: "Mason Lake (Ira Spring)",        notes: "Wildflowers and Rainier views", photo: "assets/hikes/mason.jpg" },
+  { lat: 47.8090, lng: -121.5738, name: "Lake Serene",                    notes: "Bridal Veil Falls + a stunning emerald lake", photo: "assets/hikes/serene.jpg" },
+  { lat: 47.4347, lng: -121.7687, name: "Rattlesnake Ledge",              notes: "Quintessential Issaquah Alps day hike", photo: "assets/hikes/rattlesnake.jpg" },
+  { lat: 47.5000, lng: -122.0220, name: "Poo Poo Point",                  notes: "Watching paragliders launch over Issaquah", photo: "assets/hikes/poo-poo.jpg" },
+  { lat: 46.1914, lng: -122.1956, name: "Mt St. Helens",                  notes: "Crater rim summit — multiple times over", photo: "assets/hikes/st-helens.jpg" },
+  { lat: 48.8467, lng: -121.6923, name: "Artist Point",                   notes: "Mt Baker and Shuksan from the end of the road", photo: "assets/hikes/artist-point.jpg" },
+  { lat: 47.7245, lng: -121.2666, name: "Beckler Peak",                   notes: "360° views above Skykomish", photo: "assets/hikes/beckler.jpg" },
+  { lat: 47.8587, lng: -123.0188, name: "Mount Townsend",                 notes: "Olympic Peninsula summit with Hood Canal views", photo: "assets/hikes/townsend.jpg" },
+];
+
+if (document.getElementById('hikes-map') && typeof L !== 'undefined') {
+  // Center on Seattle, zoom to fit
+  const map = L.map('hikes-map', {
+    scrollWheelZoom: false,
+    attributionControl: true,
+  }).setView([47.4, -121.8], 8);
+
+  // CartoDB Positron — clean, light tiles that match the aesthetic
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OSM</a> · <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19,
+  }).addTo(map);
+
+  const customIcon = L.divIcon({
+    className: 'hike-marker-wrap',
+    html: '<div class="hike-marker"></div>',
+    iconSize: [22, 22],
+    iconAnchor: [11, 11],
+  });
+
+  const bounds = [];
+  hikes.forEach(h => {
+    // Build popup HTML — include photo if provided. The img tag's onerror
+    // hides the broken image so missing files just show the text content.
+    let popupHTML = '';
+    if (h.photo) {
+      popupHTML += `<img class="popup-photo" src="${h.photo}" alt="${h.name}" onerror="this.style.display='none';" />`;
+    }
+    popupHTML += `<strong>${h.name}</strong>`;
+    if (h.notes) popupHTML += `<em>${h.notes}</em>`;
+
+    L.marker([h.lat, h.lng], { icon: customIcon })
+      .addTo(map)
+      .bindPopup(popupHTML, { maxWidth: 240, minWidth: 200 });
+    bounds.push([h.lat, h.lng]);
+  });
+
+  if (bounds.length) {
+    map.fitBounds(bounds, { padding: [40, 40] });
+  }
+
+  // Re-enable scroll on click
+  map.on('click', () => map.scrollWheelZoom.enable());
+  map.on('mouseout', () => map.scrollWheelZoom.disable());
+}
+
+
+// --- Photo gallery lightbox ------------------------------------------------
+const lightbox = document.getElementById('lightbox');
+if (lightbox) {
+  const lbImg = lightbox.querySelector('.lightbox-img');
+  const lbCap = lightbox.querySelector('.lightbox-caption');
+  const lbClose = lightbox.querySelector('.lightbox-close');
+
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', () => {
+      // Don't open lightbox for placeholder items
+      if (item.classList.contains('placeholder')) return;
+      lbImg.src = item.dataset.src;
+      lbImg.alt = item.dataset.caption || '';
+      lbCap.textContent = item.dataset.caption || '';
+      lightbox.classList.add('active');
+    });
+  });
+
+  const closeLightbox = () => {
+    lightbox.classList.remove('active');
+    lbImg.src = '';
+  };
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+  });
+}
+
+</script>
+</body>
+</html>
