@@ -1159,8 +1159,10 @@ section {
   width: calc(100% + 28px);
   margin: -12px -14px 10px -14px;
   display: block;
-  height: 130px;
-  object-fit: cover;
+  max-height: 200px;
+  object-fit: contain;
+  object-position: center;
+  background: var(--cream-card);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -1242,51 +1244,73 @@ section {
 .lightbox {
   position: fixed;
   inset: 0;
-  background: rgba(20, 30, 22, 0.92);
-  z-index: 1000;
+  background: rgba(20, 30, 22, 0.96);
+  z-index: 99999;
   display: none;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 5rem 2rem 2rem;
+  gap: 1rem;
   animation: fadeIn 0.25s ease;
+  overflow-y: auto;
 }
 .lightbox.active { display: flex; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
 .lightbox-img {
-  max-width: 90%;
-  max-height: 80vh;
+  max-width: min(92vw, 1100px);
+  max-height: calc(100vh - 13rem);
+  width: auto;
+  height: auto;
   object-fit: contain;
   border-radius: 8px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  display: block;
+  flex-shrink: 0;
 }
 .lightbox-caption {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
   color: var(--cream);
   font-family: var(--serif);
   font-style: italic;
   font-size: 1rem;
   text-align: center;
-  background: rgba(0, 0, 0, 0.4);
-  padding: 0.5rem 1.2rem;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.7rem 1.4rem;
   border-radius: 4px;
+  max-width: 90%;
+  line-height: 1.5;
 }
 .lightbox-close {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  background: none;
-  border: none;
-  color: var(--cream);
-  font-size: 2.5rem;
+  position: fixed;
+  top: 2.5rem;
+  right: 3rem;
+  width: 52px;
+  height: 52px;
+  background: #1c2a1f;
+  border: 2px solid #f4eedd;
+  border-radius: 50%;
+  color: #f4eedd;
+  font-size: 1.9rem;
+  font-weight: 300;
   cursor: pointer;
   line-height: 1;
-  opacity: 0.8;
-  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: background 0.2s, transform 0.2s, border-color 0.2s;
+  padding: 0;
 }
-.lightbox-close:hover { opacity: 1; }
+.lightbox-close:hover {
+  background: #f4eedd;
+  color: #1c2a1f;
+  transform: scale(1.08);
+}
+
+/* Hide the fixed nav while lightbox is open */
+body.lightbox-open nav { display: none; }
 
 @media (max-width: 860px) {
   .personal-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -1979,7 +2003,7 @@ section {
     </div>
 
     <p class="personal-intro">
-      When I&rsquo;m not at a computer, I love to hike, ride motorcycles, and travel!
+      When I&rsquo;m not at a computer, I love to hike, sew + design clothes, ride motorcycles, and travel!
     </p>
 
     <div class="personal-grid">
@@ -1998,7 +2022,7 @@ section {
       <div class="personal-block">
         <h3 class="personal-block-head">
           <span class="block-eyebrow">Gallery</span>
-          A Few Favorite Shots
+          A few of my favorite travels :)
         </h3>
         <div class="gallery">
           <!--
@@ -2006,46 +2030,46 @@ section {
             Each <button> opens a lightbox. Add as many as you want.
             data-caption is shown in the lightbox.
           -->
-          <button class="gallery-item" data-src="assets/gallery/01.jpg" data-caption="Caption 1">
-            <img src="assets/gallery/01.jpg" alt="Travel photo" onerror="this.parentElement.classList.add('placeholder');">
+          <button class="gallery-item" data-src="assets/gallery/northpak.jpeg" data-caption="In the valleys of northern pakistan, where the Himalayas, Karakoram, and Hindu Kush ranges meet. Easily one of the most beautiful places I have ever had the privilege to visit.">
+            <img src="assets/gallery/northpak.jpeg" alt="Travel photo" onerror="this.parentElement.classList.add('placeholder');">
           </button>
-          <button class="gallery-item" data-src="assets/gallery/02.jpg" data-caption="Caption 2">
-            <img src="assets/gallery/02.jpg" alt="Travel photo" onerror="this.parentElement.classList.add('placeholder');">
+          <button class="gallery-item" data-src="assets/gallery/manarola.jpeg" data-caption="Little village of Manarola, in Cinque Terre, Italy. Did a bit of cliff diving here :)">
+            <img src="assets/gallery/manarola.jpeg" alt="Travel photo" onerror="this.parentElement.classList.add('placeholder');">
           </button>
-          <button class="gallery-item" data-src="assets/gallery/03.jpg" data-caption="Caption 3">
-            <img src="assets/gallery/03.jpg" alt="Travel photo" onerror="this.parentElement.classList.add('placeholder');">
+          <button class="gallery-item" data-src="assets/gallery/malta.jpeg" data-caption="The most unreal water I have ever seen in Malta, a definite hidden gem.">
+            <img src="assets/gallery/malta.jpeg" alt="Travel photo" onerror="this.parentElement.classList.add('placeholder');">
           </button>
-          <button class="gallery-item" data-src="assets/gallery/04.jpg" data-caption="Caption 4">
-            <img src="assets/gallery/04.jpg" alt="Travel photo" onerror="this.parentElement.classList.add('placeholder');">
+          <button class="gallery-item" data-src="assets/gallery/istanbul.jpeg" data-caption="Sunrise in Istanbul, where I spent a few days of Ramadan.">
+            <img src="assets/gallery/istanbul.jpeg" alt="Travel photo" onerror="this.parentElement.classList.add('placeholder');">
           </button>
-          <button class="gallery-item" data-src="assets/gallery/05.jpg" data-caption="Caption 5">
-            <img src="assets/gallery/05.jpg" alt="Travel photo" onerror="this.parentElement.classList.add('placeholder');">
+          <button class="gallery-item" data-src="assets/gallery/banff.jpeg" data-caption="Lake Moraine in Banff, Canada!">
+            <img src="assets/gallery/banff.jpeg" alt="Travel photo" onerror="this.parentElement.classList.add('placeholder');">
           </button>
-          <button class="gallery-item" data-src="assets/gallery/06.jpg" data-caption="Caption 6">
-            <img src="assets/gallery/06.jpg" alt="Travel photo" onerror="this.parentElement.classList.add('placeholder');">
+          <button class="gallery-item" data-src="assets/gallery/seville.jpg" data-caption="Andalusia, Spain was a gorgeous mix of cultures, architectures and history that I was so grateful to witness.">
+            <img src="assets/gallery/seville.jpg" alt="Travel photo" onerror="this.parentElement.classList.add('placeholder');">
           </button>
         </div>
       </div>
 
     </div>
   </div>
-
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="lightbox-close" aria-label="Close">&times;</button>
-    <img class="lightbox-img" src="" alt="" />
-    <div class="lightbox-caption"></div>
-  </div>
 </section>
+
+<!-- Lightbox (outside all sections so position:fixed works correctly) -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" aria-label="Close">&times;</button>
+  <img class="lightbox-img" src="" alt="" />
+  <div class="lightbox-caption"></div>
+</div>
 
 <!-- ============================================================ -->
 <!-- CONTACT -->
 <!-- ============================================================ -->
 <section class="contact" id="contact">
   <div class="container">
-    <h2>Let&rsquo;s be<br/><em>in touch.</em></h2>
+    <h2>Let&rsquo;s be <em>in touch.</em></h2>
     <p class="contact-text">
-      I&rsquo;m always open to conversations &mdash; about research, AI policy, design, technical roles, collaboration. I'm also extremely extroverted and always down to grab a coffee!
+      Am always down to chat about my work, interests, potential collaborations, or to grab a coffee :)
     </p>
 
     <div class="contact-grid">
@@ -2161,28 +2185,29 @@ document.querySelectorAll('.copy-line').forEach(btn => {
 // and drop the file in the assets/hikes/ folder. If the file is missing, the popup
 // just shows the name + notes without breaking.
 const hikes = [
-  { lat: 48.0250, lng: -121.4779, name: "Vesper Peak",                    notes: "A jaw dropping height reached", photo: "assets/hikes/vesper.jpg" },
-  { lat: 47.4367, lng: -120.9368, name: "Lake Ingalls",                   notes: "Caught some larches!", photo: "assets/hikes/ingalls.jpg" },
-  { lat: 46.9541, lng: -121.8761, name: "Tolmie Peak",                    notes: "Now closed :(", photo: "assets/hikes/tolmie.jpg" },
-  { lat: 48.4793, lng: -121.0543, name: "Sahale Arm",                     notes: "Glacier views above Cascade Pass", photo: "assets/hikes/sahale.jpg" },
-  { lat: 48.0258, lng: -121.4437, name: "Gothic Basin",                   notes: "A really really cold swim greets you up top", photo: "assets/hikes/gothic.jpg" },
-  { lat: 48.0537, lng: -121.4124, name: "Goat Lake",                      notes: "A classic backpacking loop", photo: "assets/hikes/goat.jpg" },
-  { lat: 47.3928, lng: -121.4740, name: "Annette Lake",                   notes: "Alpine lake close to the city for when you need to get away", photo: "assets/hikes/annette.jpg" },
-  { lat: 47.4307, lng: -121.4531, name: "Keekwulee Falls",                notes: "Small detour off the Denny Creek trail", photo: "assets/hikes/keekwulee.jpg" },
-  { lat: 47.9154, lng: -121.3125, name: "Blanca Lake",                    notes: "The most unreal getaway", photo: "assets/hikes/blanca.jpg" },
-  { lat: 47.4454, lng: -121.4234, name: "Snow Lake",                      notes: "A classic washington hike", photo: "assets/hikes/snow.jpg" },
-  { lat: 47.4312, lng: -121.6324, name: "Dirty Harry's Balcony",          notes: "Quick hike, does the job", photo: "assets/hikes/dirty-harrys.jpg" },
-  { lat: 47.4012, lng: -121.5185, name: "Talapus Lake",                   notes: "Quiet, near Snowqualmie", photo: "assets/hikes/talapus.jpg" },
-  { lat: 48.0773, lng: -121.7458, name: "Lake 22",                        notes: "Yet another Washington classic", photo: "assets/hikes/lake-22.jpg" },
-  { lat: 48.0828, lng: -121.7738, name: "Heather Lake",                   notes: "Like Lake 22 but better...", photo: "assets/hikes/heather.jpg" },
-  { lat: 47.4247, lng: -121.5834, name: "Mason Lake (Ira Spring)",        notes: "Gorgeous and doable in the snow without spikes", photo: "assets/hikes/mason.jpg" },
-  { lat: 47.8090, lng: -121.5738, name: "Lake Serene",                    notes: "The best lake for summertime swims", photo: "assets/hikes/serene.jpg" },
-  { lat: 47.4347, lng: -121.7687, name: "Rattlesnake Ledge",              notes: "Where you take Seattle visitors", photo: "assets/hikes/rattlesnake.jpg" },
-  { lat: 47.5000, lng: -122.0220, name: "Poo Poo Point",                  notes: "Quintessential childhood hike", photo: "assets/hikes/poo-poo.jpg" },
-  { lat: 46.1914, lng: -122.1956, name: "Mt St. Helens",                  notes: "I don't think I've ever smiled so much on a hike", photo: "assets/hikes/st-helens.jpg" },
-  { lat: 48.8467, lng: -121.6923, name: "Artist Point",                   notes: "Snowshowed this during the winter!", photo: "assets/hikes/artist-point.jpg" },
-  { lat: 47.7245, lng: -121.2666, name: "Beckler Peak",                   notes: "Was gorgeous even in the fog", photo: "assets/hikes/beckler.jpg" },
-  { lat: 47.8587, lng: -123.0188, name: "Mount Townsend",                 notes: "Mountain or ocean you don't have to pick!", photo: "assets/hikes/townsend.jpg" },
+  { lat: 48.0250, lng: -121.4779, name: "Vesper Peak",                    notes: "A jaw dropping height reached", photo: "assets/hikes/vesper.jpeg" },
+  { lat: 47.4367, lng: -120.9368, name: "Lake Ingalls",                   notes: "Caught some larches!", photo: "assets/hikes/ingalls.jpeg" },
+  { lat: 46.9541, lng: -121.8761, name: "Tolmie Peak",                    notes: "Now closed :(", photo: "assets/hikes/tolmie.jpeg" },
+  { lat: 48.4793, lng: -121.0543, name: "Sahale Arm",                     notes: "Glacier views above Cascade Pass", photo: "assets/hikes/sahale.jpeg" },
+  { lat: 48.0258, lng: -121.4437, name: "Gothic Basin",                   notes: "A really really cold swim greets you up top", photo: "assets/hikes/gothic.jpeg" },
+  { lat: 48.0537, lng: -121.4124, name: "Goat Lake",                      notes: "A classic backpacking loop", photo: "assets/hikes/goat.JPG" },
+  { lat: 47.3928, lng: -121.4740, name: "Annette Lake",                   notes: "Alpine lake close to the city for when you need to get away", photo: "assets/hikes/annette.jpeg" },
+  { lat: 47.4307, lng: -121.4531, name: "Keekwulee Falls",                notes: "Small detour off the Denny Creek trail", photo: "assets/hikes/keekwulee.jpeg" },
+  { lat: 47.9154, lng: -121.3125, name: "Blanca Lake",                    notes: "The most unreal getaway", photo: "assets/hikes/blanca.jpeg" },
+  { lat: 47.4454, lng: -121.4234, name: "Snow Lake",                      notes: "A classic washington hike", photo: "assets/hikes/snow.JPG" },
+  { lat: 47.4312, lng: -121.6324, name: "Dirty Harry's Balcony",          notes: "Quick hike, does the job", photo: "assets/hikes/dirty-harrys.jpeg" },
+  { lat: 47.4012, lng: -121.5185, name: "Talapus Lake",                   notes: "Two lakes for the hike of one", photo: "assets/hikes/talapus.JPG" },
+  { lat: 48.0773, lng: -121.7458, name: "Lake 22",                        notes: "Yet another Washington classic", photo: "assets/hikes/lake-22.jpeg" },
+  { lat: 48.0828, lng: -121.7738, name: "Heather Lake",                   notes: "Like Lake 22 but better...", photo: "assets/hikes/heather.jpeg" },
+  { lat: 47.4247, lng: -121.5834, name: "Mason Lake (Ira Spring)",        notes: "Gorgeous and doable in the snow without spikes", photo: "assets/hikes/mason.JPG" },
+  { lat: 47.8090, lng: -121.5738, name: "Lake Serene",                    notes: "The best lake for summertime swims", photo: "assets/hikes/serene.JPG" },
+  { lat: 47.4347, lng: -121.7687, name: "Rattlesnake Ledge",              notes: "Where you take Seattle visitors", photo: "assets/hikes/rattlesnake.jpeg" },
+  { lat: 47.5000, lng: -122.0220, name: "Poo Poo Point",                  notes: "Quintessential childhood hike", photo: "assets/hikes/poo-poo.JPG" },
+  { lat: 46.1914, lng: -122.1956, name: "Mt St. Helens",                  notes: "I don't think I've ever smiled so much on a hike", photo: "assets/hikes/st-helens.jpeg" },
+  { lat: 48.8467, lng: -121.6923, name: "Artist Point",                   notes: "Snowshowed this during the winter!", photo: "assets/hikes/artist-point.jpeg" },
+  { lat: 47.7245, lng: -121.2666, name: "Beckler Peak",                   notes: "Was gorgeous even in the fog", photo: "assets/hikes/beckler.jpeg" },
+  { lat: 47.8587, lng: -123.0188, name: "Mount Townsend",                 notes: "Mountain or ocean you don't have to pick!", photo: "assets/hikes/townsend.jpeg" },
+  { lat: 47.4133, lng: -121.4441, name: "Franklin Falls",                 notes: "A classic Snoqualmie waterfall", photo: "assets/hikes/franklin.jpeg" },
 ];
 
 if (document.getElementById('hikes-map') && typeof L !== 'undefined') {
@@ -2219,7 +2244,7 @@ if (document.getElementById('hikes-map') && typeof L !== 'undefined') {
 
     L.marker([h.lat, h.lng], { icon: customIcon })
       .addTo(map)
-      .bindPopup(popupHTML, { maxWidth: 240, minWidth: 200 });
+      .bindPopup(popupHTML, { maxWidth: 400, minWidth: 200 });
     bounds.push([h.lat, h.lng]);
   });
 
@@ -2242,18 +2267,21 @@ if (lightbox) {
 
   document.querySelectorAll('.gallery-item').forEach(item => {
     item.addEventListener('click', () => {
-      // Don't open lightbox for placeholder items
       if (item.classList.contains('placeholder')) return;
       lbImg.src = item.dataset.src;
       lbImg.alt = item.dataset.caption || '';
       lbCap.textContent = item.dataset.caption || '';
       lightbox.classList.add('active');
+      document.body.classList.add('lightbox-open');
+      document.body.style.overflow = 'hidden';
     });
   });
 
   const closeLightbox = () => {
     lightbox.classList.remove('active');
     lbImg.src = '';
+    document.body.classList.remove('lightbox-open');
+    document.body.style.overflow = '';
   };
   lbClose.addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', e => {
