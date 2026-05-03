@@ -295,7 +295,7 @@ nav .container {
   line-height: 1.5;
   font-weight: 300;
   color: var(--ink-soft);
-  max-width: 38rem;
+  max-width: 46rem;
   font-style: italic;
   margin-bottom: 1.2rem;
 }
@@ -336,7 +336,7 @@ nav .container {
 
 /* --- RIGHT RAIL: currently snapshot only (no border, no extra contact) --- */
 .hero-rail {
-  padding-bottom: 0.5rem;
+  padding-bottom: 3rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -385,12 +385,56 @@ nav .container {
   color: var(--ink-soft);
   text-decoration: none;
   transition: all 0.2s ease;
+  position: relative;
 }
 .socials a:hover {
   background: var(--forest);
   color: var(--cream);
   border-color: var(--forest);
   transform: translateY(-2px);
+}
+
+/* Custom tooltip — reads from [data-tip], populated by JS from the title attr
+   so the browser's slow native tooltip doesn't also show */
+.socials a::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.7rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 10;
+}
+.socials a::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  width: 0; height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--ink);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 10;
+}
+.socials a:hover::after,
+.socials a:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 
@@ -401,6 +445,7 @@ nav .container {
   gap: 1.2rem;
   margin-top: 1rem;
 }
+a.aff-card { text-decoration: none; color: inherit; }
 .aff-card {
   background: var(--cream-card);
   border: 1px solid var(--rule);
@@ -461,6 +506,46 @@ nav .container {
 }
 .labs-list span:last-child { border-bottom: none; }
 
+/* "Previously" card */
+.aff-card-prev {
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+.aff-prev-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.5rem;
+}
+.aff-prev-detail {
+  font-family: var(--serif);
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  text-align: center;
+  line-height: 1.4;
+}
+.aff-prev-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.aff-prev-logos img {
+  max-height: 28px;
+  max-width: 80px;
+  object-fit: contain;
+}
+.aff-prev-logos span {
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--ink);
+}
 
 /* --- HERO SCROLL --- */
 .hero-scroll {
@@ -562,48 +647,11 @@ section {
 
 
 /* ==========================================================================
-   5. ABOUT
-   ========================================================================== */
-.about-body {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  font-family: var(--serif);
-  font-size: 1.15rem;
-  line-height: 1.7;
-  color: var(--ink-soft);
-  font-weight: 300;
-}
-.about-body p { margin-bottom: 1.4rem; }
-.about-body p:first-child::first-letter {
-  font-size: 4rem;
-  float: left;
-  line-height: 0.85;
-  margin: 0.4rem 0.7rem 0 0;
-  color: var(--forest);
-  font-weight: 400;
-}
-.about-body em { color: var(--ink); font-style: italic; }
-.about-body .pull {
-  font-size: 1.4rem;
-  line-height: 1.45;
-  color: var(--ink);
-  border-left: 2px solid var(--gold);
-  padding-left: 1.5rem;
-  margin: 2rem 0;
-  font-style: italic;
-}
-@media (max-width: 860px) {
-  .about-body { grid-template-columns: 1fr; gap: 1rem; font-size: 1.08rem; }
-}
-
-
-/* ==========================================================================
    6. NEWS
    ========================================================================== */
 .news-list {
   list-style: none;
-  max-width: 840px;
+  max-width: 100%;
 }
 .news-item {
   display: grid;
@@ -1013,7 +1061,7 @@ section {
   font-size: 1.2rem;
   line-height: 1.6;
   color: var(--ink-soft);
-  max-width: 50rem;
+  max-width: 100%;
   margin-bottom: 3rem;
   font-style: italic;
   font-weight: 300;
@@ -1341,9 +1389,8 @@ section {
   <div class="container">
     <a href="#top" class="nav-mark">Afifah <span>Kashif</span></a>
     <ul class="nav-links">
-      <li><a href="#about">about</a></li>
       <li><a href="#news">news</a></li>
-      <li><a href="#publications">publications</a></li>
+      <li><a href="#research">research</a></li>
       <li><a href="#experience">experience</a></li>
       <li><a href="#projects">projects</a></li>
       <li><a href="#talks">talks</a></li>
@@ -1370,14 +1417,17 @@ section {
             <img src="assets/portrait.jpeg" alt="Afifah Kashif" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="portrait-fallback" style="display:none;">AK</div>
           </div>
-          <h1>Afifah<br/><span class="accent">Kashif</span></h1>
+          <h1>Afifah <span class="accent">Kashif</span></h1>
         </div>
 
         <p class="hero-tagline">
-          I work at the intersection of <span class="normal">AI research, governance, and design</span> &mdash; thinking about how technology reshapes the people and communities it&rsquo;s built around, and what it would mean to build it the other way around.
+          Hi! I'm Afifah, I'm passionate about leveraging technology for social good. My work spans research, design, and governance of AI and robotic systems that center the people who live with them.
+        </p>
+        <p class="hero-tagline">
+          Currently working on my dissertation with <a href="https://malaksadekapps.com/">Dr. Malak Sadek</a>,<a href="https://betsyhj.github.io/">Dr. Jin Huang</a>, and <a href="https://www.cl.cam.ac.uk/~hg410/">Dr. Hatice Gunes</a> (<a href="https://cambridge-afar.github.io/">AFAR Lab</a>, <a href="">HIVE Lab</a>) on evaluating and mitigating bias in LLM-powered social robots with human-in-the-loop interventions.
         </p>
         <div class="hero-cta">
-          <a href="#about" class="btn btn-primary">View my work</a>
+          <a href="#news" class="btn btn-primary">View my work</a>
           <a href="mailto:ak2687@cam.ac.uk" class="btn btn-ghost">Get in touch</a>
         </div>
       </div>
@@ -1386,10 +1436,10 @@ section {
       <aside class="hero-rail">
         <div class="hero-side-label">Currently</div>
         <ul class="hero-snapshot">
-          <li><strong>MPhil</strong>, Human-Inspired AI · Cambridge</li>
-          <li><strong>Fellow</strong>, Odyssean Institute</li>
-          <li><strong>RA</strong>, PluralityAI</li>
-          <li><strong>Open to</strong> research, policy &amp; design roles</li>
+          <li><strong>MPhil Candidate</strong>, Human-Inspired AI · Cambridge</li>
+          <li><strong>Academic Rep</strong>, Cambridge Institute for Technology & Humanity</li>
+          <li><strong>CORDA Democracy Fellow</strong>, Odyssean Institute</li>
+          <li><strong>Research Assistant</strong>, PluralAI Lab</li>
         </ul>
 
         <div class="socials" aria-label="Social and contact links">
@@ -1402,9 +1452,6 @@ section {
           <a href="mailto:ak2687@cam.ac.uk" aria-label="Email" title="Email">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
           </a>
-          <a href="#" target="_blank" rel="noopener" aria-label="ORCID" title="ORCID">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM7.37 7.55a1.13 1.13 0 1 1 0 2.26 1.13 1.13 0 0 1 0-2.26zm.94 9.31H6.6v-6.36h1.72v6.36zm3.36 0h-2.5v-6.36h2.4c2.28 0 3.32 1.63 3.32 3.18 0 1.69-1.32 3.18-3.22 3.18zm.05-5.04h-.83v3.71h.78c1.32 0 1.82-.95 1.82-1.85 0-1.04-.66-1.86-1.77-1.86z"/></svg>
-          </a>
         </div>
       </aside>
 
@@ -1412,24 +1459,30 @@ section {
 
     <!-- AFFILIATION CARDS -->
     <div class="affiliation-cards">
-      <div class="aff-card">
+      <a href="https://www.cam.ac.uk" target="_blank" rel="noopener" class="aff-card aff-card-prev">
+        <span class="aff-prev-label">Currently Attending</span>
         <img src="assets/cambridge.png" alt="University of Cambridge" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
         <div class="aff-card-fallback" style="display:none;">University of <em>Cambridge</em></div>
-      </div>
-      <div class="aff-card">
+      </a>
+      <a href="https://www.chia.cam.ac.uk" target="_blank" rel="noopener" class="aff-card aff-card-prev">
+        <span class="aff-prev-label">Studying At</span>
         <img src="assets/chia.png" alt="Centre for Human-Inspired AI" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
         <div class="aff-card-fallback" style="display:none;">Centre for <em>Human-Inspired AI</em></div>
-      </div>
-      <div class="aff-card aff-card-labs">
-        <div class="labs-list">
-          <span>PluralAI Lab</span>
-          <span>HIVE Lab</span>
-          <span>AFAR Lab</span>
-        </div>
-      </div>
-      <div class="aff-card">
+      </a>
+      <a href="https://www.cs.washington.edu" target="_blank" rel="noopener" class="aff-card aff-card-prev">
+        <span class="aff-prev-label">Graduated</span>
         <img src="assets/uw.png" alt="University of Washington" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
         <div class="aff-card-fallback" style="display:none;">UW · <em>Allen School</em></div>
+        <span class="aff-prev-detail">1 Year Early; B.S. Computer Science, Minor Law Societies &amp; Justice</span>
+      </a>
+      <div class="aff-card aff-card-prev">
+        <span class="aff-prev-label">Previously</span>
+        <div class="aff-prev-logos">
+          <a href="https://hello-robot.com" target="_blank" rel="noopener"><img src="assets/hellorobot.jpeg" alt="Hello Robot" onerror="this.alt='Hello Robot'; this.style.opacity='0'; this.parentElement.insertAdjacentHTML('afterbegin','<span>Hello Robot</span>');"></a>
+          <a href="https://code.org" target="_blank" rel="noopener"><img src="assets/code.org.png" alt="Code.org" onerror="this.alt='Code.org'; this.style.opacity='0'; this.parentElement.insertAdjacentHTML('afterbegin','<span>Code.org</span>');"></a>
+          <a href="https://fiveable.me" target="_blank" rel="noopener"><img src="assets/fiveable.png" alt="Fiveable" onerror="this.alt='Fiveable'; this.style.opacity='0'; this.parentElement.insertAdjacentHTML('afterbegin','<span>Fiveable</span>');"></a>
+        </div>
+        <span class="aff-prev-detail">Interned across educational tech and assistive robotics</span>
       </div>
     </div>
 
@@ -1440,35 +1493,7 @@ section {
   </div>
 </header>
 
-<!-- ============================================================ -->
-<!-- ABOUT -->
-<!-- ============================================================ -->
-<section id="about">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-num">§ 01 / About</div>
-      <h2 class="section-title">A short<br/><em>introduction.</em></h2>
-    </div>
-    <div class="about-body">
-      <div>
-        <p>
-          I work at a particular intersection: the technical realities of modern AI systems, the regulatory and governance structures shaping them, and the everyday experiences of the people most affected by them. My work spans <em>research</em>, <em>policy</em>, and <em>human-centered design</em> &mdash; from MPhil dissertation work on bias in LLM-powered social robots, to industry internships in robotics UX and product engineering, to community-based teaching and policy fellowships.
-        </p>
-        <p>
-          Before Cambridge I was at the Paul G. Allen School at the University of Washington, where I graduated a year early with a CS degree and a minor in <em>Law, Societies &amp; Justice</em>. That dual training is the throughline of everything I do.
-        </p>
-      </div>
-      <div>
-        <p class="pull">
-          The questions I care about don&rsquo;t fit neatly into one discipline. <em>Fairness</em>, <em>care</em>, what it means to design technology that takes human dignity seriously &mdash; those are slow questions, and they don&rsquo;t belong to any one field.
-        </p>
-        <p>
-          Outside the lab, I teach digital literacy in refugee communities, taught language in Rome, and run AI research events for our society at Cambridge. I hike and motorcycle when there&rsquo;s time. I think a lot about who computing is for.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- ============================================================ -->
 <!-- NEWS -->
@@ -1477,7 +1502,7 @@ section {
   <div class="container">
     <div class="section-head">
       <div class="section-num">§ 02 / News</div>
-      <h2 class="section-title">Recent<br/><em>updates.</em></h2>
+      <h2 class="section-title">Recent <em>updates.</em></h2>
     </div>
     <ul class="news-list">
 
@@ -1551,8 +1576,8 @@ section {
 <section id="publications">
   <div class="container">
     <div class="section-head">
-      <div class="section-num">§ 03 / Publications</div>
-      <h2 class="section-title">Publications<br/><em>&amp; preprints.</em></h2>
+      <div class="section-num">§ 03 / Research</div>
+      <h2 class="section-title">Research</h2>
     </div>
     <div class="research-list">
 
@@ -1617,7 +1642,7 @@ section {
   <div class="container">
     <div class="section-head">
       <div class="section-num">§ 04 / Experience</div>
-      <h2 class="section-title">Where I&rsquo;ve<br/><em>worked.</em></h2>
+      <h2 class="section-title">Where I&rsquo;ve <em>worked.</em></h2>
     </div>
     <div class="exp-grid">
 
@@ -1681,7 +1706,7 @@ section {
   <div class="container">
     <div class="section-head">
       <div class="section-num">§ 05 / Projects</div>
-      <h2 class="section-title">Selected<br/><em>projects.</em></h2>
+      <h2 class="section-title">Selected <em>projects.</em></h2>
     </div>
     <div class="projects-grid">
 
@@ -1752,7 +1777,7 @@ section {
   <div class="container">
     <div class="section-head">
       <div class="section-num">§ 06 / Talks &amp; teaching</div>
-      <h2 class="section-title">Speaking &amp;<br/><em>teaching.</em></h2>
+      <h2 class="section-title">Speaking &amp; <em>teaching.</em></h2>
     </div>
 
     <h3 class="sub-head"><em>Talks</em> &amp; presentations</h3>
@@ -1852,7 +1877,7 @@ section {
   <div class="container">
     <div class="section-head">
       <div class="section-num">§ 07 / Beyond the lab</div>
-      <h2 class="section-title">Service &amp;<br/><em>recognition.</em></h2>
+      <h2 class="section-title">Service &amp; <em>recognition.</em></h2>
     </div>
     <div class="two-col">
 
@@ -1957,12 +1982,11 @@ section {
   <div class="container">
     <div class="section-head">
       <div class="section-num">§ 08 / Personal</div>
-      <h2 class="section-title">Off the<br/><em>page.</em></h2>
+      <h2 class="section-title">Off the <em>page.</em></h2>
     </div>
 
     <p class="personal-intro">
-      When I&rsquo;m not at a computer, I hike, ride motorcycles, and travel.
-      A small map of trails I&rsquo;ve loved &mdash; and a few favourite shots from along the way.
+      When I&rsquo;m not at a computer, I love to hike, ride motorcycles, and travel!
     </p>
 
     <div class="personal-grid">
@@ -1971,7 +1995,7 @@ section {
       <div class="personal-block">
         <h3 class="personal-block-head">
           <span class="block-eyebrow">Map</span>
-          Trails &amp; <em>summits</em>
+          Hikes from around Washington!
         </h3>
         <div id="hikes-map" class="hikes-map"></div>
         <p class="map-caption">Click a pin for details. Map data &copy; OpenStreetMap.</p>
@@ -1981,7 +2005,7 @@ section {
       <div class="personal-block">
         <h3 class="personal-block-head">
           <span class="block-eyebrow">Gallery</span>
-          From <em>the road</em>
+          A Few Favorite Shots
         </h3>
         <div class="gallery">
           <!--
@@ -2144,29 +2168,28 @@ document.querySelectorAll('.copy-line').forEach(btn => {
 // and drop the file in the assets/hikes/ folder. If the file is missing, the popup
 // just shows the name + notes without breaking.
 const hikes = [
-  { lat: 48.0250, lng: -121.4779, name: "Vesper Peak",                    notes: "Granite slabs and a 360° North Cascades summit", photo: "assets/hikes/vesper.jpg" },
-  { lat: 47.4367, lng: -120.9368, name: "Lake Ingalls",                   notes: "Larches and Mt Stuart in fall", photo: "assets/hikes/ingalls.jpg" },
-  { lat: 46.9541, lng: -121.8761, name: "Tolmie Peak",                    notes: "Eunice Lake + Rainier from a 1933 fire lookout", photo: "assets/hikes/tolmie.jpg" },
+  { lat: 48.0250, lng: -121.4779, name: "Vesper Peak",                    notes: "A jaw dropping height reached", photo: "assets/hikes/vesper.jpg" },
+  { lat: 47.4367, lng: -120.9368, name: "Lake Ingalls",                   notes: "Caught some larches!", photo: "assets/hikes/ingalls.jpg" },
+  { lat: 46.9541, lng: -121.8761, name: "Tolmie Peak",                    notes: "Now closed :(", photo: "assets/hikes/tolmie.jpg" },
   { lat: 48.4793, lng: -121.0543, name: "Sahale Arm",                     notes: "Glacier views above Cascade Pass", photo: "assets/hikes/sahale.jpg" },
-  { lat: 48.0258, lng: -121.4437, name: "Gothic Basin",                   notes: "Foggy Lake at the top of a brutal climb", photo: "assets/hikes/gothic.jpg" },
-  { lat: 48.0537, lng: -121.4124, name: "Goat Lake",                      notes: "Mountain Loop classic — waterfalls along the way", photo: "assets/hikes/goat.jpg" },
-  { lat: 46.9340, lng: -121.6756, name: "Mt Fremont Lookout",             notes: "Marmots, mountain goats, and Rainier", photo: "assets/hikes/fremont.jpg" },
-  { lat: 47.3928, lng: -121.4740, name: "Annette Lake",                   notes: "Snoqualmie Pass alpine lake", photo: "assets/hikes/annette.jpg" },
-  { lat: 47.4307, lng: -121.4531, name: "Keekwulee Falls",                notes: "Hidden waterfall on the Denny Creek trail", photo: "assets/hikes/keekwulee.jpg" },
-  { lat: 47.9154, lng: -121.3125, name: "Blanca Lake",                    notes: "Glacier-fed turquoise lake worth every switchback", photo: "assets/hikes/blanca.jpg" },
-  { lat: 47.4454, lng: -121.4234, name: "Snow Lake",                      notes: "Largest alpine lake near Snoqualmie Pass", photo: "assets/hikes/snow.jpg" },
-  { lat: 47.4312, lng: -121.6324, name: "Dirty Harry's Balcony",          notes: "Cliffside views of the I-90 valley", photo: "assets/hikes/dirty-harrys.jpg" },
-  { lat: 47.4012, lng: -121.5185, name: "Talapus Lake",                   notes: "Quiet lake in the Alpine Lakes Wilderness", photo: "assets/hikes/talapus.jpg" },
-  { lat: 48.0773, lng: -121.7458, name: "Lake 22",                        notes: "Mossy old-growth around a glacial cirque", photo: "assets/hikes/lake-22.jpg" },
-  { lat: 48.0828, lng: -121.7738, name: "Heather Lake",                   notes: "Waterfalls and a lake under Mt Pilchuck", photo: "assets/hikes/heather.jpg" },
-  { lat: 47.4247, lng: -121.5834, name: "Mason Lake (Ira Spring)",        notes: "Wildflowers and Rainier views", photo: "assets/hikes/mason.jpg" },
-  { lat: 47.8090, lng: -121.5738, name: "Lake Serene",                    notes: "Bridal Veil Falls + a stunning emerald lake", photo: "assets/hikes/serene.jpg" },
-  { lat: 47.4347, lng: -121.7687, name: "Rattlesnake Ledge",              notes: "Quintessential Issaquah Alps day hike", photo: "assets/hikes/rattlesnake.jpg" },
-  { lat: 47.5000, lng: -122.0220, name: "Poo Poo Point",                  notes: "Watching paragliders launch over Issaquah", photo: "assets/hikes/poo-poo.jpg" },
-  { lat: 46.1914, lng: -122.1956, name: "Mt St. Helens",                  notes: "Crater rim summit — multiple times over", photo: "assets/hikes/st-helens.jpg" },
-  { lat: 48.8467, lng: -121.6923, name: "Artist Point",                   notes: "Mt Baker and Shuksan from the end of the road", photo: "assets/hikes/artist-point.jpg" },
-  { lat: 47.7245, lng: -121.2666, name: "Beckler Peak",                   notes: "360° views above Skykomish", photo: "assets/hikes/beckler.jpg" },
-  { lat: 47.8587, lng: -123.0188, name: "Mount Townsend",                 notes: "Olympic Peninsula summit with Hood Canal views", photo: "assets/hikes/townsend.jpg" },
+  { lat: 48.0258, lng: -121.4437, name: "Gothic Basin",                   notes: "A really really cold swim greets you up top", photo: "assets/hikes/gothic.jpg" },
+  { lat: 48.0537, lng: -121.4124, name: "Goat Lake",                      notes: "A classic backpacking loop", photo: "assets/hikes/goat.jpg" },
+  { lat: 47.3928, lng: -121.4740, name: "Annette Lake",                   notes: "Alpine lake close to the city for when you need to get away", photo: "assets/hikes/annette.jpg" },
+  { lat: 47.4307, lng: -121.4531, name: "Keekwulee Falls",                notes: "Small detour off the Denny Creek trail", photo: "assets/hikes/keekwulee.jpg" },
+  { lat: 47.9154, lng: -121.3125, name: "Blanca Lake",                    notes: "The most unreal getaway", photo: "assets/hikes/blanca.jpg" },
+  { lat: 47.4454, lng: -121.4234, name: "Snow Lake",                      notes: "A classic washington hike", photo: "assets/hikes/snow.jpg" },
+  { lat: 47.4312, lng: -121.6324, name: "Dirty Harry's Balcony",          notes: "Quick hike, does the job", photo: "assets/hikes/dirty-harrys.jpg" },
+  { lat: 47.4012, lng: -121.5185, name: "Talapus Lake",                   notes: "Quiet, near Snowqualmie", photo: "assets/hikes/talapus.jpg" },
+  { lat: 48.0773, lng: -121.7458, name: "Lake 22",                        notes: "Yet another Washington classic", photo: "assets/hikes/lake-22.jpg" },
+  { lat: 48.0828, lng: -121.7738, name: "Heather Lake",                   notes: "Like Lake 22 but better...", photo: "assets/hikes/heather.jpg" },
+  { lat: 47.4247, lng: -121.5834, name: "Mason Lake (Ira Spring)",        notes: "Gorgeous and doable in the snow without spikes", photo: "assets/hikes/mason.jpg" },
+  { lat: 47.8090, lng: -121.5738, name: "Lake Serene",                    notes: "The best lake for summertime swims", photo: "assets/hikes/serene.jpg" },
+  { lat: 47.4347, lng: -121.7687, name: "Rattlesnake Ledge",              notes: "Where you take Seattle visitors", photo: "assets/hikes/rattlesnake.jpg" },
+  { lat: 47.5000, lng: -122.0220, name: "Poo Poo Point",                  notes: "Quintessential childhood hike", photo: "assets/hikes/poo-poo.jpg" },
+  { lat: 46.1914, lng: -122.1956, name: "Mt St. Helens",                  notes: "I don't think I've ever smiled so much on a hike", photo: "assets/hikes/st-helens.jpg" },
+  { lat: 48.8467, lng: -121.6923, name: "Artist Point",                   notes: "Snowshowed this during the winter!", photo: "assets/hikes/artist-point.jpg" },
+  { lat: 47.7245, lng: -121.2666, name: "Beckler Peak",                   notes: "Was gorgeous even in the fog", photo: "assets/hikes/beckler.jpg" },
+  { lat: 47.8587, lng: -123.0188, name: "Mount Townsend",                 notes: "Mountain or ocean you don't have to pick!", photo: "assets/hikes/townsend.jpg" },
 ];
 
 if (document.getElementById('hikes-map') && typeof L !== 'undefined') {
@@ -2247,6 +2270,14 @@ if (lightbox) {
     if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
   });
 }
+
+// --- Move title attr to data-tip on social icons -----------------------------
+// This lets our custom CSS tooltip show without the native browser tooltip
+// also appearing on a delay.
+document.querySelectorAll('.socials a[title]').forEach(a => {
+  a.dataset.tip = a.getAttribute('title');
+  a.removeAttribute('title');
+});
 
 </script>
 </body>
