@@ -113,10 +113,10 @@ img { max-width: 100%; display: block; }
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
-  background: rgba(244, 238, 221, 0.88);
+  background: rgba(45, 82, 56, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--forest-deep);
   z-index: 100;
   padding: 1rem 0;
 }
@@ -134,9 +134,9 @@ nav .container {
   letter-spacing: 0.02em;
   font-style: italic;
   text-decoration: none;
-  color: var(--ink);
+  color: var(--cream);
 }
-.nav-mark span { color: var(--forest); font-style: italic; }
+.nav-mark span { color: var(--cream); font-style: italic; }
 
 .nav-links {
   display: flex;
@@ -148,7 +148,7 @@ nav .container {
   text-transform: lowercase;
 }
 .nav-links a {
-  color: var(--ink-soft);
+  color: rgba(244, 238, 221, 0.85);
   text-decoration: none;
   transition: color 0.2s;
   position: relative;
@@ -158,22 +158,23 @@ nav .container {
   position: absolute;
   bottom: -4px; left: 0;
   width: 0; height: 1px;
-  background: var(--forest);
+  background: var(--gold-soft);
   transition: width 0.3s;
 }
-.nav-links a:hover { color: var(--forest-deep); }
+.nav-links a:hover { color: var(--cream); }
 .nav-links a:hover::after { width: 100%; }
 
 .nav-resume {
-  background: var(--forest);
-  color: var(--cream) !important;
+  background: var(--cream);
+  color: var(--forest) !important;
   padding: 0.35rem 0.9rem;
   border-radius: 6px;
   font-weight: 500;
 }
 .nav-resume::after { display: none !important; }
 .nav-resume:hover {
-  background: var(--forest-deep);
+  background: var(--gold-soft);
+  color: var(--forest-deep) !important;
 }
 
 .nav-toggle {
@@ -181,7 +182,7 @@ nav .container {
   background: none;
   border: none;
   font-size: 1.4rem;
-  color: var(--ink);
+  color: var(--cream);
   cursor: pointer;
 }
 
@@ -190,11 +191,11 @@ nav .container {
     display: none;
     position: absolute;
     top: 100%; left: 0; right: 0;
-    background: var(--cream);
+    background: var(--forest);
     flex-direction: column;
     padding: 1.5rem 2.5rem;
     gap: 1rem;
-    border-bottom: 1px solid var(--rule);
+    border-bottom: 1px solid var(--forest-deep);
   }
   .nav-links.open { display: flex; }
   .nav-toggle { display: block; }
@@ -1539,7 +1540,7 @@ body.lightbox-open nav { display: none; }
   <div class="container">
     <div class="section-head">
       <div class="section-num">§ 02 / News</div>
-      <h2 class="section-title">Recent <em>updates.</em></h2>
+      <h2 class="section-title">Recent <em>Updates.</em></h2>
     </div>
     <ul class="news-list">
 
@@ -1675,7 +1676,7 @@ body.lightbox-open nav { display: none; }
   <div class="container">
     <div class="section-head">
       <div class="section-num">§ 04 / Experience</div>
-      <h2 class="section-title">Where I&rsquo;ve <em>worked.</em></h2>
+      <h2 class="section-title">Where I&rsquo;ve <em>Worked.</em></h2>
     </div>
     <div class="exp-grid">
 
@@ -1739,7 +1740,7 @@ body.lightbox-open nav { display: none; }
   <div class="container">
     <div class="section-head">
       <div class="section-num">§ 05 / Projects</div>
-      <h2 class="section-title">Selected <em>projects.</em></h2>
+      <h2 class="section-title">Selected <em>Projects.</em></h2>
     </div>
     <div class="projects-grid">
 
@@ -1848,7 +1849,7 @@ body.lightbox-open nav { display: none; }
   <div class="container">
     <div class="section-head">
       <div class="section-num">§ 07 / Teaching</div>
-      <h2 class="section-title">Teaching <em>roles.</em></h2>
+      <h2 class="section-title">Teaching</em></h2>
     </div>
 
     <div class="teach-list">
@@ -1899,7 +1900,7 @@ body.lightbox-open nav { display: none; }
     <div class="two-col">
 
       <div>
-        <h3 class="col-head"><em>Leadership</em> &amp; community engagement</h3>
+        <h3 class="col-head"><em>Leadership</em> &amp; Community Engagement</h3>
         <ul class="lead-list">
           <li class="lead-item">
             <div class="lead-org">Cambridge AI Research Society</div>
@@ -1947,7 +1948,7 @@ body.lightbox-open nav { display: none; }
       </div>
 
       <div>
-        <h3 class="col-head"><em>Honors</em> &amp; awards</h3>
+        <h3 class="col-head"><em>Honors</em> &amp; Awards</h3>
         <ul class="award-list">
           <li class="award-item">
             <div class="award-name">Scholarship <span class="src">First Tech Credit Union</span></div>
@@ -1999,7 +2000,7 @@ body.lightbox-open nav { display: none; }
   <div class="container">
     <div class="section-head">
       <div class="section-num">§ 09 / Personal</div>
-      <h2 class="section-title">Off the <em>page.</em></h2>
+      <h2 class="section-title">Off the <em>screen.</em></h2>
     </div>
 
     <p class="personal-intro">
@@ -2067,9 +2068,9 @@ body.lightbox-open nav { display: none; }
 <!-- ============================================================ -->
 <section class="contact" id="contact">
   <div class="container">
-    <h2>Let&rsquo;s be <em>in touch.</em></h2>
+    <h2>Get in touch.</h2>
     <p class="contact-text">
-      Am always down to chat about my work, interests, potential collaborations, or to grab a coffee :)
+      I am always down to chat about my work, interests, potential collaborations, or to grab a coffee :)
     </p>
 
     <div class="contact-grid">
@@ -2082,12 +2083,12 @@ body.lightbox-open nav { display: none; }
         <a class="contact-value" href="https://www.linkedin.com/in/afifah-k/" target="_blank" rel="noopener">in/afifah-k</a>
       </div>
       <div class="contact-item">
-        <div class="contact-label">Scholar</div>
+        <div class="contact-label">Research</div>
         <a class="contact-value" href="https://scholar.google.com/citations?user=VoVDY4AAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
       </div>
       <div class="contact-item">
-        <div class="contact-label">Based</div>
-        <span class="contact-value">Cambridge &amp; Seattle</span>
+        <div class="contact-label">Based in</div>
+        <span class="contact-value">Cambridge, UK &amp; Seattle, USA</span>
       </div>
     </div>
 
