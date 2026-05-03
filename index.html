@@ -136,7 +136,7 @@ nav .container {
   text-decoration: none;
   color: var(--ink);
 }
-.nav-mark span { color: var(--forest); }
+.nav-mark span { color: var(--forest); font-style: italic; }
 
 .nav-links {
   display: flex;
@@ -163,6 +163,18 @@ nav .container {
 }
 .nav-links a:hover { color: var(--forest-deep); }
 .nav-links a:hover::after { width: 100%; }
+
+.nav-resume {
+  background: var(--forest);
+  color: var(--cream) !important;
+  padding: 0.35rem 0.9rem;
+  border-radius: 6px;
+  font-weight: 500;
+}
+.nav-resume::after { display: none !important; }
+.nav-resume:hover {
+  background: var(--forest-deep);
+}
 
 .nav-toggle {
   display: none;
@@ -1387,7 +1399,7 @@ section {
 <!-- ============================================================ -->
 <nav>
   <div class="container">
-    <a href="#top" class="nav-mark">Afifah <span>Kashif</span></a>
+    <a href="#top" class="nav-mark"><span>Afifah</span> Kashif</a>
     <ul class="nav-links">
       <li><a href="#news">news</a></li>
       <li><a href="#research">research</a></li>
@@ -1396,6 +1408,7 @@ section {
       <li><a href="#talks">talks</a></li>
       <li><a href="#personal">personal</a></li>
       <li><a href="#contact">contact</a></li>
+      <li><a href="resume.html" target="_blank" class="nav-resume">resume</a></li>
     </ul>
     <button class="nav-toggle" aria-label="Toggle menu">☰</button>
   </div>
@@ -1417,7 +1430,7 @@ section {
             <img src="assets/portrait.jpeg" alt="Afifah Kashif" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="portrait-fallback" style="display:none;">AK</div>
           </div>
-          <h1>Afifah <span class="accent">Kashif</span></h1>
+          <h1><span class="accent">Afifah</span> Kashif</h1>
         </div>
 
         <p class="hero-tagline">
