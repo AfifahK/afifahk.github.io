@@ -664,6 +664,22 @@ section {
 .news-list {
   list-style: none;
   max-width: 100%;
+  max-height: 28rem;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+.news-list::-webkit-scrollbar {
+  width: 6px;
+}
+.news-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.news-list::-webkit-scrollbar-thumb {
+  background: var(--rule);
+  border-radius: 3px;
+}
+.news-list::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-soft);
 }
 .news-item {
   display: grid;
@@ -987,7 +1003,55 @@ section {
 
 
 /* ==========================================================================
-   10. BEYOND (leadership + awards)
+   10. SKILLS
+   ========================================================================== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+.skill-group {
+  padding: 1.5rem 0;
+}
+.skill-group-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--rule);
+}
+.skill-group-title em { font-style: italic; color: var(--forest); }
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.skill-tag {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: var(--ink-soft);
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-radius: 2rem;
+  padding: 0.3rem 0.75rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+.skill-tag:hover {
+  color: var(--forest);
+  border-color: var(--forest-light);
+}
+@media (max-width: 860px) {
+  .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+}
+@media (max-width: 560px) {
+  .skills-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+/* ==========================================================================
+   10b. BEYOND (legacy – leadership + awards)
    ========================================================================== */
 .two-col {
   display: grid;
@@ -1441,11 +1505,12 @@ body.lightbox-open nav { display: none; }
     <a href="#top" class="nav-mark"><span>Afifah</span> Kashif</a>
     <ul class="nav-links">
       <li><a href="#news">news</a></li>
-      <li><a href="#publications">research</a></li>
       <li><a href="#experience">experience</a></li>
+      <li><a href="#publications">research</a></li>
       <li><a href="#projects">projects</a></li>
       <li><a href="#talks">talks</a></li>
       <li><a href="#teaching">teaching</a></li>
+      <li><a href="#skills">skills</a></li>
       <li><a href="#personal">personal</a></li>
       <li><a href="assets/resume.pdf" target="_blank" class="nav-resume">resume</a></li>
     </ul>
@@ -1462,7 +1527,7 @@ body.lightbox-open nav { display: none; }
 
       <!-- LEFT: editorial content with portrait beside name -->
       <div class="hero-main">
-        <div class="hero-eyebrow">Human-AI Interaction · AI Governance · Assistive Technology</div>
+        <div class="hero-eyebrow">Human-AI Interaction · AI Governance · Human-Centered Technology</div>
 
         <div class="name-row">
           <div class="portrait-inline">
@@ -1479,7 +1544,7 @@ body.lightbox-open nav { display: none; }
           Currently working on my dissertation with <a href="https://malaksadekapps.com/">Dr. Malak Sadek</a>, <a href="https://betsyhj.github.io/">Dr. Jin Huang</a>, and <a href="https://www.cl.cam.ac.uk/~hg410/">Dr. Hatice Gunes</a> (<a href="https://cambridge-afar.github.io/">AFAR Lab</a>, <a href="https://hive.chia.cam.ac.uk/">HIVE Lab</a>) on evaluating and mitigating bias in LLM-powered social robots with human-in-the-loop interventions.
         </p>
         <div class="hero-cta">
-          <a href="#affiliations" class="btn btn-primary">View my work</a>
+          <a href="assets/resume.pdf" target="_blank" class="btn btn-primary">View my work</a>
           <a href="mailto:ak2687@cam.ac.uk" class="btn btn-ghost">Get in touch</a>
         </div>
       </div>
@@ -1602,12 +1667,76 @@ body.lightbox-open nav { display: none; }
 </section>
 
 <!-- ============================================================ -->
-<!-- RESEARCH / PUBLICATIONS -->
+<!-- EXPERIENCE -->
 <!-- ============================================================ -->
-<section id="publications">
+<section id="experience">
   <div class="container">
     <div class="section-head">
-      <div class="section-num">§ 03 / Research</div>
+      <div class="section-num">§ 03 / Experience</div>
+      <h2 class="section-title">Where I&rsquo;ve <em>Worked</em></h2>
+    </div>
+    <div class="exp-grid">
+
+      <div class="exp-card">
+        <div class="exp-role">Civic, Open &amp; Resilient Democracy Action Fellow</div>
+        <h3 class="exp-org">Odyssean Institute<span class="sub"> <a href="https://jacob-haimes.github.io/">Jacob Haimes</a> · Dr. Swaptik Choudhury</span></h3>
+        <div class="exp-date">Apr 2026 - Present</div>
+        <p class="exp-desc">Coding expert responses, extracting causal variables, and building causal loop diagrams for an AI governance horizon scan, powering decision-support tools in the 2026 UK assembly.</p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-role">Research Assistant</div>
+        <h3 class="exp-org">PluralAI Lab<span class="sub"><a href="https://www.zzyw.org/">Dr. Zhenzhen Qi</a> (University of Connecticut) · <a href="https://evijit.io/">Dr. Avijit Ghosh</a> (Hugging Face)</span></h3>
+        <div class="exp-date">Mar 2026 - Present</div>
+        <p class="exp-desc">Co-designing a controlled human-subjects study evaluating whether an open-source, multi-persona LLM platform can reduce political polarization.</p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-role">Robotics Software Engineering Intern</div>
+        <h3 class="exp-org">Hello Robot<span class="sub">UX + Human-Robot Interaction &middot; <a href="https://www.vinitharanganeni.com/">Dr. Vinitha Ranganeni</a></span></h3>
+        <div class="exp-date">May 2025 - Aug 2025</div>
+        <p class="exp-desc">Designed an interactive dashboard and workflow for managing autonomous robot power systems, combining real-time battery feedback, predictive alerts, and manual override controls. Iteratively prototyped and user-tested for trust, reliability, and operator agency.</p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-role">Research Assistant</div>
+        <h3 class="exp-org">Wordplay Project<span class="sub">UW Information School &middot; Dr. Amy Ko</span></h3>
+        <div class="exp-date">Sep 2024 - June 2025</div>
+        <p class="exp-desc">Led design and deployment of an accessible, multilingual programming language learning platform in local schools. Coordinated an open-source contributor community and developed a pre-built &ldquo;templates&rdquo; system to scaffold first-time coders.</p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-role">Backend SWE Intern</div>
+        <h3 class="exp-org">HowellCo<span class="sub">Stealth Startup</span></h3>
+        <div class="exp-date">Jul 2024 - Sep 2024</div>
+        <p class="exp-desc">Contributed to backend service development at a beta-stage startup, designing products, devising a testing strategy, and using Azure services and Python scripting to enhance backend infrastructure on the mobile app.</p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-role">Software Engineering Intern</div>
+        <h3 class="exp-org">Code.org<span class="sub">Product-oriented engineering</span></h3>
+        <div class="exp-date">Jul 2023 - Sep 2023</div>
+        <p class="exp-desc">Developed and designed full-stack web-based, coding games on engineering and product teams. Programmed with React and Ruby on Rails, impacting 80 million students and 2 million teachers worldwide.</p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-role">Operations &amp; Product Intern</div>
+        <h3 class="exp-org">Fiveable<span class="sub">Early-stage edtech startup</span></h3>
+        <div class="exp-date">Apr 2021 - Nov 2021</div>
+        <p class="exp-desc">Scaled internal operations and product workflows during the company&rsquo;s transition into a consumer platform. Led development of a student-facing platform aimed at improving access for first-generation and low-income learners.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- RESEARCH / PUBLICATIONS -->
+<!-- ============================================================ -->
+<section id="publications" class="alt-bg">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§ 04 / Research</div>
       <h2 class="section-title">Research</h2>
     </div>
     <div class="research-list">
@@ -1662,70 +1791,6 @@ body.lightbox-open nav { display: none; }
         </div>
         <div class="pub-year">2024 <span class="pub-arrow">→</span></div>
       </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================ -->
-<!-- EXPERIENCE -->
-<!-- ============================================================ -->
-<section id="experience" class="alt-bg">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-num">§ 04 / Experience</div>
-      <h2 class="section-title">Where I&rsquo;ve <em>Worked</em></h2>
-    </div>
-    <div class="exp-grid">
-
-      <div class="exp-card">
-        <div class="exp-role">CORDA Democracy Fellow</div>
-        <h3 class="exp-org">Odyssean Institute<span class="sub">Civic, Open &amp; Resilient Democracy Action</span></h3>
-        <div class="exp-date">Apr 2026, Present</div>
-        <p class="exp-desc">Coding expert responses, extracting causal variables, and building causal loop diagrams for an AI governance horizon scan, powering decision-support tools in the 2026 UK assembly.</p>
-      </div>
-
-      <div class="exp-card">
-        <div class="exp-role">Research Assistant</div>
-        <h3 class="exp-org">PluralAI Lab<span class="sub">Dr. Zhenzhen Qi (UConn) · <a href="https://evijit.io/">Dr. Avijit Ghosh</a> (Hugging Face)</span></h3>
-        <div class="exp-date">Mar 2026, Present</div>
-        <p class="exp-desc">Co-designing a controlled human-subjects study evaluating whether an open-source, multi-persona LLM platform can reduce political polarization.</p>
-      </div>
-
-      <div class="exp-card">
-        <div class="exp-role">Robotics Software Engineering Intern</div>
-        <h3 class="exp-org">Hello Robot<span class="sub">UX + Human-Robot Interaction</span></h3>
-        <div class="exp-date">May 2025, Aug 2025</div>
-        <p class="exp-desc">Designed an interactive dashboard and workflow for managing autonomous robot power systems, combining real-time battery feedback, predictive alerts, and manual override controls. Iteratively prototyped and user-tested for trust, reliability, and operator agency.</p>
-      </div>
-
-      <div class="exp-card">
-        <div class="exp-role">Research Assistant</div>
-        <h3 class="exp-org">Wordplay Project<span class="sub">UW Information School &middot; Dr. Amy Ko</span></h3>
-        <div class="exp-date">Sep 2024, June 2025</div>
-        <p class="exp-desc">Led design and deployment of an accessible, multilingual programming language learning platform in local schools. Coordinated an open-source contributor community and developed a pre-built &ldquo;templates&rdquo; system to scaffold first-time coders.</p>
-      </div>
-
-      <div class="exp-card">
-        <div class="exp-role">Backend SWE Intern</div>
-        <h3 class="exp-org">HowellCo<span class="sub">Stealth Startup</span></h3>
-        <div class="exp-date">Jul 2024, Sep 2024</div>
-        <p class="exp-desc">Contributed to backend service development at a beta-stage startup, designing products, devising a testing strategy, and using Azure services and Python scripting to enhance backend infrastructure on the mobile app.</p>
-      </div>
-
-      <div class="exp-card">
-        <div class="exp-role">Software Engineering Intern</div>
-        <h3 class="exp-org">Code.org<span class="sub">Product-oriented engineering</span></h3>
-        <div class="exp-date">Jul 2023, Sep 2023</div>
-        <p class="exp-desc">Developed and designed full-stack web-based, coding games on engineering and product teams. Programmed with React and Ruby on Rails, impacting 80 million students and 2 million teachers worldwide.</p>
-      </div>
-
-      <div class="exp-card">
-        <div class="exp-role">Operations &amp; Product Intern</div>
-        <h3 class="exp-org">Fiveable<span class="sub">Early-stage edtech startup</span></h3>
-        <div class="exp-date">Apr 2021, Nov 2021</div>
-        <p class="exp-desc">Scaled internal operations and product workflows during the company&rsquo;s transition into a consumer platform. Led development of a student-facing platform aimed at improving access for first-generation and low-income learners.</p>
-      </div>
 
     </div>
   </div>
@@ -1887,9 +1952,101 @@ body.lightbox-open nav { display: none; }
 </section>
 
 <!-- ============================================================ -->
-<!-- BEYOND -->
+<!-- SKILLS -->
 <!-- ============================================================ -->
-<section id="beyond" class="alt-bg">
+<section id="skills" class="alt-bg">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§ 08 / Skills</div>
+      <h2 class="section-title">My <em>(Not Just Technical)</em> Skills</h2>
+    </div>
+    <div class="skills-grid">
+
+      <div class="skill-group">
+        <h3 class="skill-group-title">Software <em>Engineering</em></h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">JavaScript / TypeScript</span>
+          <span class="skill-tag">Ruby (Rails)</span>
+          <span class="skill-tag">C</span>
+          <span class="skill-tag">HTML / CSS</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Backend (Azure, AWS, REST APIs)</span>
+          <span class="skill-tag">Open-Source Community Management</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3 class="skill-group-title">AI &amp; <em>Robotics</em></h3>
+        <div class="skill-tags">
+          <span class="skill-tag">LLM Evaluation &amp; Benchmarking</span>
+          <span class="skill-tag">Human-in-the-Loop Methods</span>
+          <span class="skill-tag">Multi-Agent / Multi-Persona Systems</span>
+          <span class="skill-tag">Prompt Engineering</span>
+          <span class="skill-tag">Hugging Face</span>
+          <span class="skill-tag">PyTorch</span>
+          <span class="skill-tag">ROS / ROS2</span>
+          <span class="skill-tag">Stretch RE2 (Hello Robot)</span>
+          <span class="skill-tag">Human-Robot Interaction (HRI)</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3 class="skill-group-title">Governance &amp; <em>Policy</em></h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Anticipatory Governance</span>
+          <span class="skill-tag">AI Safety Fundamentals</span>
+          <span class="skill-tag">Sociotechnical Risk Analysis</span>
+          <span class="skill-tag">Regulatory Analysis</span>
+          <span class="skill-tag">Standards Bodies (ISO/IEC, NIST)</span>
+          <span class="skill-tag">Multi-Stakeholder Coordination</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3 class="skill-group-title">Research &amp; <em>Writing</em></h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Human-Subjects Studies</span>
+          <span class="skill-tag">Qualitative Coding &amp; Thematic Analysis</span>
+          <span class="skill-tag">Causal Modeling</span>
+          <span class="skill-tag">Mixed-Methods research</span>
+          <span class="skill-tag">Literature Synthesis</span>
+          <span class="skill-tag">Survey Design</span>
+          <span class="skill-tag">Academic Writing</span>
+          <span class="skill-tag">Public Speaking &amp; Workshop Facilitation</span>
+          <span class="skill-tag">Teaching &amp; Curriculum Design</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3 class="skill-group-title">Design / <em>UX</em></h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Human-Computer Interaction (HCI)</span>
+          <span class="skill-tag">User Research &amp; Interviewing</span>
+          <span class="skill-tag">Co-Design / Participatory Design</span>
+          <span class="skill-tag">Accessible Design</span>
+          <span class="skill-tag">Prototyping (Figma)</span>
+          <span class="skill-tag">Usability Testing</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3 class="skill-group-title"><em>Languages</em></h3>
+        <div class="skill-tags">
+          <span class="skill-tag">English (native)</span>
+          <span class="skill-tag">Urdu / Hindi (native)</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BEYOND (commented out – kept for reference) -->
+<!-- ============================================================ -->
+<!-- <section id="beyond" class="alt-bg">
   <div class="container">
     <div class="section-head">
       <div class="section-num">§ 08 / Beyond the lab</div>
@@ -1920,13 +2077,11 @@ body.lightbox-open nav { display: none; }
             <div class="lead-role">Inaugural cohort, sustainability, governance, and trust-based leadership in Stockholm; connecting with academics, industry leaders, and government</div>
             <div class="lead-when">Jun - Sep 2025</div>
           </li>
-
           <li class="lead-item">
             <div class="lead-org">UW Honors Exchange · Rome, Italy</div>
             <div class="lead-role">&ldquo;The Global Refugee Crisis: From Devastation to Diaspora,&rdquo; coursework alongside community teaching with migrant mothers at CPIA1 Roma</div>
             <div class="lead-when">Jan - Mar 2024</div>
           </li>
-
           <li class="lead-item">
             <div class="lead-org">UW Pakistani Student Association</div>
             <div class="lead-role">President, cultural immersion and diaspora conversations</div>
@@ -1989,7 +2144,7 @@ body.lightbox-open nav { display: none; }
 
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- ============================================================ -->
 <!-- PERSONAL -->
@@ -2101,6 +2256,7 @@ body.lightbox-open nav { display: none; }
 
     <div class="contact-foot">
       <div>© <span id="year">2026</span> Afifah Kashif</div>
+      <div>Last updated May 2026</div>
       <div>Cambridge · UK &nbsp;/&nbsp; Seattle · USA</div>
     </div>
   </div>
