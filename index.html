@@ -711,6 +711,29 @@ section {
 @media (max-width: 720px) {
   .news-item { grid-template-columns: 1fr; gap: 0.4rem; }
 }
+.news-photos {
+  grid-column: 2;
+  margin-top: -0.3rem;
+}
+.news-photos summary {
+  font-size: 0.82rem;
+  font-family: var(--mono);
+  color: var(--forest);
+  cursor: pointer;
+  letter-spacing: 0.05em;
+}
+.news-photos summary:hover { text-decoration: underline; }
+.news-photos .photo-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+.news-photos .photo-row img {
+  max-height: 180px;
+  border-radius: 6px;
+  object-fit: cover;
+}
 
 
 /* ==========================================================================
@@ -961,7 +984,7 @@ section {
 }
 .teach-item {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 4fr 0.5fr;
   gap: 2rem;
   padding: 1.5rem 0;
   border-bottom: 1px dashed var(--rule);
@@ -996,9 +1019,35 @@ section {
   font-family: var(--mono);
   letter-spacing: 0.02em;
 }
+#teaching .teach-item {
+  grid-template-columns: 1fr 3fr 1fr;
+}
 @media (max-width: 860px) {
   .teach-item { grid-template-columns: 1fr; gap: 0.5rem; }
   .teach-when { text-align: left; }
+}
+.teach-photos {
+  grid-column: 1 / -1;
+  margin-top: -0.1rem;
+}
+.teach-photos summary {
+  font-size: 0.82rem;
+  font-family: var(--mono);
+  color: var(--forest);
+  cursor: pointer;
+  letter-spacing: 0.05em;
+}
+.teach-photos summary:hover { text-decoration: underline; }
+.teach-photos .photo-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+.teach-photos .photo-row img {
+  max-height: 220px;
+  border-radius: 6px;
+  object-fit: cover;
 }
 
 
@@ -1625,6 +1674,15 @@ body.lightbox-open nav { display: none; }
       <li class="news-item">
         <div class="news-date">Mar 2026</div>
         <div class="news-text">Presented our paper <em>Governance as Methodology: Anticipatory, Design-Embedded Oversight for HRI</em>, at the <strong>ACM/IEEE International Conference on Human-Robot Interaction 2026</strong> Interactive AI for Human-Centered Robotics workshop. See my department's <a href="https://www.linkedin.com/posts/chiacambridge_ai-aiforgood-activity-7443265633196113920-Dt0B?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADN3XUMBmqD_KZOPBrwVQs0NwLp78PXlxN4">post</a>!</div>
+        <details class="news-photos">
+          <summary>See photos &darr;</summary>
+          <div class="photo-row">
+            <img src="assets/hri-1.jpg" alt="HRI 2026" loading="lazy">
+            <img src="assets/hri-2.jpg" alt="HRI 2026" loading="lazy">
+            <img src="assets/hri-3.jpeg" alt="HRI 2026" loading="lazy">
+            <img src="assets/hri-4.jpeg" alt="HRI 2026" loading="lazy">
+          </div>
+        </details>
       </li>
 
       <li class="news-item">
@@ -1635,6 +1693,13 @@ body.lightbox-open nav { display: none; }
       <li class="news-item">
         <div class="news-date">Feb 2026</div>
         <div class="news-text">Spoke at <strong>Clare College&rsquo;s 700th anniversary Clareity &times; Whiston</strong> series on <em>The Politics of Educational Technology</em>. Discussed how AI in edtech isn&rsquo;t neutral, and what it means to automate inequity at scale.</div>
+        <details class="news-photos">
+          <summary>See photos &darr;</summary>
+          <div class="photo-row">
+            <img src="assets/clareity-pic1.JPG" alt="Clareity talk at Clare College" loading="lazy">
+            <img src="assets/clareity-pic2.JPG" alt="Clareity talk at Clare College" loading="lazy">
+          </div>
+        </details>
       </li>
 
       <li class="news-item">
@@ -1655,6 +1720,12 @@ body.lightbox-open nav { display: none; }
       <li class="news-item">
         <div class="news-date">Sep 2025</div>
         <div class="news-text">Became the first cohort at the <a href="https://www.nordicscholars.org/">Nordic Scholars Leadership Institute</a> in Stockholm, an immersive program on Nordic best practices in sustainability, governance, and trust-based leadership.</div>
+        <details class="news-photos">
+          <summary>See photos &darr;</summary>
+          <div class="photo-row">
+            <img src="assets/nordic.jpeg" alt="Nordic Scholars Leadership Institute" loading="lazy">
+          </div>
+        </details>
       </li>
 
       <li class="news-item">
@@ -1693,7 +1764,7 @@ body.lightbox-open nav { display: none; }
         <div class="exp-role">Research Assistant</div>
         <h3 class="exp-org"> <a href="https://pluralistic-ai.github.io/lab/"> PluralisticAI Lab</a> <span class="sub"><a href="https://www.zzyw.org/">Dr. Zhenzhen Qi</a> (University of Connecticut) · <a href="https://evijit.io/">Dr. Avijit Ghosh</a> (Hugging Face)</span></h3>
         <div class="exp-date">Mar 2026 - Present</div>
-        <p class="exp-desc">Co-designing a controlled human-subjects study evaluating whether an open-source, multi-persona LLM platform can reduce political polarization.</p>
+        <p class="exp-desc">Co-designing a controlled human-subjects study evaluating whether an open-source, multi-persona LLM platform can reduce political polarization. Combining cognitive science, political studies, AI Alignment, game design and HCI.</p>
       </div>
 
       <div class="exp-card">
@@ -1817,23 +1888,44 @@ body.lightbox-open nav { display: none; }
         <h3 class="project-title">Assistive Ointment Care Robot</h3>
         <p class="project-desc">An assistive system on the Stretch RE2 mobile manipulator that lets people with limited mobility apply topical medication independently, with a custom brush attachment, programming-by-demonstration, and a web-based GUI for area selection and emergency control. Designed around a human-in-the-loop model that preserves user agency in intimate healthcare contexts. Co-designed with people who manage chronic eczema, professional caregivers, and an occupational therapist.</p>
         <div class="project-meta">
-          <span class="project-stack">Human Robot Interaction · ROS · Accessibility</span>
+          <span class="project-stack">Human Robot Interaction · ROS</span>
           <a href="https://www.youtube.com/watch?v=cvXvkXMHmvc" target="_blank" rel="noopener" class="project-link">Watch the demo →</a>
+          <a href="assets/papers/robotics-capstone.pdf" target="_blank" rel="noopener" class="project-link">Read the paper →</a>
         </div>
       </article>
 
       <article class="project">
-        <div class="project-tag">Research · 2024-2025</div>
+        <div class="project-tag">UX Research · 2024-2025</div>
         <h3 class="project-title">Wordplay, Coding for All</h3>
         <p class="project-desc">A multilingual, accessible, scaffolded coding environment built with Dr. Amy Ko at the UW Information School. Led template design (pre-structured code blocks students could drag and remix), coordinated an open-source community of nearly 80 contributors, and conducted classroom deployments in a partner school. Anchored the design in literature on inclusive edtech and educational governance.</p>
         <div class="project-meta">
           <span class="project-stack">Service Design · Ed-Tech · Accessibility</span>
+          <a href="assets/wordplay.jpeg" target="_blank" rel="noopener" class="project-link">See photo →</a>
         </div>
       </article>
 
       <article class="project">
-        <div class="project-tag">Research · 2025-2026</div>
-        <h3 class="project-title">Bias in LLM-Powered Social Robots</h3>
+        <div class="project-tag">AI Research · 2026</div>
+        <h3 class="project-title">AI x Neuroscience Investigation</h3>
+        <p class="project-desc">Replicated and extended Goldstein et al.&rsquo;s finding that the human brain and autoregressive language models share computational principles during speech comprehension. Using the Podcast ECoG dataset (9 subjects, 1,330 electrodes), reproduced evidence for next-word prediction, post-onset surprise, and contextual representation. A novel variance partitioning analysis showed that surprisal and contextual embeddings capture largely independent neural signals, supporting the view that prediction and representation are dissociable in the brain&rsquo;s language system.</p>
+        <div class="project-meta">
+          <span class="project-stack">Computational Neuroscience · NLP · ECoG</span>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-tag">Human-AI Interaction Research · 2026</div>
+        <h3 class="project-title">Error Overlap in Human-AI Complementarity</h3>
+        <p class="project-desc">Investigated why the most accurate model doesn&rsquo;t always make the best human-AI team. Across three binary classification tasks, showed that error overlap between model and human (not standalone accuracy) predicts team performance, with the least accurate model sometimes forming the strongest team under learned deferral. Also examined how deferral strategies shift who receives human review, raising fairness concerns.</p>
+        <div class="project-meta">
+          <span class="project-stack">Human-AI Collaboration · Algorithmic Decision-Making · Fairness</span>
+          <!-- <a href="assets/papers/algos-human-ai-collab.pdf" target="_blank" rel="noopener" class="project-link">Read the paper →</a> -->
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-tag">AI Fairness Research · 2025-2026</div>
+        <h3 class="project-title">LLM Bias Evaluation</h3>
         <p class="project-desc">My ongoing MPhil dissertation at Cambridge under Dr. Jin Huang, Dr. Malak Sadek, and Dr. Hatice Gunes, evaluating bias in LLM-powered social robots and designing human-in-the-loop interventions to mitigate it.</p>
         <div class="project-meta">
           <span class="project-stack">LLMs · Human Robot Interaction · Evaluation</span>
@@ -1841,7 +1933,7 @@ body.lightbox-open nav { display: none; }
       </article>
 
       <article class="project">
-        <div class="project-tag">Community · 2025-present</div>
+        <div class="project-tag">Community Work · 2025-present</div>
         <h3 class="project-title">IRC Digital Literacy Program</h3>
         <p class="project-desc">A program I founded with the International Rescue Committee and a local hospital to teach digital literacy to refugee communities in Seattle. I designed the curriculum, taught weekly classes, and secured grants for translation and access.</p>
         <div class="project-meta">
@@ -1871,9 +1963,16 @@ body.lightbox-open nav { display: none; }
       </div>
 
       <div class="teach-item">
-        <div class="teach-where">Clare College, Cambridge<span class="role">Clareity &times; Whiston · 700th Anniversary</span></div>
+        <div class="teach-where">Clare College, Cambridge<span class="role">700th Anniversary</span></div>
         <div class="teach-detail">&ldquo;The Politics of Educational Technology&rdquo;: About how AI in edtech systems isn&rsquo;t neutral, and the risk of automating inequity at scale if we don&rsquo;t question what norms our systems center.</div>
         <div class="teach-when">Feb 2026</div>
+        <details class="teach-photos">
+          <summary>See photos &darr;</summary>
+          <div class="photo-row">
+            <img src="assets/clareity-pic1.JPG" alt="Clareity talk at Clare College" loading="lazy">
+            <img src="assets/clareity-pic2.JPG" alt="Clareity talk at Clare College" loading="lazy">
+          </div>
+        </details>
       </div>
 
       <div class="teach-item">
@@ -1884,14 +1983,47 @@ body.lightbox-open nav { display: none; }
 
       <div class="teach-item">
         <div class="teach-where">HRI 2026<span class="role">Workshop paper presentation</span></div>
-        <div class="teach-detail">&ldquo;Governance as Methodology,&rdquo; presenting work on anticipatory, design-embedded governance for human-robot interaction.</div>
+        <div class="teach-detail">Presented work on anticipatory, design-embedded governance for human-robot interaction.</div>
         <div class="teach-when">Mar 2026</div>
+        <details class="teach-photos">
+          <summary>See photos &darr;</summary>
+          <div class="photo-row">
+            <img src="assets/hri-1.jpg" alt="HRI 2026" loading="lazy">
+            <img src="assets/hri-2.jpg" alt="HRI 2026" loading="lazy">
+            <img src="assets/hri-3.jpeg" alt="HRI 2026" loading="lazy">
+            <img src="assets/hri-4.jpeg" alt="HRI 2026" loading="lazy">
+          </div>
+        </details>
+      </div>
+
+      <div class="teach-item">
+        <div class="teach-where">Karl-Adam Bonniers Foundation<span class="role">Nordic Scholars</span></div>
+        <div class="teach-detail">Gave speech at closing forum hosted by Karl-Adam Bonniers Foundation as part of the Nordic Scholars Leadership Initiative. <a href="https://www.linkedin.com/posts/mpenhoet_nsli-launch-8-nordic-scholars-10-days-activity-7374190758473621504-9clA?utm_source=share&utm_medium=member_desktop&rcm=ACoAADN3XUMBmqD_KZOPBrwVQs0NwLp78PXlxN4" target="_blank" rel="noopener">See post &rarr;</a></div>
+        <div class="teach-when">Sep 2025</div>
+        <details class="teach-photos">
+          <summary>See photos &darr;</summary>
+          <div class="photo-row">
+            <img src="assets/nordic.jpeg" alt="Nordic Scholars Leadership Institute" loading="lazy">
+          </div>
+        </details>
       </div>
 
       <div class="teach-item">
         <div class="teach-where">HRI 2025<span class="role">Workshop paper presentation</span></div>
         <div class="teach-detail">&ldquo;Regulatory Considerations for Physically Assistive Robotics Researchers&rdquo; at the Physical Caregiving Robots workshop.</div>
         <div class="teach-when">Mar 2025</div>
+      </div>
+
+      <div class="teach-item">
+        <div class="teach-where">Paul G. Allen School of Computer Science & Engineering<span class="role">Roundtable</span></div>
+        <div class="teach-detail">Roundtable discussion with Washington State legislators and industry representatives on the impact of the Allen School. Spoke on community, opportunity, and the importance of diverse voices in shaping technology. <a href="https://www.linkedin.com/posts/afifah-k_this-past-week-i-had-the-privilege-of-participating-activity-7264398669313892353-3pl4?utm_source=share&utm_medium=member_desktop&rcm=ACoAADN3XUMBmqD_KZOPBrwVQs0NwLp78PXlxN4" target="_blank" rel="noopener">See post &rarr;</a></div>
+        <div class="teach-when">Nov 2024</div>
+        <details class="teach-photos">
+          <summary>See photos &darr;</summary>
+          <div class="photo-row">
+            <img src="assets/allen-roundtable.jpeg" alt="Allen School roundtable with legislators" loading="lazy">
+          </div>
+        </details>
       </div>
 
       <div class="teach-item">
@@ -1902,8 +2034,14 @@ body.lightbox-open nav { display: none; }
 
       <div class="teach-item">
         <div class="teach-where">Tapia Conference 2024<span class="role">Workshop host</span></div>
-        <div class="teach-detail">First and only undergraduate team to host a workshop at CMD-IT/ACM Richard Tapia, on broadening participation in computing through community-engaged hackathons.</div>
+        <div class="teach-detail">First and only undergraduate team to host a workshop at CMD-IT/ACM Richard Tapia, on broadening participation in computing through community-engaged hackathons. <a href="https://www.linkedin.com/posts/afifah-k_hackathons-computingeducation-activity-7255309047548006401-onxU?utm_source=share&utm_medium=member_desktop&rcm=ACoAADN3XUMBmqD_KZOPBrwVQs0NwLp78PXlxN4" target="_blank" rel="noopener">See post &rarr;</a></div>
         <div class="teach-when">Sep 2024</div>
+        <details class="teach-photos">
+          <summary>See photos &darr;</summary>
+          <div class="photo-row">
+            <img src="assets/hackathon.jpeg" alt="Tapia Conference hackathon workshop" loading="lazy">
+          </div>
+        </details>
       </div>
 
     </div>
