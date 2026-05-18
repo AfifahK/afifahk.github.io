@@ -450,6 +450,51 @@ nav .container {
 }
 
 
+/* --- PREVIOUSLY CARD TOOLTIPS --- */
+.aff-prev-logos a {
+  position: relative;
+}
+.aff-prev-logos a::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.7rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 10;
+}
+.aff-prev-logos a::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  width: 0; height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--ink);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 10;
+}
+.aff-prev-logos a:hover::after,
+.aff-prev-logos a:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 /* --- AFFILIATION CARDS (image-only, no labels) --- */
 .affiliation-cards {
   display: grid;
@@ -1644,9 +1689,9 @@ body.lightbox-open nav { display: none; }
       <div class="aff-card aff-card-prev">
         <span class="aff-prev-label">Previously</span>
         <div class="aff-prev-logos">
-          <a href="https://hello-robot.com" target="_blank" rel="noopener"><img src="assets/hellorobot.jpeg" alt="Hello Robot" onerror="this.alt='Hello Robot'; this.style.opacity='0'; this.parentElement.insertAdjacentHTML('afterbegin','<span>Hello Robot</span>');"></a>
-          <a href="https://code.org" target="_blank" rel="noopener"><img src="assets/code.org.png" alt="Code.org" onerror="this.alt='Code.org'; this.style.opacity='0'; this.parentElement.insertAdjacentHTML('afterbegin','<span>Code.org</span>');"></a>
-          <a href="https://fiveable.me" target="_blank" rel="noopener"><img src="assets/fiveable.png" alt="Fiveable" onerror="this.alt='Fiveable'; this.style.opacity='0'; this.parentElement.insertAdjacentHTML('afterbegin','<span>Fiveable</span>');"></a>
+          <a href="https://hello-robot.com" target="_blank" rel="noopener" data-tip="Robotics Intern (UX + HRI)"><img src="assets/hellorobot.jpeg" alt="Hello Robot" onerror="this.alt='Hello Robot'; this.style.opacity='0'; this.parentElement.insertAdjacentHTML('afterbegin','<span>Hello Robot</span>');"></a>
+          <a href="https://code.org" target="_blank" rel="noopener" data-tip="Software Engineering Intern"><img src="assets/code.org.png" alt="Code.org" onerror="this.alt='Code.org'; this.style.opacity='0'; this.parentElement.insertAdjacentHTML('afterbegin','<span>Code.org</span>');"></a>
+          <a href="https://fiveable.me" target="_blank" rel="noopener" data-tip="Operations & Product Intern"><img src="assets/fiveable.png" alt="Fiveable" onerror="this.alt='Fiveable'; this.style.opacity='0'; this.parentElement.insertAdjacentHTML('afterbegin','<span>Fiveable</span>');"></a>
         </div>
         <span class="aff-prev-detail">Interned across educational tech and assistive robotics</span>
       </div>
