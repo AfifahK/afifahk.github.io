@@ -1512,8 +1512,46 @@ section {
   transform: scale(1.08);
 }
 
+.lightbox-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  background: #1c2a1f;
+  border: 2px solid #f4eedd;
+  border-radius: 50%;
+  color: #f4eedd;
+  font-size: 2.2rem;
+  font-weight: 300;
+  cursor: pointer;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: background 0.2s, transform 0.2s, border-color 0.2s;
+  padding: 0;
+}
+.lightbox-prev { left: 2rem; }
+.lightbox-next { right: 2rem; }
+.lightbox-arrow:hover {
+  background: #f4eedd;
+  color: #1c2a1f;
+  transform: translateY(-50%) scale(1.08);
+}
+.lightbox-arrow[hidden] { display: none; }
+
 /* Hide the fixed nav while lightbox is open */
 body.lightbox-open nav { display: none; }
+
+/* Teaching section: no scroll constraint */
+#teaching .teach-list {
+  max-height: none;
+  overflow-y: visible;
+  padding-right: 0;
+}
 
 @media (max-width: 860px) {
   .personal-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -2480,6 +2518,8 @@ body.lightbox-open nav { display: none; }
 <!-- Lightbox (outside all sections so position:fixed works correctly) -->
 <div class="lightbox" id="lightbox" aria-hidden="true">
   <button class="lightbox-close" aria-label="Close">&times;</button>
+  <button class="lightbox-arrow lightbox-prev" aria-label="Previous">&lsaquo;</button>
+  <button class="lightbox-arrow lightbox-next" aria-label="Next">&rsaquo;</button>
   <img class="lightbox-img" src="" alt="" />
   <div class="lightbox-caption"></div>
 </div>
@@ -2688,43 +2728,78 @@ if (lightbox) {
   const lbImg = lightbox.querySelector('.lightbox-img');
   const lbCap = lightbox.querySelector('.lightbox-caption');
   const lbClose = lightbox.querySelector('.lightbox-close');
+  const lbPrev = lightbox.querySelector('.lightbox-prev');
+  const lbNext = lightbox.querySelector('.lightbox-next');
 
-  document.querySelectorAll('.gallery-item').forEach(item => {
-    item.addEventListener('click', () => {
-      if (item.classList.contains('placeholder')) return;
-      lbImg.src = item.dataset.src;
-      lbImg.alt = item.dataset.caption || '';
-      lbCap.textContent = item.dataset.caption || '';
-      lightbox.classList.add('active');
-      document.body.classList.add('lightbox-open');
-      document.body.style.overflow = 'hidden';
-    });
-  });
+  let currentSet = [];   // array of {src, caption}
+  let currentIdx = 0;
+
+  const showImage = (idx) => {
+    currentIdx = idx;
+    lbImg.src = currentSet[idx].src;
+    lbImg.alt = currentSet[idx].caption;
+    lbCap.textContent = currentSet[idx].caption;
+    // Show/hide arrows based on set size and position
+    lbPrev.hidden = currentSet.length <= 1 || idx === 0;
+    lbNext.hidden = currentSet.length <= 1 || idx === currentSet.length - 1;
+  };
+
+  const openLightbox = (set, idx) => {
+    currentSet = set;
+    showImage(idx);
+    lightbox.classList.add('active');
+    document.body.classList.add('lightbox-open');
+    document.body.style.overflow = 'hidden';
+  };
 
   const closeLightbox = () => {
     lightbox.classList.remove('active');
     lbImg.src = '';
     document.body.classList.remove('lightbox-open');
     document.body.style.overflow = '';
+    currentSet = [];
   };
+
+  // Gallery items — all gallery buttons form one set
+  const galleryItems = [...document.querySelectorAll('.gallery-item')].filter(
+    item => !item.classList.contains('placeholder')
+  );
+  const gallerySet = galleryItems.map(item => ({
+    src: item.dataset.src,
+    caption: item.dataset.caption || ''
+  }));
+  galleryItems.forEach((item, i) => {
+    item.addEventListener('click', () => openLightbox(gallerySet, i));
+  });
+
+  // Photo-row images — each .photo-row is its own set
+  document.querySelectorAll('.photo-row').forEach(row => {
+    const imgs = [...row.querySelectorAll('img')];
+    const set = imgs.map(img => ({ src: img.src, caption: img.alt || '' }));
+    imgs.forEach((img, i) => {
+      img.addEventListener('click', () => openLightbox(set, i));
+    });
+  });
+
+  // Navigation
+  lbPrev.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (currentIdx > 0) showImage(currentIdx - 1);
+  });
+  lbNext.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (currentIdx < currentSet.length - 1) showImage(currentIdx + 1);
+  });
+
   lbClose.addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', e => {
     if (e.target === lightbox) closeLightbox();
   });
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
-  });
-
-  // Make news & talk photo-row images open in lightbox
-  document.querySelectorAll('.photo-row img').forEach(img => {
-    img.addEventListener('click', () => {
-      lbImg.src = img.src;
-      lbImg.alt = img.alt || '';
-      lbCap.textContent = img.alt || '';
-      lightbox.classList.add('active');
-      document.body.classList.add('lightbox-open');
-      document.body.style.overflow = 'hidden';
-    });
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft' && currentIdx > 0) showImage(currentIdx - 1);
+    if (e.key === 'ArrowRight' && currentIdx < currentSet.length - 1) showImage(currentIdx + 1);
   });
 }
 
