@@ -712,19 +712,21 @@ section {
   max-height: 28rem;
   overflow-y: auto;
   scroll-behavior: smooth;
+  padding-right: 1rem;
 }
 .news-list::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 .news-list::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--rule);
+  border-radius: 4px;
 }
 .news-list::-webkit-scrollbar-thumb {
-  background: var(--rule);
-  border-radius: 3px;
+  background: var(--ink-soft);
+  border-radius: 4px;
 }
 .news-list::-webkit-scrollbar-thumb:hover {
-  background: var(--ink-soft);
+  background: var(--ink);
 }
 .news-item {
   display: grid;
@@ -778,6 +780,11 @@ section {
   max-height: 180px;
   border-radius: 6px;
   object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.news-photos .photo-row img:hover {
+  transform: scale(1.03);
 }
 
 
@@ -1026,6 +1033,24 @@ section {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0;
+  max-height: 28rem;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding-right: 1rem;
+}
+.teach-list::-webkit-scrollbar {
+  width: 8px;
+}
+.teach-list::-webkit-scrollbar-track {
+  background: var(--rule);
+  border-radius: 4px;
+}
+.teach-list::-webkit-scrollbar-thumb {
+  background: var(--ink-soft);
+  border-radius: 4px;
+}
+.teach-list::-webkit-scrollbar-thumb:hover {
+  background: var(--ink);
 }
 .teach-item {
   display: grid;
@@ -1093,6 +1118,11 @@ section {
   max-height: 220px;
   border-radius: 6px;
   object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.teach-photos .photo-row img:hover {
+  transform: scale(1.03);
 }
 
 
@@ -1715,7 +1745,17 @@ body.lightbox-open nav { display: none; }
       <h2 class="section-title">Recent <em>Updates</em></h2>
     </div>
     <ul class="news-list">
-       
+
+      <li class="news-item">
+        <div class="news-date">May 2026</div>
+        <div class="news-text">Presented my dissertation to faculty, PhD students, postdocs and AI researchers at the Centre for Human-Inspired AI, Cambridge.</div>
+      </li>
+
+      <li class="news-item">
+        <div class="news-date">May 2026</div>
+        <div class="news-text">Semifinalist at the <a href="https://www.cambridgechinaforum.org/" target="_blank" rel="noopener"><strong>Cambridge China Business Forum AI Startup Competition</strong></a>.</div>
+      </li>
+
       <li class="news-item">
         <div class="news-date">Mar 2026</div>
         <div class="news-text">Presented our paper <em>Governance as Methodology: Anticipatory, Design-Embedded Oversight for HRI</em>, at the <strong>ACM/IEEE International Conference on Human-Robot Interaction 2026</strong> Interactive AI for Human-Centered Robotics workshop. See my department's <a href="https://www.linkedin.com/posts/chiacambridge_ai-aiforgood-activity-7443265633196113920-Dt0B?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADN3XUMBmqD_KZOPBrwVQs0NwLp78PXlxN4">post</a>!</div>
@@ -2002,6 +2042,36 @@ body.lightbox-open nav { display: none; }
     </div>
 
     <div class="teach-list">
+      <div class="teach-item">
+        <div class="teach-where">Centre for Human-Inspired AI, Cambridge<span class="role">Dissertation Seminar</span></div>
+        <div class="teach-detail">How Bias Evaluation Methods Disagree: A Comparative Study of Dictionary-Based and LLM-as-Judge Approaches in Conversational AI</div>
+        <div class="teach-when">May 2026</div>
+        <details class="teach-photos">
+          <summary>See photos &darr;</summary>
+          <div class="photo-row">
+            <img src="assets/dissertation-talk.JPG" alt="Dissertation talk at Centre for Human-Inspired AI" loading="lazy">
+          </div>
+        </details>
+      </div>
+
+      <div class="teach-item">
+        <div class="teach-where">CCBF AI Startup Competition<span class="role">Semifinalist</span></div>
+        <div class="teach-detail">Pitched an LLM evaluation startup at the Cambridge China Business Forum.</div>
+        <div class="teach-when">May 2026</div>
+      </div>
+
+      <div class="teach-item">
+        <div class="teach-where">CHIA Early Career Community Event<span class="role">Speaker</span></div>
+        <div class="teach-detail">Presented my work surrounding conversational AI, social robotics, and the bias-to-LLM-to-robotics pipeline.</div>
+        <div class="teach-when">May 2026</div>
+        <details class="teach-photos">
+          <summary>See photos &darr;</summary>
+          <div class="photo-row">
+            <img src="assets/ecc-chia-event.jpeg" alt="CHIA Early Career Community Event" loading="lazy">
+          </div>
+        </details>
+      </div>
+
       <div class="teach-item">
         <div class="teach-where">A Learning Lab<span class="role">Guest speaker</span></div>
         <div class="teach-detail">A guest session on questions of who benefits from technology and what powers shape its design, framing technology as inherently social, political, and human.</div>
@@ -2643,6 +2713,18 @@ if (lightbox) {
   });
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+  });
+
+  // Make news & talk photo-row images open in lightbox
+  document.querySelectorAll('.photo-row img').forEach(img => {
+    img.addEventListener('click', () => {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt || '';
+      lbCap.textContent = img.alt || '';
+      lightbox.classList.add('active');
+      document.body.classList.add('lightbox-open');
+      document.body.style.overflow = 'hidden';
+    });
   });
 }
 
