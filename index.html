@@ -344,7 +344,10 @@ nav .container {
   border-color: var(--ink);
 }
 .btn-ghost:hover { background: var(--ink); color: var(--cream); }
-
+.btn-sm {
+  padding: 0.45rem 1rem;
+  font-size: 0.72rem;
+}
 
 /* --- RIGHT RAIL: currently snapshot only (no border, no extra contact) --- */
 .hero-rail {
@@ -1097,7 +1100,7 @@ section {
   .teach-when { text-align: left; }
 }
 .teach-photos {
-  grid-column: 1 / -1;
+  grid-column: 2 / -1;
   margin-top: -0.1rem;
 }
 .teach-photos summary {
@@ -1700,10 +1703,10 @@ body.lightbox-open nav { display: none; }
         </div>
 
         <p class="hero-tagline">
-          Hi! I'm Afifah, I'm passionate about leveraging technology for social good on a global scale. My work spans research, design, and governance of AI and robotic systems that center the people who live with them, particularly in caregiving and educational contexts. 
+          Hi! I&rsquo;m Afifah. I work on the design, evaluation, and governance of AI and robotic systems that affect people&rsquo;s daily lives. I care deeply about whether these systems are fair and safe for the communities that are usually studied rather than consulted.
         </p>
         <p class="hero-tagline">
-          Currently working on my dissertation with <a href="https://malaksadekapps.com/">Dr. Malak Sadek</a>, <a href="https://betsyhj.github.io/">Dr. Jin Huang</a>, and <a href="https://www.cl.cam.ac.uk/~hg410/">Dr. Hatice Gunes</a> (<a href="https://cambridge-afar.github.io/">AFAR Lab</a>, <a href="https://hive.chia.cam.ac.uk/">HIVE Lab</a>) on evaluating and mitigating bias in LLM-powered social robots with human-in-the-loop interventions.
+          I&rsquo;m currently completing my MPhil at Cambridge. My dissertation evaluates the technical methods we use to measure social bias in conversational AI, reframing bias auditing as a measurement problem before a policy one.
         </p>
         <div class="hero-cta">
           <a href="assets/resume.pdf" target="_blank" class="btn btn-primary">View my work</a>
@@ -1785,8 +1788,50 @@ body.lightbox-open nav { display: none; }
     <ul class="news-list">
 
       <li class="news-item">
-        <div class="news-date">May 2026</div>
-        <div class="news-text">Presented my dissertation to faculty, PhD students, postdocs and AI researchers at the Centre for Human-Inspired AI, Cambridge.</div>
+        <div class="news-date">June 2026</div>
+        <div class="news-text">Won the <a href="https://hackthelaw-cambridge.com/research/" target="_blank" rel="noopener"><strong>Hack the Law Research Pitch Competition</strong></a> (Stanford x Cambridge), incoming at Stanford&rsquo;s Legal Innovation through Frontier Technology Lab <a href="https://law.stanford.edu/liftlab/" target="_blank" rel="noopener"><strong>(liftlab)</strong></a>!</div>
+      </li>
+
+      <li class="news-item">
+        <div class="news-date">June 2026</div>
+        <div class="news-text">Hosted the <a href="https://sharedfuturesfoundation.org.uk/buildathon/london-2026/" target="_blank" rel="noopener"><strong>Shared Futures Foundation Buildathon</strong></a> in London.</div>
+      </li>
+
+      <li class="news-item">
+        <div class="news-date">June 2026</div>
+        <div class="news-text">Represented my MPhil cohort on the &ldquo;Intergenerational Perspectives on AI in a Changing World&rdquo; panel at the <strong>CHIA Annual Conference</strong>.</div>
+        <details class="news-photos">
+          <summary>See photos &darr;</summary>
+          <div class="photo-row">
+            <img src="assets/chia-conf1.jpeg" alt="CHIA Annual Conference 2026" loading="lazy">
+            <img src="assets/chia-conf2.JPG" alt="CHIA Annual Conference 2026" loading="lazy">
+            <img src="assets/chia-conf3.JPG" alt="CHIA Annual Conference 2026" loading="lazy">
+          </div>
+        </details>
+      </li>
+
+      <li class="news-item">
+        <div class="news-date">June 2026</div>
+        <div class="news-text">Top 5 nominee for <a href="https://www.cambridgesu.co.uk/news/article/cambridgesu/Cambridge-Excellence-Awards-Shortlist-Announced/" target="_blank" rel="noopener"><strong>Academic Rep of the Year</strong></a> at the Cambridge SU Excellence Awards alongside my awesome coursemate and co-rep, Antonio Oladuti!</div>
+        <details class="news-photos">
+          <summary>See photos &darr;</summary>
+          <div class="photo-row">
+            <img src="assets/excellence-awards-1.jpeg" alt="Cambridge Excellence Awards 2026" loading="lazy">
+            <img src="assets/excellence-awards-2.jpeg" alt="Cambridge Excellence Awards 2026" loading="lazy">
+            <img src="assets/excellence-awards-3.jpeg" alt="Cambridge Excellence Awards 2026" loading="lazy">
+          </div>
+        </details>
+      </li>
+
+      <li class="news-item">
+        <div class="news-date">June 2026</div>
+        <div class="news-text">Presented and submitted my dissertation at the Centre for Human-Inspired AI, Cambridge! Titled <em>Bias by Whose Definition? The Construct Validity of Dictionary-Based and LLM-as-Judge Bias Evaluation in Conversational AI</em></div>
+        <details class="news-photos">
+          <summary>See photos &darr;</summary>
+          <div class="photo-row">
+            <img src="assets/dissertation-talk.JPG" alt="Dissertation talk at Centre for Human-Inspired AI" loading="lazy">
+          </div>
+        </details>
       </li>
 
       <li class="news-item">
@@ -1828,6 +1873,12 @@ body.lightbox-open nav { display: none; }
       <li class="news-item">
         <div class="news-date">Feb 2026</div>
         <div class="news-text">Guest lectured for <a href="https://www.matteozallio.com/">Dr. Matteo Zallio</a>&rsquo;s undergraduate <em>Inclusive Design Futures</em> course: <em>An Ethical AI Lens for Neuroinclusive Design</em>.</div>
+        <details class="news-photos">
+          <summary>See photos &darr;</summary>
+          <div class="photo-row">
+            <img src="assets/neuroinclusive-lecture.jpeg" alt="An Ethical AI Lens for Neuroinclusive Design guest lecture" loading="lazy">
+          </div>
+        </details>
       </li>
 
       <li class="news-item">
@@ -1885,9 +1936,10 @@ body.lightbox-open nav { display: none; }
 
       <div class="exp-card">
         <div class="exp-role">Research Assistant</div>
-        <h3 class="exp-org"> <a href="https://pluralistic-ai.github.io/lab/"> PluralisticAI Lab</a> <span class="sub"><a href="https://www.zzyw.org/">Dr. Zhenzhen Qi</a> (University of Connecticut) · <a href="https://evijit.io/">Dr. Avijit Ghosh</a> (Hugging Face)</span></h3>
+        <h3 class="exp-org">PluralisticAI Lab <span class="sub"><a href="https://www.zzyw.org/">Dr. Zhenzhen Qi</a> (University of Connecticut) · <a href="https://evijit.io/">Dr. Avijit Ghosh</a> (Hugging Face)</span></h3>
         <div class="exp-date">Mar 2026 - Present</div>
         <p class="exp-desc">Co-designing a controlled human-subjects study evaluating whether an open-source, multi-persona LLM interface can reduce political polarization. Combining cognitive science, political studies, AI Alignment, game design and HCI.</p>
+        <a href="https://pluralistic-ai.github.io/lab/" target="_blank" rel="noopener" class="project-link" style="display: block; text-align: right;">See more &rarr;</a>
       </div>
 
       <div class="exp-card">
@@ -1902,6 +1954,7 @@ body.lightbox-open nav { display: none; }
         <h3 class="exp-org">Wordplay Project<span class="sub">UW Information School &middot; <a href="https://faculty.washington.edu/ajko/">Dr. Amy Ko</a></span></h3>
         <div class="exp-date">Sep 2024 - June 2025</div>
         <p class="exp-desc">Led design and deployment of an accessible, multilingual programming language learning platform in local schools. Coordinated an open-source contributor community and developed a pre-built &ldquo;templates&rdquo; system to scaffold first-time coders.</p>
+        <a href="assets/wordplay.jpeg" target="_blank" rel="noopener" class="project-link" style="display: block; text-align: right;">See photo &rarr;</a>
       </div>
 
       <div class="exp-card">
@@ -2009,11 +2062,41 @@ body.lightbox-open nav { display: none; }
       <article class="project">
         <div class="project-tag">Undergraduate Capstone · 2025</div>
         <h3 class="project-title">Assistive Ointment Care Robot</h3>
-        <p class="project-desc">An assistive system on the Stretch RE2 mobile manipulator that lets people with limited mobility apply topical medication independently, with a custom brush attachment, programming-by-demonstration, and a web-based GUI for area selection and emergency control. Designed around a human-in-the-loop model that preserves user agency in intimate healthcare contexts. Co-designed with people who manage chronic eczema, professional caregivers, and an occupational therapist.</p>
+        <p class="project-desc">Undergraduate group capstone project at the University of Washington, taught by <a href="https://www.mayacakmak.io/home">Maya Cakmak</a>. An assistive system on the Stretch RE2 mobile manipulator that lets people with limited mobility apply topical medication independently, with a custom brush attachment, programming-by-demonstration with ROS and a web-based GUI for area selection and emergency control. Designed around a human-in-the-loop model that preserves user agency in intimate healthcare contexts. Co-designed with people who manage chronic eczema, professional caregivers, and an occupational therapist.</p>
         <div class="project-meta">
-          <span class="project-stack">Human Robot Interaction · ROS</span>
-          <a href="https://www.youtube.com/watch?v=cvXvkXMHmvc" target="_blank" rel="noopener" class="project-link">Watch the demo →</a>
-          <a href="assets/papers/robotics-capstone.pdf" target="_blank" rel="noopener" class="project-link">Read the paper →</a>
+          <span class="project-stack">Human-Robot Interaction · Co-Design</span>
+          <a href="https://www.youtube.com/watch?v=cvXvkXMHmvc" target="_blank" rel="noopener" class="project-link">Watch demo →</a>
+          <a href="assets/papers/robotics-capstone.pdf" target="_blank" rel="noopener" class="project-link">Read paper →</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-tag">Masters Dissertation · 2025-2026</div>
+        <h3 class="project-title">Bias by Whose Definition?</h3>
+        <p class="project-desc">MPhil in Human-Inspired AI at Cambridge, supervised by <a href="https://betsyhj.github.io/">Dr. Jin Huang</a>, <a href="https://malaksadekapps.com/">Dr. Malak Sadek</a>, and <a href="https://www.cl.cam.ac.uk/~hg410/">Dr. Hatice Gunes</a> (<a href="https://cambridge-afar.github.io/">AFAR Lab</a>, <a href="https://hive.chia.cam.ac.uk/">HIVE Lab</a>). Comparing dictionary-based and LLM-as-judge methods for evaluating social bias in conversational AI across three datasets and multiple levels of granularity, discovering that methods which share the label &ldquo;bias evaluation&rdquo; do not actually measure the same thing. Built a six-coder human ground truth benchmark, tested for self-evaluation effects when LLM judges score outputs from their own model family and surfaced a differential-refusal pattern of invisible allocative bias. Reframed bias evaluation as a question of measurement validity rather than method choice, providing recommendations for practitioners and regulators auditing deployed systems.</p>
+        <div class="project-meta">
+          <span class="project-stack">AI Evaluation · Fairness · Measurement Validity</span>
+          <a href="" target="_blank" rel="noopener" class="project-link">Link TBA Soon</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-tag">Human-AI Collaboration Research · 2026</div>
+        <h3 class="project-title">Error Overlap in Human-AI Complementarity</h3>
+        <p class="project-desc">Investigated why the most accurate model doesn&rsquo;t always make the best human-AI team. Across three binary classification tasks, showed that error overlap between model and human (not standalone accuracy) predicts team performance, with the least accurate model sometimes forming the strongest team under learned deferral. Also examined how deferral strategies shift who receives human review, raising fairness concerns.</p>
+        <div class="project-meta">
+          <span class="project-stack">Algorithmic Decision-Making · Fairness</span>
+          <a href="assets/papers/Algorithms_for_Human_AI_Collaboration_Final_Report.pdf" target="_blank" rel="noopener" class="project-link">Read paper →</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-tag">AI Research · 2026</div>
+        <h3 class="project-title">AI x Neuroscience Investigation</h3>
+        <p class="project-desc">Replicated and extended Goldstein et al.&rsquo;s finding that the human brain and autoregressive language models share computational principles during speech comprehension. Using the Podcast ECoG dataset (9 subjects, 1,330 electrodes), reproduced evidence for next-word prediction, post-onset surprise, and contextual representation. A novel variance partitioning analysis showed that surprisal and contextual embeddings capture largely independent neural signals, supporting the view that prediction and representation are dissociable in the brain&rsquo;s language system.</p>
+        <div class="project-meta">
+          <span class="project-stack">Computational Neuroscience · NLP · ECoG</span>
+          <a href="assets/papers/AI_Neuroscience_Report.pdf" target="_blank" rel="noopener" class="project-link">Read paper →</a>
         </div>
       </article>
 
@@ -2028,40 +2111,11 @@ body.lightbox-open nav { display: none; }
       </article>
 
       <article class="project">
-        <div class="project-tag">AI Research · 2026</div>
-        <h3 class="project-title">AI x Neuroscience Investigation</h3>
-        <p class="project-desc">Replicated and extended Goldstein et al.&rsquo;s finding that the human brain and autoregressive language models share computational principles during speech comprehension. Using the Podcast ECoG dataset (9 subjects, 1,330 electrodes), reproduced evidence for next-word prediction, post-onset surprise, and contextual representation. A novel variance partitioning analysis showed that surprisal and contextual embeddings capture largely independent neural signals, supporting the view that prediction and representation are dissociable in the brain&rsquo;s language system.</p>
-        <div class="project-meta">
-          <span class="project-stack">Computational Neuroscience · NLP · ECoG</span>
-          <a href="assets/papers/AI_Neuroscience_Report.pdf" target="_blank" rel="noopener" class="project-link">Read the paper →</a>
-        </div>
-      </article>
-
-      <article class="project">
-        <div class="project-tag">Human-AI Collaboration Research · 2026</div>
-        <h3 class="project-title">Error Overlap in Human-AI Complementarity</h3>
-        <p class="project-desc">Investigated why the most accurate model doesn&rsquo;t always make the best human-AI team. Across three binary classification tasks, showed that error overlap between model and human (not standalone accuracy) predicts team performance, with the least accurate model sometimes forming the strongest team under learned deferral. Also examined how deferral strategies shift who receives human review, raising fairness concerns.</p>
-        <div class="project-meta">
-          <span class="project-stack">Algorithmic Decision-Making · Fairness</span>
-          <a href="assets/papers/Algorithms_for_Human_AI_Collaboration_Final_Report.pdf" target="_blank" rel="noopener" class="project-link">Read the paper →</a>
-        </div>
-      </article>
-
-      <article class="project">
-        <div class="project-tag">AI Fairness Research · 2025-2026</div>
-        <h3 class="project-title">LLM Bias Evaluation</h3>
-        <p class="project-desc">My ongoing MPhil dissertation at Cambridge under Dr. Jin Huang, Dr. Malak Sadek, and Dr. Hatice Gunes, evaluating bias in LLM-powered social robots and designing human-in-the-loop interventions to mitigate it.</p>
-        <div class="project-meta">
-          <span class="project-stack">LLMs · Human Robot Interaction · Evaluation</span>
-        </div>
-      </article>
-
-      <article class="project">
         <div class="project-tag">Community Work · 2025-present</div>
         <h3 class="project-title">IRC Digital Literacy Program</h3>
         <p class="project-desc">A program I founded with the International Rescue Committee and a local hospital to teach digital literacy to refugee communities in Seattle. I designed the curriculum, taught weekly classes, and secured grants for translation and access.</p>
         <div class="project-meta">
-          <span class="project-stack">Curriculum · Accessibility · Community Partnership</span>
+          <span class="project-stack">Curriculum · Accessibility · Community</span>
         </div>
       </article>
 
@@ -2081,8 +2135,28 @@ body.lightbox-open nav { display: none; }
 
     <div class="teach-list">
       <div class="teach-item">
+        <div class="teach-where">Hack the Law<span class="role">Research Pitch</span></div>
+        <div class="teach-detail">Won the <a href="https://hackthelaw-cambridge.com/research/" target="_blank" rel="noopener"><strong>Hack the Law Research Pitch Competition</strong></a> (Stanford x Cambridge) with <em>Disagreement-Aware Legal AI: A System and Human Study on Surfacing Doctrinal Contestation</em>. Incoming at Stanford&rsquo;s Legal Innovation through Frontier Technology Lab <a href="https://law.stanford.edu/liftlab/" target="_blank" rel="noopener"><strong>(liftlab)</strong></a>!</div>
+        <div class="teach-when">June 2026</div>
+      </div>
+
+      <div class="teach-item">
+        <div class="teach-where">CHIA Annual Conference<span class="role">Panel Speaker</span></div>
+        <div class="teach-detail">Represented my MPhil cohort at the <strong>Centre for Human-Inspired Artificial Intelligence (CHIA) Annual Conference</strong> on the <em>&ldquo;Intergenerational Perspectives on AI in a Changing World&rdquo;</em> panel at the Cambridge Union.</div>
+        <div class="teach-when">June 2026</div>
+        <details class="teach-photos">
+          <summary>See photos &darr;</summary>
+          <div class="photo-row">
+            <img src="assets/chia-conf1.jpeg" alt="CHIA Annual Conference 2026" loading="lazy">
+            <img src="assets/chia-conf2.JPG" alt="CHIA Annual Conference 2026" loading="lazy">
+            <img src="assets/chia-conf3.JPG" alt="CHIA Annual Conference 2026" loading="lazy">
+          </div>
+        </details>
+      </div>
+
+      <div class="teach-item">
         <div class="teach-where">Centre for Human-Inspired AI, Cambridge<span class="role">Dissertation Seminar</span></div>
-        <div class="teach-detail">How Bias Evaluation Methods Disagree: A Comparative Study of Dictionary-Based and LLM-as-Judge Approaches in Conversational AI</div>
+        <div class="teach-detail">Bias by Whose Definition? The Construct Validity of Dictionary-Based and LLM-as-Judge Bias Evaluation in Conversational AI</div>
         <div class="teach-when">May 2026</div>
         <details class="teach-photos">
           <summary>See photos &darr;</summary>
@@ -2130,9 +2204,15 @@ body.lightbox-open nav { display: none; }
       </div>
 
       <div class="teach-item">
-        <div class="teach-where">Inclusive Design Futures · Matteo Zallio<span class="role">Guest lecture</span></div>
-        <div class="teach-detail">Invited to lecture his undergraduate course on Inclusive Design Futures: &ldquo;An Ethical AI Lens for Neuroinclusive Design,&rdquo; on treating neuroinclusion not as compliance but as a generative design philosophy.</div>
+        <div class="teach-where">Inclusive Design Futures<span class="role">Cambridge Lecture</span></div>
+        <div class="teach-detail">Invited to lecture <a href="https://www.matteozallio.com/">Matteo Zallio</a>&rsquo;s undergraduate course at the University of Cambridge on <strong>Inclusive Design Futures</strong>: <em>&ldquo;An Ethical AI Lens for Neuroinclusive Design,&rdquo;</em> on treating neuroinclusion not as compliance but as a generative design philosophy.</div>
         <div class="teach-when">Feb 2026</div>
+        <details class="teach-photos">
+          <summary>See photos &darr;</summary>
+          <div class="photo-row">
+            <img src="assets/neuroinclusive-lecture.jpeg" alt="An Ethical AI Lens for Neuroinclusive Design guest lecture" loading="lazy">
+          </div>
+        </details>
       </div>
 
       <div class="teach-item">
@@ -2229,18 +2309,18 @@ body.lightbox-open nav { display: none; }
       <div class="teach-item">
         <div class="teach-where">Stanford Code in Place<span class="role">Section Leader</span></div>
         <div class="teach-detail">Delivered Python curriculum to global students; weekly virtual sessions of 15 with 80% attendance.</div>
-        <div class="teach-when">Apr - May 2024</div>
+        <div class="teach-when">Apr 2024 - May 2024</div>
       </div>
 
       <div class="teach-item">
         <div class="teach-where">CPIA1 Roma<span class="role">Language &amp; Literacy Teacher</span></div>
         <div class="teach-detail">Co-taught language and integration courses for migrant mothers in Rome; learned the importance of community centered work.</div>
-        <div class="teach-when">Jan - Mar 2024</div>
+        <div class="teach-when">Jan 2024 - Mar 2024</div>
       </div>
 
       <div class="teach-item">
         <div class="teach-where">University of Washington<span class="role">Teaching Assistant</span></div>
-        <div class="teach-detail">TA for Intro Programming and Hardware/Software Interface. Guided 600+ students through OOP and data structures, held weekly office hours across three courses for a cohort of 1,500, and helped students debug Java, C and assembly programs.</div>
+        <div class="teach-detail">TA for Intro Programming and The Hardware/Software Interface. Guided 600+ students through procedural programming, data structures, recursion, and systems-level concepts, held weekly office hours across three courses for a cohort of 1,500, and helped students debug Java, C, and assembly programs.</div>
         <div class="teach-when">Jan 2023 - Mar 2025</div>
       </div>
 
