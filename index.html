@@ -794,7 +794,27 @@ section {
 /* ==========================================================================
    7. RESEARCH (publications)
    ========================================================================== */
-.research-list { display: flex; flex-direction: column; }
+.research-list {
+  display: flex; flex-direction: column;
+  max-height: 28rem;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding-right: 1rem;
+}
+.research-list::-webkit-scrollbar {
+  width: 8px;
+}
+.research-list::-webkit-scrollbar-track {
+  background: var(--rule);
+  border-radius: 4px;
+}
+.research-list::-webkit-scrollbar-thumb {
+  background: var(--ink-soft);
+  border-radius: 4px;
+}
+.research-list::-webkit-scrollbar-thumb:hover {
+  background: var(--ink);
+}
 .pub {
   display: grid;
   grid-template-columns: 80px 1fr auto;
@@ -2001,8 +2021,28 @@ body.lightbox-open nav { display: none; }
     </div>
     <div class="research-list">
 
-      <a class="pub" href="https://drive.google.com/file/d/1nW212eouV6DEuz1ySuvc4G37OlSVM7dX/view" target="_blank" rel="noopener">
+      <a class="pub" href="#" rel="noopener">
         <div class="pub-num">P / 01</div>
+        <div>
+          <h3 class="pub-title">Beyond the Monolithic Interface: A Research Agenda for Plural Conversational AI</h3>
+          <p class="pub-venue">Humanities and Social Sciences Communications (Nature Portfolio) [In Preparation]</p>
+          <p class="pub-authors"><span class="me">Afifah Kashif</span>, Isabelle Kohout, Avijit Ghosh, Zhenzhen Qi</p>
+        </div>
+        <div class="pub-year">2026 <span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub" href="#" rel="noopener">
+        <div class="pub-num">P / 02</div>
+        <div>
+          <h3 class="pub-title">Vision-Language-Action Models Need Neuroscience&rsquo;s Evaluation Toolkit, Not Just Its Architectures</h3>
+          <p class="pub-venue">NeurIPS 2026 Position Paper Track [Submitted]</p>
+          <p class="pub-authors">Abdul Muhsin Hameed, <span class="me">Afifah Kashif</span>, Asim Iqbal</p>
+        </div>
+        <div class="pub-year">2026 <span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub" href="https://drive.google.com/file/d/1nW212eouV6DEuz1ySuvc4G37OlSVM7dX/view" target="_blank" rel="noopener">
+        <div class="pub-num">P / 03</div>
         <div>
           <h3 class="pub-title">Governance as Methodology: Toward Anticipatory, Design-Embedded Governance for Human-Robot Interaction</h3>
           <p class="pub-venue">2nd Interactive AI for Human-Centered Robotics Workshop @ ACM/IEEE HRI</p>
@@ -2012,7 +2052,7 @@ body.lightbox-open nav { display: none; }
       </a>
 
       <a class="pub" href="https://arxiv.org/abs/2602.01503" target="_blank" rel="noopener">
-        <div class="pub-num">P / 02</div>
+        <div class="pub-num">P / 04</div>
         <div>
           <h3 class="pub-title">Governance at the Edge of Architecture: Regulating NeuroAI and Neuromorphic Systems</h3>
           <p class="pub-venue">arXiv preprint arXiv:2602.01503</p>
@@ -2022,7 +2062,7 @@ body.lightbox-open nav { display: none; }
       </a>
 
       <a class="pub" href="https://caregivingrobots.github.io/assets/pdf/papers/5.pdf" target="_blank" rel="noopener">
-        <div class="pub-num">P / 03</div>
+        <div class="pub-num">P / 05</div>
         <div>
           <h3 class="pub-title">Regulatory Considerations for Physically Assistive Robotics Researchers</h3>
           <p class="pub-venue">Physical Caregiving Robots Workshop @ ACM/IEEE HRI</p>
@@ -2032,7 +2072,7 @@ body.lightbox-open nav { display: none; }
       </a>
 
       <a class="pub" href="https://www.researchgate.net/publication/392085834_Assessing_GPT's_Bias_Towards_Stigmatized_Social_Groups_An_Intersectional_Case_Study_on_Nationality_Prejudice_and_Psychophobia" target="_blank" rel="noopener">
-        <div class="pub-num">P / 04</div>
+        <div class="pub-num">P / 06</div>
         <div>
           <h3 class="pub-title">Assessing GPT&rsquo;s Bias Towards Stigmatized Social Groups: An Intersectional Case Study on Nationality Prejudice and Psychophobia</h3>
           <p class="pub-venue">Considering Cultural and Linguistic Diversity in AI Workshop @ ASIS&amp;T</p>
@@ -2043,7 +2083,7 @@ body.lightbox-open nav { display: none; }
       </a>
 
       <a class="pub" href="https://tapiaconference.cmd-it.org/wp-content/uploads/2025/04/2024-Tapia-Program.pdf" target="_blank" rel="noopener">
-        <div class="pub-num">P / 05</div>
+        <div class="pub-num">P / 07</div>
         <div>
           <h3 class="pub-title">Broadening Participation in Computing by Designing Hackathons that Engage Local Communities</h3>
           <p class="pub-venue">CMD-IT/ACM Richard Tapia Conference (Workshop Host; first &amp; only undergraduate team)</p>
