@@ -1738,9 +1738,9 @@ body.lightbox-open nav { display: none; }
       <aside class="hero-rail">
         <div class="hero-side-label">Currently</div>
         <ul class="hero-snapshot">
-          <li><strong>Incoming Research Fellow</strong>, Stanford LiftLab</li>
-          <li><strong>Researcher</strong>, University of Cambridge</li>
-          <li><strong>Research Assistant</strong>, PluralisticAI Lab</li>
+          <li><strong>Visiting Researcher</strong>, Stanford LiftLab</li>
+          <li><strong>Research Assistant</strong>, University of Cambridge</li>
+          <li><strong>Researcher</strong>, PluralisticAI Lab</li>
         </ul>
 
         <div class="socials" aria-label="Social and contact links">
@@ -1764,7 +1764,7 @@ body.lightbox-open nav { display: none; }
     <!-- AFFILIATION CARDS -->
     <div id="affiliations" class="affiliation-cards">
       <a href="https://law.stanford.edu/liftlab/" target="_blank" rel="noopener" class="aff-card aff-card-prev">
-        <span class="aff-prev-label">Incoming</span>
+        <span class="aff-prev-label">Currently</span>
         <img src="assets/logos/stanford.png" alt="Stanford University" style="max-width:65%;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
         <div class="aff-card-fallback" style="display:none;"><em>Stanford</em></div>
         <span class="aff-prev-detail">Visiting Researcher, Legal Innovation through Frontier Technology Lab</span>
@@ -1960,14 +1960,21 @@ body.lightbox-open nav { display: none; }
     <div class="exp-grid">
 
       <div class="exp-card">
-        <div class="exp-role">Researcher</div>
+        <div class="exp-role">Visiting Researcher</div>
+        <h3 class="exp-org">Stanford University<span class="sub">Legal Innovation through Frontier Technology Lab (LiftLab) · Stanford Law School</span></h3>
+        <div class="exp-date">Sep 2026 - Present</div>
+        <p class="exp-desc">Legal AI evaluation and benchmarking.</p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-role">Research Assistant</div>
         <h3 class="exp-org">University of Cambridge<span class="sub">Dept. of Computer Science and Technology · Centre for Human-Inspired AI</span></h3>
         <div class="exp-date">July 2026 - Present</div>
         <p class="exp-desc">Construct validity in AI bias evaluation (continued dissertation work). Dark patterns in interactive systems with <a href="https://www.katieseaborn.com/">Dr. Katie Seaborn</a> (Aspirational Computing Lab). Ethics-centered hackathons as a method for participatory design with <a href="https://malaksadekapps.com/">Dr. Malak Sadek</a> (HIVE Lab).</p>
       </div>
 
       <div class="exp-card">
-        <div class="exp-role">Research Assistant</div>
+        <div class="exp-role">Researcher</div>
         <h3 class="exp-org">PluralisticAI Lab <span class="sub"><a href="https://www.zzyw.org/">Dr. Zhenzhen Qi</a> (University of Connecticut) · <a href="https://evijit.io/">Dr. Avijit Ghosh</a> (Hugging Face)</span></h3>
         <div class="exp-date">Mar 2026 - Present</div>
         <p class="exp-desc">Co-designing a controlled human-subjects study evaluating whether an open-source, multi-persona LLM interface can reduce political polarization. Combining cognitive science, political studies, AI Alignment, game design and HCI.</p>
@@ -2227,7 +2234,7 @@ body.lightbox-open nav { display: none; }
     <div class="teach-list">
       <div class="teach-item">
         <div class="teach-where">Hack the Law<span class="role">Research Pitch</span></div>
-        <div class="teach-detail">Won the <a href="https://hackthelaw-cambridge.com/research/" target="_blank" rel="noopener"><strong>Hack the Law Research Pitch Competition</strong></a> (Stanford x Cambridge) with <em>Disagreement-Aware Legal AI: A System and Human Study on Surfacing Doctrinal Contestation</em>. Incoming at Stanford&rsquo;s Legal Innovation through Frontier Technology Lab <a href="https://law.stanford.edu/liftlab/" target="_blank" rel="noopener"><strong>(liftlab)</strong></a>!</div>
+        <div class="teach-detail">Won the <a href="https://hackthelaw-cambridge.com/research/" target="_blank" rel="noopener"><strong>Hack the Law Research Pitch Competition</strong></a> (Stanford x Cambridge) with <em>Disagreement-Aware Legal AI: A System and Human Study on Surfacing Doctrinal Contestation</em>. Funded for research placement at Stanford&rsquo;s Legal Innovation through Frontier Technology Lab <a href="https://law.stanford.edu/liftlab/" target="_blank" rel="noopener"><strong>(liftlab)</strong></a>!</div>
         <div class="teach-when">June 2026</div>
       </div>
 
@@ -2741,15 +2748,15 @@ body.lightbox-open nav { display: none; }
         <a class="contact-value" href="https://scholar.google.com/citations?user=VoVDY4AAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
       </div>
       <div class="contact-item">
-        <div class="contact-label">Based in</div>
-        <span class="contact-value">Cambridge, UK &amp; Seattle, USA</span>
+        <div class="contact-label">Currently in</div>
+        <span class="contact-value">San Francisco Bay Area</span>
       </div>
     </div>
 
     <div class="contact-foot">
       <div>© <span id="year">2026</span> Afifah Kashif</div>
-      <div>Last updated May 2026</div>
-      <div>Cambridge · UK &nbsp;/&nbsp; Seattle · USA</div>
+      <div>Last updated Sep 2026</div>
+      <div>San Francisco Bay Area · USA &nbsp;/&nbsp; Seattle · USA</div>
     </div>
   </div>
 </section>
@@ -2877,10 +2884,9 @@ if (document.getElementById('hikes-map') && typeof L !== 'undefined') {
     attributionControl: true,
   }).setView([47.4, -121.8], 8);
 
-  // CartoDB Positron, clean, light tiles that match the aesthetic
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OSM</a> · <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains: 'abcd',
+  // OpenStreetMap default tiles (free, no API key)
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 19,
   }).addTo(map);
 
