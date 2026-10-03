@@ -965,6 +965,40 @@ section {
 @media (max-width: 720px) {
   .exp-grid { grid-template-columns: 1fr; }
 }
+.edu-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+.edu-grid .exp-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 2.5rem;
+  align-items: start;
+}
+.edu-grid .exp-card > div:first-child { align-self: center; }
+.edu-grid .exp-card:hover {
+  transform: none;
+  border-color: var(--rule);
+  box-shadow: none;
+}
+.edu-grid .exp-date { margin-bottom: 0; }
+.edu-grid .exp-role {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+.edu-grid .exp-role { margin-top: 0.3rem; }
+.edu-note {
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+  margin-top: 0.8rem;
+}
+@media (max-width: 720px) {
+  .edu-grid .exp-card { grid-template-columns: 1fr; gap: 0; }
+}
 
 
 /* ==========================================================================
@@ -1714,6 +1748,7 @@ a.contact-value:hover {
     <a href="#top" class="nav-mark"><span>Afifah</span> Kashif</a>
     <ul class="nav-links">
       <li><a href="#news">news</a></li>
+      <li><a href="#education">education</a></li>
       <li><a href="#experience">experience</a></li>
       <li><a href="#publications">research</a></li>
       <li><a href="#projects">projects</a></li>
@@ -1986,12 +2021,62 @@ a.contact-value:hover {
 </section>
 
 <!-- ============================================================ -->
-<!-- EXPERIENCE -->
+<!-- EDUCATION -->
 <!-- ============================================================ -->
-<section id="experience">
+<section id="education">
   <div class="container">
     <div class="section-head">
-      <div class="section-num">§ 03 / Experience</div>
+      <div class="section-num">§ 03 / Education</div>
+      <h2 class="section-title">Where I&rsquo;ve <em>Studied</em></h2>
+    </div>
+    <div class="edu-grid">
+
+      <div class="exp-card">
+        <div>
+        <h3 class="exp-org"><a href="https://www.cam.ac.uk/">University of Cambridge</a><span class="sub"><a href="https://www.chia.cam.ac.uk">Centre for Human-Inspired AI</a> &middot; Cambridge, UK</span></h3>
+        <div class="exp-date">Oct 2025 - Jun 2026</div>
+        </div>
+        <div>
+
+        <div class="exp-role">MPhil Human-Inspired Artificial Intelligence</div>
+        <p class="exp-desc">Distinction and First-Class Honours.<br>Dissertation: <em>Bias by Whose Definition? The Construct Validity of Dictionary-Based and LLM-as-Judge Bias Evaluation in Conversational AI.</em><br>Supervised by <a href="https://malaksadekapps.com/">Dr. Malak Sadek</a>, <a href="https://betsyhj.github.io/">Dr. Jin Huang</a> and <a href="https://www.cl.cam.ac.uk/~hg410/">Dr. Hatice Gunes</a>.</p>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div>
+        <h3 class="exp-org"><a href="https://www.washington.edu/">University of Washington</a><span class="sub"><a href="https://www.cs.washington.edu">Paul G. Allen School of Computer Science &amp; Engineering</a> &middot; Seattle, USA</span></h3>
+        <div class="exp-date">Sep 2022 - Jun 2025</div>
+        </div>
+        <div>
+        <div class="exp-role">B.S. Computer Science, Minor in Law, Societies &amp; Justice</div>
+        <p class="exp-desc">GPA 3.77/4.00, Dean&rsquo;s List, completed one year early. <br> Capstone: Ointment Care Robot for Limited Mobility Users, with <a href="https://www.mayacakmak.io/home">Dr. Maya Cakmak</a>.</p>
+        <p class="edu-note">Study abroad in Rome, Italy (Jan - Mar 2024). Honors: <em>The Global Refugee Crisis: From Devastation to Diaspora</em>.</p>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div>
+        <h3 class="exp-org"><a href="https://www.bellevuecollege.edu/">Bellevue College</a><span class="sub">Bellevue, USA</span></h3>
+        <div class="exp-date">Sep 2020 - Jun 2022</div>
+        </div>
+        <div>
+        <div class="exp-role">A.A. Arts and Sciences &amp; A.S. Engineering, Physics and Atmospheric Sciences</div>
+        <p class="exp-desc">GPA 3.98/4.00, Dean&rsquo;s List. <br> Dual associates earned concurrently with high school through dual credit. </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- EXPERIENCE -->
+<!-- ============================================================ -->
+<section id="experience" class="alt-bg">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§ 04 / Experience</div>
       <h2 class="section-title">Where I&rsquo;ve <em>Worked</em></h2>
     </div>
     <div class="exp-grid">
@@ -2068,10 +2153,10 @@ a.contact-value:hover {
 <!-- ============================================================ -->
 <!-- RESEARCH / PUBLICATIONS -->
 <!-- ============================================================ -->
-<section id="publications" class="alt-bg">
+<section id="publications">
   <div class="container">
     <div class="section-head">
-      <div class="section-num">§ 04 / Research</div>
+      <div class="section-num">§ 05 / Research</div>
       <h2 class="section-title">Research</h2>
     </div>
     <div class="research-list">
@@ -2184,10 +2269,10 @@ a.contact-value:hover {
 <!-- ============================================================ -->
 <!-- PROJECTS -->
 <!-- ============================================================ -->
-<section id="projects">
+<section id="projects" class="alt-bg">
   <div class="container">
     <div class="section-head">
-      <div class="section-num">§ 05 / Projects</div>
+      <div class="section-num">§ 06 / Projects</div>
       <h2 class="section-title">Selected <em>Projects</em></h2>
     </div>
     <div class="projects-grid">
@@ -2261,10 +2346,10 @@ a.contact-value:hover {
 <!-- ============================================================ -->
 <!-- TALKS & TEACHING -->
 <!-- ============================================================ -->
-<section id="talks" class="alt-bg">
+<section id="talks">
   <div class="container">
     <div class="section-head">
-      <div class="section-num">§ 06 / Talks</div>
+      <div class="section-num">§ 07 / Talks</div>
       <h2 class="section-title">Talks &amp; <em>Public Speaking</em></h2>
     </div>
 
@@ -2434,10 +2519,10 @@ a.contact-value:hover {
 <!-- ============================================================ -->
 <!-- TEACHING -->
 <!-- ============================================================ -->
-<section id="teaching">
+<section id="teaching" class="alt-bg">
   <div class="container">
     <div class="section-head">
-      <div class="section-num">§ 07 / Teaching</div>
+      <div class="section-num">§ 08 / Teaching</div>
       <h2 class="section-title">Teaching</em></h2>
     </div>
 
@@ -2480,10 +2565,10 @@ a.contact-value:hover {
 <!-- ============================================================ -->
 <!-- SKILLS -->
 <!-- ============================================================ -->
-<section id="skills" class="alt-bg">
+<section id="skills">
   <div class="container">
     <div class="section-head">
-      <div class="section-num">§ 08 / Skills</div>
+      <div class="section-num">§ 09 / Skills</div>
       <h2 class="section-title">My <em>(Not Just Technical)</em> Skills</h2>
     </div>
     <div class="skills-grid">
@@ -2679,10 +2764,10 @@ a.contact-value:hover {
 <!-- ============================================================ -->
 <!-- PERSONAL -->
 <!-- ============================================================ -->
-<section id="personal">
+<section id="personal" class="alt-bg">
   <div class="container">
     <div class="section-head">
-      <div class="section-num">§ 09 / Personal</div>
+      <div class="section-num">§ 10 / Personal</div>
       <h2 class="section-title">Off the <em>screen</em></h2>
     </div>
 
