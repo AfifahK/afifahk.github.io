@@ -3009,10 +3009,9 @@ if (document.getElementById('hikes-map') && typeof L !== 'undefined') {
     attributionControl: true,
   }).setView([47.4, -121.8], 8);
 
-  // CARTO Voyager tiles (OSM data, free, no API key; works without a Referer, unlike tile.openstreetmap.org)
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains: 'abcd',
+  // OSM standard tiles (CARTO now returns "API KEY REQUIRED" watermark on live site)
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 19,
   }).addTo(map);
 
