@@ -965,6 +965,50 @@ section {
 @media (max-width: 720px) {
   .exp-grid { grid-template-columns: 1fr; }
 }
+/* Chip filters (experience role toggle, research areas) */
+.chip-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.8rem;
+}
+.chip-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-right: 0.4rem;
+}
+.chip {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  padding: 0.45rem 0.9rem;
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.chip:hover { border-color: var(--forest); color: var(--forest); }
+.chip[aria-pressed="true"] {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: #fff;
+}
+.chip:focus-visible { outline: 2px solid var(--forest); outline-offset: 2px; }
+#experience .exp-card[hidden] { display: none; }
+#role-bar { margin-bottom: 0.8rem; }
+.chip-group { margin-bottom: 1.8rem; }
+.chip-group .chip-bar { margin-bottom: 0.8rem; }
+.chip-group .chip-bar:last-child { margin-bottom: 0; }
+.pub[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .chip { transition: none; }
+}
 .edu-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1799,7 +1843,7 @@ a.contact-value:hover {
         <ul class="hero-snapshot">
           <li><strong>Visiting Researcher</strong>, Stanford LiftLab</li>
           <li><strong>Research Assistant</strong>, University of Cambridge</li>
-          <li><strong>Researcher</strong>, PluralisticAI Lab</li>
+          <li><strong>Research</strong>, PluralisticAI Lab</li>
         </ul>
 
         <div class="socials" aria-label="Social and contact links">
@@ -2079,71 +2123,116 @@ a.contact-value:hover {
       <div class="section-num">§ 04 / Experience</div>
       <h2 class="section-title">Where I&rsquo;ve <em>Worked</em></h2>
     </div>
+    <div class="chip-bar" id="role-bar" role="group" aria-label="View experience through a different lens">
+      <span class="chip-label">View through a different lens:</span>
+      <button class="chip" data-role="all" aria-pressed="true">All</button>
+      <button class="chip" data-role="research" aria-pressed="false">Research</button>
+      <button class="chip" data-role="engineer" aria-pressed="false">Engineering</button>
+      <button class="chip" data-role="policy" aria-pressed="false">Policy &amp; Governance</button>
+      <button class="chip" data-role="product" aria-pressed="false">Product &amp; Design</button>
+      <button class="chip" data-role="educator" aria-pressed="false">Education</button>
+    </div>
+    <div class="chip-bar" id="tone-bar" role="group" aria-label="Change the voice of the descriptions">
+      <span class="chip-label">Or in the voice of:</span>
+      <button class="chip" data-tone="plain" aria-pressed="true">Plain</button>
+      <button class="chip" data-tone="eli5" aria-pressed="false">ELI5</button>
+      <button class="chip" data-tone="tldr" aria-pressed="false">TL;DR</button>
+    </div>
     <div class="exp-grid">
 
-      <div class="exp-card">
+      <div class="exp-card" data-roles="research policy">
         <div class="exp-role">Visiting Researcher</div>
         <h3 class="exp-org">Stanford University<span class="sub"><a href="https://law.stanford.edu/liftlab/">Legal Innovation through Frontier Technology Lab</a> &middot; Stanford Law School</span></h3>
         <div class="exp-date">Sep 2026 - Present</div>
-        <p class="exp-desc">Building a benchmark that separates genuinely contested litigation questions from settled ones, measuring whether models collapse doctrinal disagreement into a single answer. Expert annotation with practicing litigators, with <a href="https://law.stanford.edu/directory/julian-nyarko/">Prof. Julian Nyarko</a> and <a href="https://law.stanford.edu/directory/megan-ma/">Dr. Megan Ma</a>.</p>
+        <p class="exp-desc"><span data-v="all">Building a benchmark that separates genuinely contested litigation questions from settled ones, measuring whether models collapse doctrinal disagreement into a single answer. Expert annotation with practicing litigators, with <a href="https://law.stanford.edu/directory/julian-nyarko/">Prof. Julian Nyarko</a> and <a href="https://law.stanford.edu/directory/megan-ma/">Dr. Megan Ma</a>.</span>
+          <span data-v="policy" hidden>Building a benchmark that tests whether AI legal tools flatten genuine doctrinal disagreement into one confident answer, a risk for how litigators and courts come to rely on them. Expert annotation with practicing litigators, with <a href="https://law.stanford.edu/directory/julian-nyarko/">Prof. Julian Nyarko</a> and <a href="https://law.stanford.edu/directory/megan-ma/">Dr. Megan Ma</a>.</span>
+          <span data-t="eli5" hidden>Lawyers sometimes truly disagree, but AI tends to pick one answer and sound sure about it. I&rsquo;m building a test for whether AI can tell &ldquo;lawyers disagree&rdquo; from &ldquo;everyone agrees,&rdquo; with real litigators helping.</span>
+          <span data-t="tldr" hidden>Benchmark separating contested from settled litigation questions; tests whether LLMs collapse doctrinal disagreement. Litigator-annotated.</span></p>
       </div>
 
-      <div class="exp-card">
+      <div class="exp-card" data-roles="research">
         <div class="exp-role">Research Assistant</div>
         <h3 class="exp-org">University of Cambridge<span class="sub">Dept. of Computer Science and Technology · Centre for Human-Inspired AI</span></h3>
         <div class="exp-date">July 2026 - Present</div>
-        <p class="exp-desc">Construct validity in AI bias evaluation (continued dissertation work). Dark patterns in interactive systems with <a href="https://www.katieseaborn.com/">Dr. Katie Seaborn</a> (<a href="https://aspirelab.io/">Aspire Lab</a>). Ethics-centered hackathons as a method for participatory design with <a href="https://malaksadekapps.com/">Dr. Malak Sadek</a> (<a href="https://hive.chia.cam.ac.uk/">HIVE Lab</a>).</p>
+        <p class="exp-desc"><span data-v="all">Construct validity in AI bias evaluation (continued dissertation work). Dark patterns in interactive systems with <a href="https://www.katieseaborn.com/">Dr. Katie Seaborn</a> (<a href="https://aspirelab.io/">Aspire Lab</a>). Ethics-centered hackathons as a method for participatory design with <a href="https://malaksadekapps.com/">Dr. Malak Sadek</a> (<a href="https://hive.chia.cam.ac.uk/">HIVE Lab</a>).</span>
+          <span data-v="policy" hidden>Construct validity in AI bias evaluation: do the measures developers and regulators rely on actually measure the bias they claim to? Continued from my dissertation, alongside work on dark patterns and ethics-centered hackathons for participatory design.</span>
+          <span data-t="eli5" hidden>When we test an AI for bias, the test itself can be wrong. I study whether bias tests really measure bias. I also look at sneaky app tricks, and how hackathons help people design fairer tech.</span>
+          <span data-t="tldr" hidden>Construct validity of AI bias evaluation; dark patterns; ethics-centered hackathons as participatory design.</span></p>
       </div>
 
-      <div class="exp-card">
+      <div class="exp-card" data-roles="research product">
         <div class="exp-role">Researcher</div>
         <h3 class="exp-org">PluralisticAI Lab <span class="sub"><a href="https://www.zzyw.org/">Dr. Zhenzhen Qi</a> (University of Connecticut) · <a href="https://evijit.io/">Dr. Avijit Ghosh</a> (Hugging Face)</span></h3>
         <div class="exp-date">Mar 2026 - Present</div>
-        <p class="exp-desc">Co-designing a controlled human-subjects study evaluating whether an open-source, multi-persona LLM interface can reduce political polarization. Combining cognitive science, political studies, AI Alignment, game design and HCI.</p>
+        <p class="exp-desc"><span data-v="all">Co-designing a controlled human-subjects study evaluating whether an open-source, multi-persona LLM interface can reduce political polarization. Combining cognitive science, political studies, AI Alignment, game design and HCI.</span>
+          <span data-v="product" hidden>Co-designing an open-source, multi-persona LLM interface and the controlled human-subjects study testing whether it reduces political polarization. Spans game design, HCI, cognitive science and AI alignment.</span>
+          <span data-t="eli5" hidden>Online, people end up angry at each other. I&rsquo;m helping test a chatbot that speaks in many different voices, to see if it helps people disagree less.</span>
+          <span data-t="tldr" hidden>Human-subjects study: open-source multi-persona LLM interface vs. political polarization.</span></p>
         <a href="https://pluralistic-ai.github.io/lab/" target="_blank" rel="noopener" class="project-link" style="display: block; text-align: right;">See more &rarr;</a>
       </div>
 
-      <div class="exp-card">
+      <div class="exp-card" data-roles="policy research">
         <div class="exp-role">Civic, Open &amp; Resilient Democracy Action Fellow</div>
         <h3 class="exp-org">Odyssean Institute<span class="sub"> <a href="https://jacob-haimes.github.io/">Jacob Haimes</a> (Apart Research) · Dr. Swaptik Chowdhury (RAND)</span></h3>
         <div class="exp-date">Apr 2026 - Sep 2026</div>
-        <p class="exp-desc">Coding expert responses, extracting causal variables, and building causal loop diagrams for an AI governance horizon scan, powering decision-support tools in the 2026 UK assembly.</p>
+        <p class="exp-desc"><span data-v="all">Coding expert responses, extracting causal variables, and building causal loop diagrams for an AI governance horizon scan, powering decision-support tools in the 2026 UK assembly.</span>
+          <span data-v="policy" hidden>Translated expert views on AI risk into causal loop diagrams for an AI governance horizon scan, informing the decision-support tools used in the 2026 UK assembly.</span>
+          <span data-t="eli5" hidden>I read what experts think could go wrong with AI, then drew maps of how those things cause each other, to help leaders in the UK assembly decide.</span>
+          <span data-t="tldr" hidden>Coded expert responses into causal loop diagrams for an AI governance horizon scan; feeds 2026 UK assembly tools.</span></p>
       </div>
 
-      <div class="exp-card">
+      <div class="exp-card" data-roles="engineer product">
         <div class="exp-role">Robotics Software Engineering Intern</div>
         <h3 class="exp-org">Hello Robot<span class="sub">UX + Human-Robot Interaction &middot; <a href="https://www.vinitharanganeni.com/">Dr. Vinitha Ranganeni</a></span></h3>
         <div class="exp-date">May 2025 - Aug 2025</div>
-        <p class="exp-desc">Designed an interactive dashboard and workflow for managing autonomous robot power systems, combining real-time battery feedback, predictive alerts, and manual override controls. Iteratively prototyped and user-tested for trust, reliability, and operator agency.</p>
+        <p class="exp-desc"><span data-v="all">Designed an interactive dashboard and workflow for managing autonomous robot power systems, combining real-time battery feedback, predictive alerts, and manual override controls. Iteratively prototyped and user-tested for trust, reliability, and operator agency.</span>
+          <span data-v="engineer" hidden>Built an interactive dashboard and workflow for managing autonomous robot power systems: real-time battery feedback, predictive alerts, and manual override controls. Iteratively prototyped and user-tested.</span>
+          <span data-v="product" hidden>Designed a dashboard and workflow for robot power management, balancing automation with operator control. Prototyped and user-tested iteratively for trust, reliability, and operator agency.</span>
+          <span data-t="eli5" hidden>A robot runs on a battery. I made a screen that shows how much is left, warns you before it runs out, and lets a person take over. Then I asked real people if they trusted it.</span>
+          <span data-t="tldr" hidden>Robot power dashboard: live battery, predictive alerts, manual override. User-tested.</span></p>
       </div>
 
-      <div class="exp-card">
+      <div class="exp-card" data-roles="engineer educator product">
         <div class="exp-role">Research Assistant</div>
         <h3 class="exp-org">University of Washington<span class="sub">Wordplay Project &middot; UW Information School &middot; <a href="https://faculty.washington.edu/ajko/">Dr. Amy Ko</a></span></h3>
         <div class="exp-date">Sep 2024 - June 2025</div>
-        <p class="exp-desc">Led design and deployment of an accessible, multilingual programming language learning platform in local schools. Coordinated an open-source contributor community and developed a pre-built &ldquo;templates&rdquo; system to scaffold first-time coders.</p>
+        <p class="exp-desc"><span data-v="all">Led design and deployment of an accessible, multilingual programming language learning platform in local schools. Coordinated an open-source contributor community and developed a pre-built &ldquo;templates&rdquo; system to scaffold first-time coders.</span>
+          <span data-v="engineer" hidden>Led deployment of an accessible, multilingual programming language learning platform in local schools. Coordinated an open-source contributor community and built a pre-built &ldquo;templates&rdquo; system for first-time coders.</span>
+          <span data-v="educator" hidden>Led design and deployment of a multilingual programming learning platform in local schools, with a &ldquo;templates&rdquo; system to scaffold first-time coders.</span>
+          <span data-v="product" hidden>Led design and deployment of an accessible, multilingual learning platform in local schools, shaping a &ldquo;templates&rdquo; system around how first-time coders get stuck.</span>
+          <span data-t="eli5" hidden>I helped build a way for kids to learn coding in many languages, and brought it to local schools. I also helped volunteers work together and made starter templates so beginners don&rsquo;t get stuck.</span>
+          <span data-t="tldr" hidden>Led rollout of accessible multilingual coding platform in local schools; ran open-source community; built templates.</span></p>
         <a href="assets/events/wordplay.jpeg" target="_blank" rel="noopener" class="project-link" style="display: block; text-align: right;">See photo &rarr;</a>
       </div>
 
-      <div class="exp-card">
+      <div class="exp-card" data-roles="engineer">
         <div class="exp-role">Backend Software Engineering Intern</div>
         <h3 class="exp-org">HowellCo<span class="sub">Stealth Startup</span></h3>
         <div class="exp-date">Jul 2024 - Sep 2024</div>
-        <p class="exp-desc">Contributed to backend service development at a beta-stage startup, designing products, devising a testing strategy, and using Azure services and Python scripting to enhance backend infrastructure on the mobile app.</p>
+        <p class="exp-desc"><span data-v="all">Contributed to backend service development at a beta-stage startup, designing products, devising a testing strategy, and using Azure services and Python scripting to enhance backend infrastructure on the mobile app.</span>
+          <span data-v="product" hidden>Designed products and devised a testing strategy at a beta-stage startup, while using Azure services and Python scripting to strengthen the mobile app&rsquo;s backend.</span>
+          <span data-t="eli5" hidden>I helped a brand-new startup&rsquo;s phone app work better behind the scenes. I planned how to test it and used Azure and Python to make it stronger.</span>
+          <span data-t="tldr" hidden>Backend and product work at a beta-stage startup; testing strategy; Azure and Python.</span></p>
       </div>
 
-      <div class="exp-card">
+      <div class="exp-card" data-roles="engineer educator">
         <div class="exp-role">Software Engineering Intern</div>
         <h3 class="exp-org">Code.org<span class="sub">Product-Oriented EdTech Engineering</span></h3>
         <div class="exp-date">Jul 2023 - Sep 2023</div>
-        <p class="exp-desc">Developed and designed full-stack web-based, coding games on engineering and product teams. Programmed with React and Ruby on Rails, impacting 80 million students and 2 million teachers worldwide.</p>
+        <p class="exp-desc"><span data-v="all">Developed and designed full-stack web-based, coding games on engineering and product teams. Programmed with React and Ruby on Rails, impacting 80 million students and 2 million teachers worldwide.</span>
+          <span data-v="educator" hidden>Built and designed web-based coding games for learners on a product and engineering team, reaching 80 million students and 2 million teachers worldwide.</span>
+          <span data-t="eli5" hidden>I made coding games that kids play to learn programming. Millions of students and teachers use them.</span>
+          <span data-t="tldr" hidden>Full-stack coding games in React and Rails; 80M students, 2M teachers.</span></p>
       </div>
 
-      <div class="exp-card">
+      <div class="exp-card" data-roles="product educator">
         <div class="exp-role">Operations &amp; Product Intern</div>
         <h3 class="exp-org">Fiveable<span class="sub">EdTech Startup</span></h3>
         <div class="exp-date">Apr 2021 - Nov 2021</div>
-        <p class="exp-desc">Scaled internal operations and product workflows during the company&rsquo;s transition into a consumer platform. Led development of a student-facing platform aimed at improving access for first-generation and low-income learners.</p>
+        <p class="exp-desc"><span data-v="all">Scaled internal operations and product workflows during the company&rsquo;s transition into a consumer platform. Led development of a student-facing platform aimed at improving access for first-generation and low-income learners.</span>
+          <span data-v="educator" hidden>Led development of a student-facing platform aimed at improving access for first-generation and low-income learners, during the company&rsquo;s move into a consumer product.</span>
+          <span data-t="eli5" hidden>A small education company was growing up. I helped keep its daily work running, and helped build a site for students who are first in their family to go to college or don&rsquo;t have much money.</span>
+          <span data-t="tldr" hidden>Scaled ops and product workflows; led student platform for first-gen and low-income learners.</span></p>
       </div>
 
     </div>
@@ -2159,9 +2248,26 @@ a.contact-value:hover {
       <div class="section-num">§ 05 / Research</div>
       <h2 class="section-title">Research</h2>
     </div>
+    <div id="area-bar" class="chip-group" role="group" aria-label="Filter research">
+      <div class="chip-bar" data-row="area">
+        <span class="chip-label">Area:</span>
+        <button class="chip" data-value="all" aria-pressed="true">All</button>
+        <button class="chip" data-value="eval" aria-pressed="false">AI Evaluation</button>
+        <button class="chip" data-value="hri" aria-pressed="false">Human-AI &amp; Human-Robot Interaction</button>
+        <button class="chip" data-value="gov" aria-pressed="false">AI Governance</button>
+        <button class="chip" data-value="design" aria-pressed="false">Design</button>
+      </div>
+      <div class="chip-bar" data-row="status">
+        <span class="chip-label">Status:</span>
+        <button class="chip" data-value="all" aria-pressed="true">All</button>
+        <button class="chip" data-value="review" aria-pressed="false">Under Review</button>
+        <button class="chip" data-value="peer" aria-pressed="false">Peer-Reviewed</button>
+        <button class="chip" data-value="preprint" aria-pressed="false">Preprint</button>
+      </div>
+    </div>
     <div class="research-list">
 
-      <a class="pub" href="#" rel="noopener">
+      <a class="pub" data-areas="review hri design" href="#" rel="noopener">
         <div class="pub-num">P / 01</div>
         <div>
           <h3 class="pub-title">Designing Power Systems as a Social Interface for Assistive Robots</h3>
@@ -2171,7 +2277,7 @@ a.contact-value:hover {
         <div class="pub-year">2026 <span class="pub-arrow">&rarr;</span></div>
       </a>
 
-      <a class="pub" href="#" rel="noopener">
+      <a class="pub" data-areas="review eval" href="#" rel="noopener">
         <div class="pub-num">P / 02</div>
         <div>
           <h3 class="pub-title">Do Language and Visual Perturbations Compound? Interaction Effects and Backend Sensitivity in Compact Vision-Language-Action Model Evaluation</h3>
@@ -2181,7 +2287,7 @@ a.contact-value:hover {
         <div class="pub-year">2026 <span class="pub-arrow">&rarr;</span></div>
       </a>
 
-      <a class="pub" href="#" rel="noopener">
+      <a class="pub" data-areas="eval gov peer" href="#" rel="noopener">
         <div class="pub-num">P / 03</div>
         <div>
           <h3 class="pub-title">Synthetic Dataset Creation as Governance Infrastructure for Embodied AI Bias Evaluation</h3>
@@ -2191,7 +2297,7 @@ a.contact-value:hover {
         <div class="pub-year">2026 <span class="pub-arrow">→</span></div>
       </a>
 
-      <a class="pub" href="#" rel="noopener">
+      <a class="pub" data-areas="review hri design" href="#" rel="noopener">
         <div class="pub-num">P / 04</div>
         <div>
           <h3 class="pub-title">Beyond the Monolithic Interface: A Research Agenda for Plural Conversational AI</h3>
@@ -2201,7 +2307,7 @@ a.contact-value:hover {
         <div class="pub-year">2026 <span class="pub-arrow">→</span></div>
       </a>
 
-      <a class="pub" href="#" rel="noopener">
+      <a class="pub" data-areas="eval peer" href="#" rel="noopener">
         <div class="pub-num">P / 05</div>
         <div>
           <h3 class="pub-title">Mapping Collective Imaginaries of AI Risk: Expert Elicitation, Causal Modeling and LLM-Assisted Coding</h3>
@@ -2211,7 +2317,7 @@ a.contact-value:hover {
         <div class="pub-year">2026 <span class="pub-arrow">→</span></div>
       </a>
 
-      <a class="pub" href="https://drive.google.com/file/d/1nW212eouV6DEuz1ySuvc4G37OlSVM7dX/view" target="_blank" rel="noopener">
+      <a class="pub" data-areas="hri gov design peer" href="https://drive.google.com/file/d/1nW212eouV6DEuz1ySuvc4G37OlSVM7dX/view" target="_blank" rel="noopener">
         <div class="pub-num">P / 06</div>
         <div>
           <h3 class="pub-title">Governance as Methodology: Toward Anticipatory, Design-Embedded Governance for Human-Robot Interaction</h3>
@@ -2221,7 +2327,7 @@ a.contact-value:hover {
         <div class="pub-year">2026 <span class="pub-arrow">→</span></div>
       </a>
 
-      <a class="pub" href="https://arxiv.org/abs/2602.01503" target="_blank" rel="noopener">
+      <a class="pub" data-areas="gov preprint" href="https://arxiv.org/abs/2602.01503" target="_blank" rel="noopener">
         <div class="pub-num">P / 07</div>
         <div>
           <h3 class="pub-title">Governance at the Edge of Architecture: Regulating NeuroAI and Neuromorphic Systems</h3>
@@ -2231,7 +2337,7 @@ a.contact-value:hover {
         <div class="pub-year">2026 <span class="pub-arrow">→</span></div>
       </a>
 
-      <a class="pub" href="https://caregivingrobots.github.io/assets/pdf/papers/5.pdf" target="_blank" rel="noopener">
+      <a class="pub" data-areas="hri gov peer" href="https://caregivingrobots.github.io/assets/pdf/papers/5.pdf" target="_blank" rel="noopener">
         <div class="pub-num">P / 08</div>
         <div>
           <h3 class="pub-title">Regulatory Considerations for Physically Assistive Robotics Researchers</h3>
@@ -2241,23 +2347,13 @@ a.contact-value:hover {
         <div class="pub-year">2025 <span class="pub-arrow">→</span></div>
       </a>
 
-      <a class="pub" href="https://www.researchgate.net/publication/392085834_Assessing_GPT's_Bias_Towards_Stigmatized_Social_Groups_An_Intersectional_Case_Study_on_Nationality_Prejudice_and_Psychophobia" target="_blank" rel="noopener">
+      <a class="pub" data-areas="eval peer" href="https://www.researchgate.net/publication/392085834_Assessing_GPT's_Bias_Towards_Stigmatized_Social_Groups_An_Intersectional_Case_Study_on_Nationality_Prejudice_and_Psychophobia" target="_blank" rel="noopener">
         <div class="pub-num">P / 09</div>
         <div>
           <h3 class="pub-title">Assessing GPT&rsquo;s Bias Towards Stigmatized Social Groups: An Intersectional Case Study on Nationality Prejudice and Psychophobia</h3>
           <p class="pub-venue">Considering Cultural and Linguistic Diversity in AI Workshop @ ASIS&amp;T</p>
           <p class="pub-authors"><span class="me">Afifah Kashif</span>*, Heer Patel*</p>
           <p class="pub-authors">*authors contributed equally</p>
-        </div>
-        <div class="pub-year">2024 <span class="pub-arrow">→</span></div>
-      </a>
-
-      <a class="pub" href="https://tapiaconference.cmd-it.org/wp-content/uploads/2025/04/2024-Tapia-Program.pdf" target="_blank" rel="noopener">
-        <div class="pub-num">P / 10</div>
-        <div>
-          <h3 class="pub-title">Broadening Participation in Computing by Designing Hackathons that Engage Local Communities</h3>
-          <p class="pub-venue">CMD-IT/ACM Richard Tapia Conference (Workshop Host; first &amp; only undergraduate team)</p>
-          <p class="pub-authors"><span class="me">Afifah Kashif</span>, Andrew Tran, Salma Aly, Egi Rama, Chiku Okechukwu</p>
         </div>
         <div class="pub-year">2024 <span class="pub-arrow">→</span></div>
       </a>
@@ -3130,6 +3226,75 @@ if (lightbox) {
     if (e.key === 'ArrowRight' && currentIdx < currentSet.length - 1) showImage(currentIdx + 1);
   });
 }
+
+// --- Experience: role lens + tone ---------------------------------------------
+(function () {
+  const roleBar = document.getElementById('role-bar');
+  const toneBar = document.getElementById('tone-bar');
+  if (!roleBar || !toneBar) return;
+  const cards = [...document.querySelectorAll('#experience .exp-card[data-roles]')];
+  const valid = [...roleBar.querySelectorAll('.chip')].map(c => c.dataset.role);
+  const state = { role: 'all', tone: 'plain' };
+
+  function press(bar, attr, value) {
+    bar.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', String(c.dataset[attr] === value)));
+  }
+
+  function render() {
+    press(roleBar, 'role', state.role);
+    press(toneBar, 'tone', state.tone);
+    cards.forEach(card => {
+      card.hidden = state.role !== 'all' && !card.dataset.roles.split(' ').includes(state.role);
+      // A chosen tone wins; otherwise use the role wording if this card has one.
+      const spans = [...card.querySelectorAll('[data-v], [data-t]')];
+      const show = s => state.tone !== 'plain'
+        ? s.dataset.t === state.tone
+        : s.dataset.v === (spans.some(x => x.dataset.v === state.role) ? state.role : 'all');
+      spans.forEach(s => { s.hidden = !show(s); });
+    });
+  }
+
+  roleBar.addEventListener('click', e => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    state.role = chip.dataset.role;
+    const url = new URL(location.href);
+    if (state.role === 'all') url.searchParams.delete('as'); else url.searchParams.set('as', state.role);
+    history.replaceState(null, '', url);
+    render();
+  });
+  toneBar.addEventListener('click', e => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    state.tone = chip.dataset.tone;
+    render();
+  });
+
+  // Default is unfiltered and plain; only an explicit ?as= link pre-selects a lens.
+  const initial = new URLSearchParams(location.search).get('as');
+  if (valid.includes(initial)) { state.role = initial; render(); }
+})();
+
+
+// --- Research: filter by area and status --------------------------------------
+(function () {
+  const bar = document.getElementById('area-bar');
+  if (!bar) return;
+  const pubs = [...document.querySelectorAll('.research-list .pub')];
+  const sel = { area: 'all', status: 'all' };
+  bar.addEventListener('click', e => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    const row = chip.closest('[data-row]');
+    sel[row.dataset.row] = chip.dataset.value;
+    row.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', String(c === chip)));
+    pubs.forEach(p => {
+      const tags = p.dataset.areas.split(' ');
+      p.hidden = Object.values(sel).some(v => v !== 'all' && !tags.includes(v));
+    });
+  });
+})();
+
 
 // --- Move title attr to data-tip on social icons -----------------------------
 // This lets our custom CSS tooltip show without the native browser tooltip
