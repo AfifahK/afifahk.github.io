@@ -1473,6 +1473,9 @@ section {
   color: #fff !important;
 }
 
+/* Hike popup photo opens lightbox */
+.leaflet-popup-content .popup-photo { cursor: zoom-in; }
+
 /* Custom map marker */
 .hike-marker {
   width: 22px;
@@ -3195,6 +3198,13 @@ if (lightbox) {
   }));
   galleryItems.forEach((item, i) => {
     item.addEventListener('click', () => openLightbox(gallerySet, i));
+  });
+
+  // Hike popup photos — delegated, since popups are created dynamically
+  document.addEventListener('click', e => {
+    const img = e.target.closest && e.target.closest('.popup-photo');
+    if (!img) return;
+    openLightbox([{ src: img.src, caption: img.alt || '' }], 0);
   });
 
   // Photo-row images — each .photo-row is its own set
