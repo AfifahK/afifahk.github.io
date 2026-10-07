@@ -1100,13 +1100,14 @@ section {
 }
 .project-meta {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.8rem;
+  gap: 0.8rem 1.4rem;
   padding-top: 1rem;
   border-top: 1px dotted var(--rule);
 }
+.project-meta .project-stack { margin-right: auto; }
 .project-stack {
   font-family: var(--mono);
   font-size: 0.72rem;
@@ -2394,7 +2395,7 @@ a.contact-value:hover {
         <p class="project-desc">MPhil in Human-Inspired AI at Cambridge, supervised by <a href="https://betsyhj.github.io/">Dr. Jin Huang</a>, <a href="https://malaksadekapps.com/">Dr. Malak Sadek</a>, and <a href="https://www.cl.cam.ac.uk/~hg410/">Dr. Hatice Gunes</a> (<a href="https://cambridge-afar.github.io/">AFAR Lab</a>, <a href="https://hive.chia.cam.ac.uk/">HIVE Lab</a>). Seven standard bias evaluation methods, run against each other across three datasets, produce no agreement that survives correction for multiple comparisons. Methods sharing the label &ldquo;bias evaluation&rdquo; are not measuring the same thing. Built a six-coder human ground truth benchmark, tested for self-evaluation effects when LLM judges score outputs from their own model family and surfaced a differential-refusal pattern of invisible allocative bias. Reframed bias evaluation as a question of measurement validity rather than method choice, providing recommendations for practitioners and regulators auditing deployed systems.</p>
         <div class="project-meta">
           <span class="project-stack">AI Evaluation · Fairness · Measurement Validity</span>
-          <a href="assets/papers/Afifah_Dissertation.pdf" target="_blank" rel="noopener" class="project-link">Read dissertation →</a>
+          <a href="assets/papers/Afifah_Dissertation.pdf" target="_blank" rel="noopener" class="project-link">Read →</a>
           <a href="https://github.com/AfifahK/bias-eval-construct-validity" target="_blank" rel="noopener" class="project-link">Code →</a>
         </div>
       </article>
