@@ -845,6 +845,29 @@ section {
   opacity: 0;
   transform: translateX(0);
 }
+/* "Coming soon!" pill on hover for papers without links */
+.pub[href="#"]::after {
+  content: "Coming soon!";
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--cream);
+  background: var(--forest);
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  opacity: 0;
+  transform: translateY(4px);
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s;
+}
+.pub[href="#"]:hover::after,
+.pub[href="#"]:focus-visible::after {
+  opacity: 1;
+  transform: translateY(0);
+}
 .pub-arrow {
   display: inline-block;
   margin-left: 0.4rem;
@@ -3026,6 +3049,7 @@ a.contact-value:hover {
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
+document.querySelectorAll('.pub[href="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();});});
 // ==========================================================================
 // AFIFAH KASHIF, site behaviour
 // ==========================================================================
